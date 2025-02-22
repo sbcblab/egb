@@ -11,16 +11,16 @@
 	<title>EGB 2025 - Escola Gaúcha de Bioinformática</title>
 </svelte:head>
 
-<div class="flex min-h-screen flex-col">
+<div class="flex min-h-full flex-col">
 	<Header />
-	<main class="grow text-pretty">
+	<main class="contents">
 		{@render children?.()}
 	</main>
 </div>
 <Footer />
 
-<style lang="postcss">
+<style>
 	:global(html, body) {
-		@apply flex h-full flex-col;
+		height: 100%;
 	}
 </style>
