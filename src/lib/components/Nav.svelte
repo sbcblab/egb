@@ -34,7 +34,7 @@
 {#if isOpen}
 	<div
 		transition:fly={{ duration: 300, easing: expoOut }}
-		class="fixed inset-0 z-10 bg-black/50"
+		class="fixed inset-0 z-10 bg-gray-950/60"
 	></div>
 {/if}
 
@@ -46,7 +46,7 @@
 		class="fixed top-0 right-0 bottom-0 z-20 w-full max-w-64 bg-white px-7 py-7 shadow-lg"
 	>
 		<button onclick={close} class="-translate-x-4 -translate-y-4 p-2">
-			<XIcon strokeWidth={1} class="size-6 text-zinc-600" />
+			<XIcon strokeWidth={1} class="size-6 text-gray-600" />
 		</button>
 		<nav class="mt-6 flex flex-col gap-6">
 			{#each navItems as { label, href }}
