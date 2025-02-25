@@ -14,6 +14,26 @@ export const social = {
 	github: 'https://github.com/sbcblab'
 };
 
+export const about =
+	'The Escola Gaúcha de Bioinformática (EGB) is a collaborative initiative organized by the Institute of Informatics and the Biotechnology Center of the Federal University of Rio Grande do Sul, alongside the Graduate Program in Biosciences at the Federal University of Health Sciences of Porto Alegre. It serves as a platform for training, collaboration, capacity building, and research development, focusing on the application of computational methods to the study of biological systems.\n\nWith an interdisciplinary approach, the event covers a broad range of topics, including genetics, molecular biology, big data analysis, artificial intelligence, molecular modeling, and structural biology, among many other cross-disciplinary applications of computer science to biological research.\n\nA summary of previous EGB editions can be found in the article:\n"Transdisciplinary Approach for Bioinformatics Education in Southern Brazil", Dorn M, Ligabue-Braun R, and Verli H (2021). Front. Educ. 6:725591.\nDOI: https://doi.org/10.3389/feduc.2021.725591.';
+
+export const speakers = [
+	{
+		name: 'Leonardo L. Dorneles',
+		link: 'http://lattes.cnpq.br/6036582565120593',
+		country: { name: 'Brazil', alpha2: 'br' },
+		institution: { name: 'UFRGS', link: 'http://www.ufrgs.br/ufrgs/inicial' },
+		pictureUrl: 'https://sbcb.inf.ufrgs.br/strapi/uploads/leonardo_db04cb8136.webp'
+	},
+	{
+		name: 'Leonardo A. Carbonera',
+		link: 'http://lattes.cnpq.br/5458766598747465',
+		country: { name: 'Brazil', alpha2: 'br' },
+		institution: { name: 'HMV', link: 'https://www.hospitalmoinhos.org.br/institucional' },
+		pictureUrl: 'https://sbcb.inf.ufrgs.br/strapi/uploads/lcarbonera_65ad0aa5c2.png'
+	}
+];
+
 export const schedule: Schedule = [
 	{
 		day: 'Monday, July 21',
