@@ -1,15 +1,11 @@
 <script lang="ts">
-	import PhDna from '~icons/ph/dna';
+	import DnaIcon from '~icons/streamline/ecology-science-dna-biology-experiment-lab-science';
 	import Nav from './Nav.svelte';
 </script>
 
-<header class="flex items-center justify-between px-5 py-6">
-	<a href="/" class="flex items-center text-sky-600">
-		<PhDna class="size-10" />
-		<div class="flex flex-col">
-			<span class="text-2xl/[1] font-semibold">EGB</span>
-			<span class="text-sm/[1] font-extrabold tracking-[0.25em]">2025</span>
-		</div>
+<header class="flex items-center justify-between px-4 py-4">
+	<a href="/" class="-translate-x-2 p-2">
+		<DnaIcon class="size-8 text-sky-500" />
 	</a>
 	<Nav />
 </header>

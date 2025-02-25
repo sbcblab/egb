@@ -1,5 +1,21 @@
 <script lang="ts">
-	import { contactItems, socialItems } from '$lib/data';
+	import { contact, social } from '$lib/data';
+	import { MailIcon, PhoneIcon } from 'lucide-svelte';
+	import RiGithubFill from '~icons/ri/github-fill';
+	import RiInstagramLine from '~icons/ri/instagram-line';
+	import RiLinkedinBoxFill from '~icons/ri/linkedin-box-fill';
+	import RiTwitterXFill from '~icons/ri/twitter-x-fill';
+
+	const contactItems = [
+		{ Icon: MailIcon, value: contact.email },
+		{ Icon: PhoneIcon, value: contact.phone }
+	];
+	const socialItems = [
+		{ Icon: RiInstagramLine, href: social.instagram },
+		{ Icon: RiTwitterXFill, href: social.twitter },
+		{ Icon: RiLinkedinBoxFill, href: social.linkedin },
+		{ Icon: RiGithubFill, href: social.github }
+	];
 </script>
 
 <footer class=" bg-gray-50 px-8">
@@ -7,7 +23,7 @@
 		{#each contactItems as { Icon, value }}
 			<div class="flex items-center gap-2.5">
 				<Icon strokeWidth={1.5} class="size-5 text-gray-400" />
-				<span class="text-sm whitespace-nowrap text-gray-600">{value}</span>
+				<span class="text-sm whitespace-nowrap text-gray-500">{value}</span>
 			</div>
 		{/each}
 	</div>
@@ -16,12 +32,12 @@
 		<div class="flex gap-4">
 			{#each socialItems as { Icon, href }}
 				<a {href} target="_blank">
-					<Icon class="size-7 text-gray-500" />
+					<Icon class="size-7 text-gray-400" />
 				</a>
 			{/each}
 		</div>
 		<div class="text-center text-xs font-light text-gray-400">
-			© Copyright 2025 SBCB Laboratory. All Rights Reserved.
+			Copyright © 2025 SBCB Laboratory. All Rights Reserved.
 		</div>
 	</div>
 </footer>

@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { clickOutside } from '$lib/utils';
-	import { XIcon } from 'lucide-svelte';
+	import { MenuIcon, XIcon } from 'lucide-svelte';
 	import { expoOut } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
-	import HugeiconsMenu11 from '~icons/hugeicons/menu-11';
 
-	const navItems = [
+	const items = [
 		{ label: 'Home', href: '/' },
 		{ label: 'About', href: '/about' },
 		{ label: 'Program', href: '/program' },
@@ -27,8 +26,8 @@
 	}
 </script>
 
-<button onclick={open} class="translate-x-1 p-2 text-2xl">
-	<HugeiconsMenu11 />
+<button onclick={open} class="translate-x-2 p-2">
+	<MenuIcon class="text-gray-800" />
 </button>
 
 {#if isOpen}
@@ -49,7 +48,7 @@
 			<XIcon strokeWidth={1} class="size-6 text-gray-600" />
 		</button>
 		<nav class="mt-6 flex flex-col gap-6">
-			{#each navItems as { label, href }}
+			{#each items as { label, href }}
 				<a {href} onclick={close} class="text-xl font-medium">{label}</a>
 			{/each}
 		</nav>

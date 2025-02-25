@@ -1,24 +1,20 @@
-import { MailIcon, PhoneIcon } from 'lucide-svelte';
-import RiGithubFill from '~icons/ri/github-fill';
-import RiInstagramLine from '~icons/ri/instagram-line';
-import RiLinkedinBoxFill from '~icons/ri/linkedin-box-fill';
-import RiTwitterXFill from '~icons/ri/twitter-x-fill';
+import type { Schedule } from './types';
 
 export const title = 'EGB 2025';
 
-export const contactItems = [
-	{ Icon: MailIcon, value: 'egb@inf.ufrgs.br' },
-	{ Icon: PhoneIcon, value: '+55 51 3308-6824' }
-];
+export const contact = {
+	email: 'egb@inf.ufrgs.br',
+	phone: '+55 51 3308-6824'
+};
 
-export const socialItems = [
-	{ Icon: RiInstagramLine, href: 'https://www.instagram.com/sbcblab/' },
-	{ Icon: RiGithubFill, href: 'https://x.com/sbcblab' },
-	{ Icon: RiLinkedinBoxFill, href: 'https://www.linkedin.com/company/sbcblab' },
-	{ Icon: RiTwitterXFill, href: 'https://github.com/sbcblab' }
-];
+export const social = {
+	instagram: 'https://www.instagram.com/sbcblab/',
+	twitter: 'https://x.com/sbcblab',
+	linkedin: 'https://www.linkedin.com/company/sbcblab',
+	github: 'https://github.com/sbcblab'
+};
 
-export const schedule = [
+export const schedule: Schedule = [
 	{
 		day: 'Monday, July 21',
 		activities: [
