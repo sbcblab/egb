@@ -11,7 +11,9 @@
 	<title>{title}</title>
 </svelte:head>
 
-<div class="flex min-h-full flex-col text-pretty text-gray-950 subpixel-antialiased">
+<div
+	class="flex min-h-full flex-col text-pretty text-gray-950 subpixel-antialiased selection:bg-sky-600 selection:text-white"
+>
 	<Header />
 	<main class="contents">
 		{@render children?.()}

@@ -51,7 +51,7 @@ export const schedule: Schedule = [
 				people: []
 			},
 			{
-				title: 'Palestra Aula - I',
+				title: 'Palestra Aula \u2013 I',
 				startTime: '09:30',
 				endTime: '10:30',
 				people: [
@@ -69,7 +69,7 @@ export const schedule: Schedule = [
 				people: []
 			},
 			{
-				title: 'Palestra Aula - II',
+				title: 'Palestra Aula \u2013 II',
 				startTime: '11:00',
 				endTime: '12:00',
 				people: [
@@ -87,7 +87,7 @@ export const schedule: Schedule = [
 				people: []
 			},
 			{
-				title: 'Palestra Aula - III',
+				title: 'Palestra Aula \u2013 III',
 				startTime: '14:00',
 				endTime: '15:00',
 				people: [
@@ -99,7 +99,7 @@ export const schedule: Schedule = [
 				]
 			},
 			{
-				title: 'Palestra Aula - IV',
+				title: 'Palestra Aula \u2013 IV',
 				startTime: '15:00',
 				endTime: '16:00',
 				people: [
@@ -111,7 +111,7 @@ export const schedule: Schedule = [
 				]
 			},
 			{
-				title: 'Palestra Aula - V',
+				title: 'Palestra Aula \u2013 V',
 				startTime: '16:00',
 				endTime: '17:00',
 				people: [
@@ -170,7 +170,7 @@ export const schedule: Schedule = [
 				people: []
 			},
 			{
-				title: 'Palestra Aula - VI',
+				title: 'Palestra Aula \u2013 VI',
 				startTime: '14:00',
 				endTime: '15:00',
 				people: [
@@ -182,7 +182,7 @@ export const schedule: Schedule = [
 				]
 			},
 			{
-				title: 'Palestra Aula - VII',
+				title: 'Palestra Aula \u2013 VII',
 				startTime: '15:00',
 				endTime: '16:00',
 				people: [
@@ -200,7 +200,7 @@ export const schedule: Schedule = [
 				people: []
 			},
 			{
-				title: 'Palestra Aula - VIII',
+				title: 'Palestra Aula \u2013 VIII',
 				startTime: '16:30',
 				endTime: '17:30',
 				people: [
@@ -212,7 +212,7 @@ export const schedule: Schedule = [
 				]
 			},
 			{
-				title: 'Palestra Aula - IX',
+				title: 'Palestra Aula \u2013 IX',
 				startTime: '17:30',
 				endTime: '18:30',
 				people: [
@@ -224,7 +224,7 @@ export const schedule: Schedule = [
 				]
 			},
 			{
-				title: 'Confraternização por Adesão - Aventura Gastronomia e Diversão',
+				title: 'Confraternização por Adesão \u2013 Aventura Gastronomia e Diversão',
 				startTime: '19:00',
 				endTime: '21:00',
 				people: []
@@ -271,7 +271,7 @@ export const schedule: Schedule = [
 				people: []
 			},
 			{
-				title: 'Palestra Aula - X',
+				title: 'Palestra Aula \u2013 X',
 				startTime: '14:00',
 				endTime: '15:00',
 				people: [
@@ -283,7 +283,7 @@ export const schedule: Schedule = [
 				]
 			},
 			{
-				title: 'Palestra Aula - XI',
+				title: 'Palestra Aula \u2013 XI',
 				startTime: '15:00',
 				endTime: '16:00',
 				people: [
@@ -301,7 +301,7 @@ export const schedule: Schedule = [
 				people: []
 			},
 			{
-				title: 'Palestra Aula - XII',
+				title: 'Palestra Aula \u2013 XII',
 				startTime: '16:30',
 				endTime: '17:30',
 				people: [
@@ -313,7 +313,7 @@ export const schedule: Schedule = [
 				]
 			},
 			{
-				title: 'Palestra Aula - XIII',
+				title: 'Palestra Aula \u2013 XIII',
 				startTime: '17:30',
 				endTime: '18:30',
 				people: [
@@ -325,7 +325,7 @@ export const schedule: Schedule = [
 				]
 			},
 			{
-				title: 'Confraternização por Adesão - 4Beer Bela Vista',
+				title: 'Confraternização por Adesão \u2013 4Beer Bela Vista',
 				startTime: '19:00',
 				endTime: '21:00',
 				people: []
@@ -360,7 +360,7 @@ export const schedule: Schedule = [
 				people: []
 			},
 			{
-				title: 'Palestra Aula - XIV',
+				title: 'Palestra Aula \u2013 XIV',
 				startTime: '14:00',
 				endTime: '15:00',
 				people: [
@@ -372,7 +372,7 @@ export const schedule: Schedule = [
 				]
 			},
 			{
-				title: 'Palestra Aula - XV',
+				title: 'Palestra Aula \u2013 XV',
 				startTime: '15:00',
 				endTime: '16:00',
 				people: [
@@ -395,7 +395,7 @@ export const schedule: Schedule = [
 				people: []
 			},
 			{
-				title: 'Palestra Aula - XVI',
+				title: 'Palestra Aula \u2013 XVI',
 				startTime: '16:30',
 				endTime: '17:30',
 				people: [
@@ -407,13 +407,13 @@ export const schedule: Schedule = [
 				]
 			},
 			{
-				title: 'Palestra Aula - XVII',
+				title: 'Palestra Aula \u2013 XVII',
 				startTime: '17:30',
 				endTime: '18:30',
 				people: []
 			},
 			{
-				title: 'Confraternização por Adesão - Boteco Pedrini Protásio Alves',
+				title: 'Confraternização por Adesão \u2013 Boteco Pedrini Protásio Alves',
 				startTime: '19:00',
 				endTime: '21:00',
 				people: []
@@ -424,7 +424,7 @@ export const schedule: Schedule = [
 		day: 'Friday, July 25',
 		activities: [
 			{
-				title: 'Palestra Aula - XVIII',
+				title: 'Palestra Aula \u2013 XVIII',
 				startTime: '09:00',
 				endTime: '10:00',
 				people: [
@@ -442,7 +442,7 @@ export const schedule: Schedule = [
 				people: []
 			},
 			{
-				title: 'Mesa Redonda - Regional Sul AB3C',
+				title: 'Mesa Redonda \u2013 Regional Sul AB3C',
 				startTime: '10:30',
 				endTime: '11:30',
 				people: []
@@ -466,7 +466,7 @@ export const schedule: Schedule = [
 				people: []
 			},
 			{
-				title: 'Palestra Aula - XXI',
+				title: 'Palestra Aula \u2013 XXI',
 				startTime: '14:00',
 				endTime: '15:00',
 				people: [
@@ -478,7 +478,7 @@ export const schedule: Schedule = [
 				]
 			},
 			{
-				title: 'Palestra Aula - XXII',
+				title: 'Palestra Aula \u2013 XXII',
 				startTime: '15:00',
 				endTime: '16:00',
 				people: [
@@ -499,7 +499,7 @@ export const schedule: Schedule = [
 				people: []
 			},
 			{
-				title: 'Palestra Aula - XXIII',
+				title: 'Palestra Aula \u2013 XXIII',
 				startTime: '16:30',
 				endTime: '17:30',
 				people: []
