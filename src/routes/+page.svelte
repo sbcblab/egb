@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { title } from '$lib/data';
 	import { ChevronRightIcon } from 'lucide-svelte';
+
+	const supporterUrls = ['fapergs.svg', 'ppgbcm.svg', 'ufrgs.svg'];
+	const organizerUrls = ['capes.svg', 'cbiot.svg', 'cnpq.svg'];
 </script>
 
 <svelte:head>
@@ -30,5 +33,27 @@
 				<ChevronRightIcon strokeWidth={2.5} class="size-4" />
 			</a>
 		</div>
+	</div>
+</div>
+
+<div>
+	<h2 class="mx-4 mt-20 mb-8 text-center text-3xl font-semibold tracking-tight text-gray-800">
+		Organizers
+	</h2>
+	<div class="mx-4 flex flex-wrap justify-center gap-8">
+		{#each organizerUrls as url}
+			<div style:mask="url({url}) center / contain no-repeat" class="h-20 w-30 bg-gray-600"></div>
+		{/each}
+	</div>
+</div>
+
+<div class="mb-20">
+	<h2 class="mx-4 mt-20 mb-8 text-center text-3xl font-semibold tracking-tight text-gray-800">
+		Supporters
+	</h2>
+	<div class="mx-4 flex flex-wrap justify-center gap-8">
+		{#each supporterUrls as url}
+			<div style:mask="url({url}) center / contain no-repeat" class="h-20 w-30 bg-gray-600"></div>
+		{/each}
 	</div>
 </div>

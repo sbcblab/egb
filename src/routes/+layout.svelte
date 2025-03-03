@@ -4,7 +4,8 @@
 	import { title } from '$lib/data';
 	import '../app.css';
 
-	let { children } = $props();
+	let { children, data } = $props();
+	let { contact, socialLinks } = data;
 </script>
 
 <svelte:head>
@@ -19,7 +20,7 @@
 		{@render children?.()}
 	</main>
 </div>
-<Footer />
+<Footer {contact} {socialLinks} />
 
 <style>
 	:global(html, body) {

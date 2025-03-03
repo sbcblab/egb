@@ -1,8 +1,11 @@
 <script lang="ts">
-	import { contact, title } from '$lib/data';
+	import { title } from '$lib/data';
 	import { MailIcon, PhoneIcon } from 'lucide-svelte';
 	import { MapLibre, Marker, Popup, type LngLatLike } from 'svelte-maplibre';
 	import PhMapPinFill from '~icons/ph/map-pin-fill';
+
+	let { data } = $props();
+	let { contact } = data;
 
 	const lngLat: LngLatLike = [-51.121152, -30.068043];
 	const contactItems = [

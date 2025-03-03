@@ -5,11 +5,17 @@ export type Contact = {
 	phone: string;
 };
 
-export type Social = {
+export type SocialLinks = {
 	instagram: string;
 	twitter: string;
 	linkedin: string;
 	github: string;
+};
+
+export type About = {
+	body: string;
+	speakers: Person[];
+	committee: Person[];
 };
 
 export type Country = {
@@ -42,5 +48,8 @@ export type Schedule = {
 }[];
 
 export interface Schema {
+	contact: Contact;
+	socialLinks: SocialLinks;
+	about: About;
 	directusFiles: DirectusFile[];
 }

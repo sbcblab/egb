@@ -2,21 +2,6 @@ import type { Schedule } from './types';
 
 export const title = 'EGB 2025';
 
-export const contact = {
-	email: 'egb@inf.ufrgs.br',
-	phone: '+55 51 3308-6824'
-};
-
-export const social = {
-	instagram: 'https://www.instagram.com/sbcblab/',
-	twitter: 'https://x.com/sbcblab',
-	linkedin: 'https://www.linkedin.com/company/sbcblab',
-	github: 'https://github.com/sbcblab'
-};
-
-export const about =
-	'The Escola Gaúcha de Bioinformática (EGB) is a collaborative initiative organized by the Institute of Informatics and the Biotechnology Center of the Federal University of Rio Grande do Sul, alongside the Graduate Program in Biosciences at the Federal University of Health Sciences of Porto Alegre. It serves as a platform for training, collaboration, capacity building, and research development, focusing on the application of computational methods to the study of biological systems.\n\nWith an interdisciplinary approach, the event covers a broad range of topics, including genetics, molecular biology, big data analysis, artificial intelligence, molecular modeling, and structural biology, among many other cross-disciplinary applications of computer science to biological research.\n\nA summary of previous EGB editions can be found in the article:\n"Transdisciplinary Approach for Bioinformatics Education in Southern Brazil", Dorn M, Ligabue-Braun R, and Verli H (2021). Front. Educ. 6:725591.\nDOI: https://doi.org/10.3389/feduc.2021.725591.';
-
 export const speakers = [
 	{
 		name: 'Leonardo L. Dorneles',

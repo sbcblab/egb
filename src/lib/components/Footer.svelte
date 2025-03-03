@@ -1,20 +1,22 @@
 <script lang="ts">
-	import { contact, social } from '$lib/data';
+	import type { Contact, SocialLinks } from '$lib/types';
 	import { MailIcon, PhoneIcon } from 'lucide-svelte';
 	import RiGithubFill from '~icons/ri/github-fill';
 	import RiInstagramLine from '~icons/ri/instagram-line';
 	import RiLinkedinBoxFill from '~icons/ri/linkedin-box-fill';
 	import RiTwitterXFill from '~icons/ri/twitter-x-fill';
 
+	let { contact, socialLinks }: { contact: Contact; socialLinks: SocialLinks } = $props();
+
 	const contactItems = [
 		{ Icon: MailIcon, value: contact.email },
 		{ Icon: PhoneIcon, value: contact.phone }
 	];
 	const socialItems = [
-		{ Icon: RiInstagramLine, href: social.instagram },
-		{ Icon: RiTwitterXFill, href: social.twitter },
-		{ Icon: RiLinkedinBoxFill, href: social.linkedin },
-		{ Icon: RiGithubFill, href: social.github }
+		{ Icon: RiInstagramLine, href: socialLinks.instagram },
+		{ Icon: RiTwitterXFill, href: socialLinks.twitter },
+		{ Icon: RiLinkedinBoxFill, href: socialLinks.linkedin },
+		{ Icon: RiGithubFill, href: socialLinks.github }
 	];
 </script>
 
