@@ -17,14 +17,45 @@ export const speakers = [
 		link: 'http://lattes.cnpq.br/6036582565120593',
 		country: { name: 'Brazil', alpha2: 'br' },
 		institution: { name: 'UFRGS', link: 'http://www.ufrgs.br/ufrgs/inicial' },
-		pictureUrl: 'https://sbcb.inf.ufrgs.br/strapi/uploads/leonardo_db04cb8136.webp'
+		pictureUrl: 'http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K8471008E6'
 	},
 	{
 		name: 'Leonardo A. Carbonera',
-		link: 'http://lattes.cnpq.br/5458766598747465',
+		link: 'http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4445923J3',
 		country: { name: 'Brazil', alpha2: 'br' },
 		institution: { name: 'HMV', link: 'https://www.hospitalmoinhos.org.br/institucional' },
 		pictureUrl: 'https://sbcb.inf.ufrgs.br/strapi/uploads/lcarbonera_65ad0aa5c2.png'
+	},
+	{
+		name: 'Rafael Stubs Parpinelli',
+		link: 'http://lattes.cnpq.br/4456007001373501',
+		country: { name: 'Brazil', alpha2: 'br' },
+		institution: { name: 'UDESC', link: 'https://www.udesc.br/' },
+		pictureUrl: 'http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4700260H1'
+	}
+];
+
+export const committee = [
+	{
+		name: 'Márcio Dorn',
+		link: 'http://lattes.cnpq.br/6355224981962273',
+		country: { name: 'Brazil', alpha2: 'br' },
+		institution: { name: 'UFRGS', link: 'http://www.ufrgs.br/ufrgs/inicial' },
+		pictureUrl: 'http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4130395T5'
+	},
+	{
+		name: 'Juliana da Silva Bernardes',
+		link: 'http://lattes.cnpq.br/5236549058240153',
+		country: { name: 'France', alpha2: 'fr' },
+		institution: { name: 'SU', link: 'https://www.sorbonne-universite.fr/' },
+		pictureUrl: 'http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4702214Y4'
+	},
+	{
+		name: 'Mario Inostroza-Ponta',
+		link: 'http://lattes.cnpq.br/9196917756710970',
+		country: { name: 'Chile', alpha2: 'cl' },
+		institution: { name: 'USACH', link: 'https://www.usach.cl/en' },
+		pictureUrl: 'http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4337230Z6'
 	}
 ];
 

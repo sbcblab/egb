@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { speakers, title } from '$lib/data';
+	import { committee, speakers, title } from '$lib/data';
 </script>
 
 <svelte:head>
@@ -36,11 +36,25 @@
 			>
 		</p>
 	</div>
+
+	<h2 class="mx-4 mt-16 mb-8 text-4xl font-semibold tracking-tight text-gray-800">Committee</h2>
+	<div class="flex flex-col gap-6">
+		{#each committee as { name, link, country, institution, pictureUrl }}
+			<div class="mx-4 flex items-center gap-4">
+				<img src={pictureUrl} alt={name} class="size-18 rounded-2xl object-cover" />
+				<div>
+					<a href={link} target="_blank" class="text-lg">{name}</a>
+					<div class="text-gray-500">{institution.name}, {country.name}</div>
+				</div>
+			</div>
+		{/each}
+	</div>
+
 	<h2 class="mx-4 mt-16 mb-8 text-4xl font-semibold tracking-tight text-gray-800">Speakers</h2>
 	<div class="flex flex-col gap-6">
 		{#each speakers as { name, link, country, institution, pictureUrl }}
 			<div class="mx-4 flex items-center gap-4">
-				<img src={pictureUrl} alt={name} class="size-18 rounded-2xl" />
+				<img src={pictureUrl} alt={name} class="size-18 rounded-2xl object-cover" />
 				<div>
 					<a href={link} target="_blank" class="text-lg">{name}</a>
 					<div class="text-gray-500">{institution.name}, {country.name}</div>
