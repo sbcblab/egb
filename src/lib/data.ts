@@ -2,6 +2,15 @@ import type { Schedule } from './types';
 
 export const title = 'EGB 2025';
 
+export const contact = { email: 'egb@inf.ufrgs.br', phone: '+55 51 3308-6824' };
+
+export const socialLinks = {
+	instagram: 'https://www.instagram.com/sbcblab/',
+	twitter: 'https://x.com/sbcblab',
+	linkedin: 'https://www.linkedin.com/company/sbcblab',
+	github: 'https://github.com/sbcblab'
+};
+
 export const speakers = [
 	{
 		name: 'Leonardo L. Dorneles',

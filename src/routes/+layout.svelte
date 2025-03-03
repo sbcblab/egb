@@ -1,11 +1,10 @@
 <script>
 	import Footer from '$lib/components/Footer.svelte';
 	import Header from '$lib/components/Header.svelte';
-	import { title } from '$lib/data';
+	import { contact, socialLinks, title } from '$lib/data';
 	import '../app.css';
 
-	let { children, data } = $props();
-	let { contact, socialLinks } = data;
+	let { children } = $props();
 </script>
 
 <svelte:head>

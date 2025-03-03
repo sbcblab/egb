@@ -2,8 +2,16 @@
 	import { title } from '$lib/data';
 	import { ChevronRightIcon } from 'lucide-svelte';
 
-	const supporterUrls = ['fapergs.svg', 'ppgbcm.svg', 'ufrgs.svg'];
-	const organizerUrls = ['capes.svg', 'cbiot.svg', 'cnpq.svg'];
+	const organizerUrls = [
+		'cbiot.svg',
+		'ppgbcm.svg',
+		'ppgbm.svg',
+		'inscer.svg',
+		'ufrgs.svg',
+		'ufcspa.svg',
+		'pucrs.svg'
+	];
+	const supporterUrls = ['cnpq.svg', 'capes.svg', 'fapergs.svg', 'ab3c.svg'];
 </script>
 
 <svelte:head>
@@ -42,7 +50,7 @@
 	</h2>
 	<div class="mx-4 flex flex-wrap justify-center gap-8">
 		{#each organizerUrls as url}
-			<div style:mask="url({url}) center / contain no-repeat" class="h-20 w-30 bg-gray-600"></div>
+			<div style:mask="url({url}) center / contain no-repeat" class="h-20 w-30 bg-gray-500"></div>
 		{/each}
 	</div>
 </div>
@@ -53,7 +61,7 @@
 	</h2>
 	<div class="mx-4 flex flex-wrap justify-center gap-8">
 		{#each supporterUrls as url}
-			<div style:mask="url({url}) center / contain no-repeat" class="h-20 w-30 bg-gray-600"></div>
+			<div style:mask="url({url}) center / contain no-repeat" class="h-20 w-30 bg-gray-500"></div>
 		{/each}
 	</div>
 </div>
