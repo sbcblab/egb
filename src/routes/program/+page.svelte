@@ -8,20 +8,20 @@
 	<title>Program &ndash; {title}</title>
 </svelte:head>
 
-<div class="mx-4 mt-4 mb-16">
-	<h1 class="mb-6 text-4xl font-semibold tracking-tight text-gray-800">Program</h1>
-	<p class="text-lg/[1.75] text-gray-600">
+<div class="mt-6">
+	<h1 class="mx-6 mb-6 text-4xl font-semibold tracking-tight text-gray-800">Program</h1>
+	<p class="mx-6 text-lg/[1.75] text-gray-600">
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor urna ac arcu lacinia, ut
 		egestas tellus ultricies.
 	</p>
 	{#each schedule as { day, activities }}
-		<div class="mt-16 mb-4 flex items-center gap-2 pl-2">
-			<CalendarIcon class="size-4.5 text-gray-500" />
+		<div class="mx-6 mt-20 mb-4 flex items-center gap-2">
+			<CalendarIcon class="size-4.5 text-gray-400" />
 			<h2 class="text-lg font-semibold">{day}</h2>
 		</div>
-		<div class="rounded-2xl border border-gray-200 shadow-sm">
+		<div class="rounded-4xl border border-gray-200 shadow-md">
 			{#each activities as { title, startTime, endTime, people }}
-				<div class="p-6 first:rounded-t-xl last:rounded-b-xl even:bg-gray-50">
+				<div class="px-6 py-8 first:rounded-t-4xl last:rounded-b-4xl odd:bg-gray-50">
 					<div class="flex items-center gap-1.5 text-sm text-gray-500">
 						{startTime} &ndash; {endTime}
 					</div>

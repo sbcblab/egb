@@ -17,7 +17,7 @@
 	<title>Contact &ndash; {title}</title>
 </svelte:head>
 
-<div class="mx-4 mt-4 mb-4 flex grow flex-col">
+<div class="m-6 flex grow flex-col">
 	<h1 class="mb-6 text-4xl font-semibold tracking-tight text-gray-800">Contact us</h1>
 	<p class="text-lg/[1.75] text-gray-600">
 		If you have any questions about EGB 2025, please feel free to contact us by any of the methods
@@ -36,7 +36,7 @@
 		zoom={14}
 		attributionControl={false}
 		style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
-		class="z-0 mt-10 min-h-72 grow rounded-2xl bg-stone-50"
+		class="z-0 mt-14 min-h-72 grow rounded-2xl bg-stone-50"
 	>
 		<Marker {lngLat} onclick={() => (isPopupOpen = true)}>
 			<PhMapPinFill class="size-12 text-sky-500" />
