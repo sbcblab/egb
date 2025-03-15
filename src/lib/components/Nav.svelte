@@ -1,16 +1,19 @@
 <script lang="ts">
+	import type { LanguageCode } from '$lib/types';
 	import { clickOutside } from '$lib/utils';
 	import { MenuIcon, XIcon } from 'lucide-svelte';
 	import { expoOut } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
 
+	let { lang }: { lang: LanguageCode } = $props();
+
 	const items = [
-		{ label: 'Home', href: '/' },
-		{ label: 'About', href: '/about' },
-		{ label: 'Program', href: '/program' },
-		{ label: 'Submissions', href: '/submissions' },
-		{ label: 'Registration', href: '/registration' },
-		{ label: 'Contact', href: '/contact' }
+		{ 'en-US': 'Home', 'pt-BR': 'Início', href: '/' },
+		{ 'en-US': 'About', 'pt-BR': 'Sobre', href: '/about' },
+		{ 'en-US': 'Program', 'pt-BR': 'Programa', href: '/program' },
+		{ 'en-US': 'Submissions', 'pt-BR': 'Submissões', href: '/submissions' },
+		{ 'en-US': 'Registration', 'pt-BR': 'Inscrições', href: '/registration' },
+		{ 'en-US': 'Contact', 'pt-BR': 'Contato', href: '/contact' }
 	];
 
 	let isOpen = $state(false);
@@ -26,8 +29,14 @@
 	}
 </script>
 
-<button onclick={open} class="translate-x-2 p-2">
-	<MenuIcon class="text-gray-800" />
+<div class="flex gap-14 max-lg:hidden">
+	{#each items as item}
+		<a href={item.href}>{item[lang]}</a>
+	{/each}
+</div>
+
+<button onclick={open} class="translate-x-2 p-2 lg:hidden">
+	<MenuIcon />
 </button>
 
 {#if isOpen}
@@ -48,8 +57,10 @@
 			<XIcon strokeWidth={1} class="size-6 text-gray-600" />
 		</button>
 		<nav class="mt-6 flex flex-col gap-6">
-			{#each items as { label, href }}
-				<a {href} onclick={close} class="text-xl font-medium">{label}</a>
+			{#each items as item}
+				<a href={item.href} onclick={close} class="text-xl font-medium text-gray-900">
+					{item[lang]}
+				</a>
 			{/each}
 		</nav>
 	</div>

@@ -1,37 +1,38 @@
 <script lang="ts">
-	import type { Contact, SocialLinks } from '$lib/types';
-	import { MailIcon, PhoneIcon } from 'lucide-svelte';
+	import type { Global, LanguageCode } from '$lib/types';
+	import { format } from 'date-fns';
 	import RiGithubFill from '~icons/ri/github-fill';
 	import RiInstagramLine from '~icons/ri/instagram-line';
 	import RiLinkedinBoxFill from '~icons/ri/linkedin-box-fill';
 	import RiTwitterXFill from '~icons/ri/twitter-x-fill';
 
-	let { contact, socialLinks }: { contact: Contact; socialLinks: SocialLinks } = $props();
+	let { global, lang }: { global: Global; lang: LanguageCode } = $props();
 
-	const contactItems = [
-		{ Icon: MailIcon, value: contact.email },
-		{ Icon: PhoneIcon, value: contact.phone }
-	];
 	const socialItems = [
-		{ Icon: RiInstagramLine, href: socialLinks.instagram },
-		{ Icon: RiTwitterXFill, href: socialLinks.twitter },
-		{ Icon: RiLinkedinBoxFill, href: socialLinks.linkedin },
-		{ Icon: RiGithubFill, href: socialLinks.github }
+		{ title: 'Instagram', Icon: RiInstagramLine, href: global.instagramLink },
+		{ title: 'Twitter', Icon: RiTwitterXFill, href: global.twitterLink },
+		{ title: 'LinkedIn', Icon: RiLinkedinBoxFill, href: global.linkedinLink },
+		{ title: 'GitHub', Icon: RiGithubFill, href: global.githubLink }
 	];
+
+	const translations = {
+		'en-US': { rights: 'All Rights Reserved.' },
+		'pt-BR': { rights: 'Todos os direitos reservados.' }
+	};
 </script>
 
 <footer class="px-6">
 	<hr class="border-gray-200" />
 	<div class="flex flex-col items-center gap-8 py-12">
 		<div class="flex gap-6">
-			{#each socialItems as { Icon, href }}
-				<a {href} target="_blank">
+			{#each socialItems as { Icon, href, title }}
+				<a {href} target="_blank" {title}>
 					<Icon class="size-7 text-gray-500" />
 				</a>
 			{/each}
 		</div>
 		<div class="text-center text-sm text-gray-400">
-			Copyright © 2025 SBCB Laboratory. All Rights Reserved.
+			Copyright © {format(global.startDate, 'y')} SBCB Laboratory. {translations[lang].rights}
 		</div>
 	</div>
 </footer>

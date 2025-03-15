@@ -1,67 +1,35 @@
 <script lang="ts">
-	import { title } from '$lib/data';
-	import { ChevronRightIcon } from 'lucide-svelte';
+	import { format } from 'date-fns';
+	import { enUS, ptBR } from 'date-fns/locale';
 
-	const organizerUrls = [
-		'cbiot.svg',
-		'ppgbcm.svg',
-		'ppgbm.svg',
-		'inscer.svg',
-		'ufrgs.svg',
-		'ufcspa.svg',
-		'pucrs.svg'
-	];
-	const supporterUrls = ['cnpq.svg', 'capes.svg', 'fapergs.svg', 'ab3c.svg'];
+	let { data } = $props();
+	let { lang, global } = data;
+
+	const translations = {
+		'en-US': {
+			dateRange: `${format(global.startDate, 'MMMM d', { locale: enUS })} \u2013 ${format(global.endDate, 'd, y')}`,
+			countryName: 'Brazil'
+		},
+		'pt-BR': {
+			dateRange: `${format(global.startDate, 'd')} a ${format(global.endDate, 'd')} de ${format(global.endDate, 'MMMM', { locale: ptBR })} de ${format(global.endDate, 'y')}`,
+			countryName: 'Brasil'
+		}
+	};
 </script>
 
 <svelte:head>
-	<title>{title} &middot; Escola Gaúcha de Bioinformática</title>
+	<title>EGB {format(global.startDate, 'y')} &middot; Escola Gaúcha de Bioinformática</title>
 </svelte:head>
 
-<div
-	style:background-image="url(https://www.ufrgs.br/egb/wp-content/uploads/2023/06/Screenshot-from-2023-06-23-16-07-01-1.png)"
-	class="relative h-172 bg-cover bg-[64%]"
->
-	<div class="absolute inset-0 bg-sky-700/80 backdrop-grayscale"></div>
-	<div class="absolute inset-0 flex items-center">
-		<div class="flex size-full flex-col items-center justify-center px-4 text-center">
-			<h1 class="mb-10 flex flex-col gap-1.5">
-				<span class="text-xl font-extrabold text-cyan-200">EGB 2025</span>
-				<span class="text-[2.5rem]/[1.05] font-bold tracking-tighter text-white">
-					Escola Gaúcha de Bioinformática
-				</span>
-			</h1>
-			<p class="text-2xl font-semibold text-cyan-50">July 21 &ndash; 25, 2025</p>
-			<p class="text-base font-semibold text-cyan-200">Porto Alegre, RS, Brazil</p>
-			<a
-				href="/registration"
-				class="mt-14 flex items-center gap-1.5 rounded-xl border-cyan-200/50 bg-cyan-500 px-7 py-3 text-sm font-semibold text-white shadow-sm"
-			>
-				<span>Register</span>
-				<ChevronRightIcon strokeWidth={2.5} class="size-4" />
-			</a>
-		</div>
-	</div>
-</div>
-
-<div>
-	<h2 class="mx-4 mt-20 mb-8 text-center text-3xl font-semibold tracking-tight text-gray-800">
-		Organizers
+<div class="flex h-screen flex-col items-center justify-center bg-gray-600 px-8 text-center">
+	<h2 class="text-xl font-extrabold text-gray-300 sm:text-3xl">
+		EGB {format(global.startDate, 'y')}
 	</h2>
-	<div class="mx-4 flex flex-wrap justify-center gap-8">
-		{#each organizerUrls as url}
-			<div style:mask="url({url}) center / contain no-repeat" class="h-20 w-30 bg-gray-500"></div>
-		{/each}
-	</div>
-</div>
-
-<div class="mb-20">
-	<h2 class="mx-4 mt-20 mb-8 text-center text-3xl font-semibold tracking-tight text-gray-800">
-		Supporters
-	</h2>
-	<div class="mx-4 flex flex-wrap justify-center gap-8">
-		{#each supporterUrls as url}
-			<div style:mask="url({url}) center / contain no-repeat" class="h-20 w-30 bg-gray-500"></div>
-		{/each}
-	</div>
+	<h1 class="mt-2.5 mb-16 text-4xl font-semibold tracking-tight text-white sm:text-7xl">
+		Escola Gaúcha de Bioinformática
+	</h1>
+	<p class="text-2xl font-semibold text-gray-200 sm:mb-2 sm:text-4xl">
+		{translations[lang].dateRange}
+	</p>
+	<p class="text-gray-300 sm:text-xl">Porto Alegre, RS, {translations[lang].countryName}</p>
 </div>

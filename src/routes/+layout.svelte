@@ -1,25 +1,24 @@
 <script>
+	import { page } from '$app/state';
 	import Footer from '$lib/components/Footer.svelte';
 	import Header from '$lib/components/Header.svelte';
-	import { contact, socialLinks, title } from '$lib/data';
 	import '../app.css';
 
-	let { children } = $props();
-</script>
+	let { children, data } = $props();
+	let { lang, global } = data;
 
-<svelte:head>
-	<title>{title}</title>
-</svelte:head>
+	let isHome = $derived(page.url.pathname === '/');
+</script>
 
 <div
 	class="mb-20 flex min-h-full flex-col text-pretty text-gray-950 subpixel-antialiased selection:bg-sky-600 selection:text-white"
 >
-	<Header />
+	<Header {isHome} {lang} />
 	<main class="contents">
 		{@render children?.()}
 	</main>
 </div>
-<Footer {contact} {socialLinks} />
+<Footer {global} {lang} />
 
 <style>
 	:global(html, body) {
