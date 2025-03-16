@@ -1,18 +1,22 @@
 <script lang="ts">
+	import { PUBLIC_API_URL } from '$env/static/public';
 	import { format } from 'date-fns';
 	import { enUS, ptBR } from 'date-fns/locale';
+	import { ChevronRight } from 'lucide-svelte';
 
 	let { data } = $props();
-	let { lang, global } = data;
+	let { lang, global, home } = data;
 
 	const translations = {
 		'en-US': {
 			dateRange: `${format(global.startDate, 'MMMM d', { locale: enUS })} \u2013 ${format(global.endDate, 'd, y')}`,
-			countryName: 'Brazil'
+			countryName: 'Brazil',
+			aboutTitle: 'About EGB'
 		},
 		'pt-BR': {
 			dateRange: `${format(global.startDate, 'd')} a ${format(global.endDate, 'd')} de ${format(global.endDate, 'MMMM', { locale: ptBR })} de ${format(global.endDate, 'y')}`,
-			countryName: 'Brasil'
+			countryName: 'Brasil',
+			aboutTitle: 'Sobre a EGB'
 		}
 	};
 </script>
@@ -21,15 +25,35 @@
 	<title>EGB {format(global.startDate, 'y')} &middot; Escola Gaúcha de Bioinformática</title>
 </svelte:head>
 
-<div class="flex h-screen flex-col items-center justify-center bg-gray-600 px-8 text-center">
-	<h2 class="text-xl font-extrabold text-gray-300 sm:text-3xl">
+<div class="flex h-screen flex-col items-center justify-center bg-gray-600 px-4 text-center">
+	<p class="text-xl font-extrabold text-gray-300">
 		EGB {format(global.startDate, 'y')}
-	</h2>
-	<h1 class="mt-2.5 mb-16 text-4xl font-semibold tracking-tight text-white sm:text-7xl">
+	</p>
+	<h1 class="mt-2 mb-14 text-5xl font-semibold tracking-tight text-white">
 		Escola Gaúcha de Bioinformática
 	</h1>
-	<p class="text-2xl font-semibold text-gray-200 sm:mb-2 sm:text-4xl">
+	<p class="mb-1 text-2xl font-semibold text-gray-200">
 		{translations[lang].dateRange}
 	</p>
-	<p class="text-gray-300 sm:text-xl">Porto Alegre, RS, {translations[lang].countryName}</p>
+	<p class="text-gray-300">Porto Alegre, RS, {translations[lang].countryName}</p>
+</div>
+
+<div
+	class="mx-auto my-20 grid w-full max-w-7xl grid-cols-2 flex-col-reverse gap-20 px-6 max-md:flex"
+>
+	<div>
+		<h2 class="mb-10 text-4xl font-semibold">{translations[lang].aboutTitle}</h2>
+		<p class="mb-10 w-full max-w-160 text-lg text-gray-700">
+			{home.translations ? home.translations.find((i) => i.languages_code === lang)?.about : ''}
+		</p>
+		<a href="/about" class="flex w-fit items-center gap-1.5 text-lg font-semibold text-gray-700">
+			<span>About</span>
+			<ChevronRight strokeWidth={3} class="size-4" />
+		</a>
+		<div class="mt-16 h-64 rounded-4xl bg-gray-400 md:hidden"></div>
+	</div>
+	<div
+		class="rounded-4xl bg-gray-400 bg-cover bg-center max-md:hidden"
+		style:background-image="url({PUBLIC_API_URL}/assets/{home.aboutImage})"
+	></div>
 </div>

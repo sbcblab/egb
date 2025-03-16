@@ -9,3 +9,10 @@ export async function getGlobal() {
 	const global = await client.request(readSingleton('global'));
 	return { ...global, startDate: new Date(global.startDate), endDate: new Date(global.endDate) };
 }
+
+export async function getHome() {
+	const home = await client.request(
+		readSingleton('home', { fields: ['*', { translations: ['*'] }] })
+	);
+	return home;
+}
