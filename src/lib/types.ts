@@ -15,13 +15,25 @@ export interface Global {
 	githubLink: string;
 }
 
+export interface Institution {
+	name: string;
+	link: string | null;
+	logo: string | null;
+}
+
 export interface Home {
 	translations: HomeTranslation[];
 	aboutImage: string;
+	organizers: HomeInstitution[];
+	sponsors: HomeInstitution[];
 }
 
 export interface HomeTranslation extends Translation {
 	about: string;
+}
+
+export interface HomeInstitution {
+	institutions_id: Institution;
 }
 
 export interface Schema {

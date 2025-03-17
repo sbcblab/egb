@@ -12,7 +12,7 @@
 		{ 'en-US': 'About', 'pt-BR': 'Sobre', href: '/about' },
 		{ 'en-US': 'Program', 'pt-BR': 'Programa', href: '/program' },
 		{ 'en-US': 'Submissions', 'pt-BR': 'Submissões', href: '/submissions' },
-		{ 'en-US': 'Registration', 'pt-BR': 'Inscrições', href: '/registration' },
+		{ 'en-US': 'Registration', 'pt-BR': 'Inscrição', href: '/registration' },
 		{ 'en-US': 'Contact', 'pt-BR': 'Contato', href: '/contact' }
 	];
 

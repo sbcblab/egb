@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { PUBLIC_API_URL } from '$env/static/public';
+	import { type Institution } from '$lib/types.js';
 	import { format } from 'date-fns';
 	import { enUS, ptBR } from 'date-fns/locale';
 	import { ChevronRight } from 'lucide-svelte';
@@ -11,12 +12,16 @@
 		'en-US': {
 			dateRange: `${format(global.startDate, 'MMMM d', { locale: enUS })} \u2013 ${format(global.endDate, 'd, y')}`,
 			countryName: 'Brazil',
-			aboutTitle: 'About EGB'
+			aboutTitle: 'About EGB',
+			organizersTitle: 'Organized by',
+			sponsorsTitle: 'Sponsored by'
 		},
 		'pt-BR': {
 			dateRange: `${format(global.startDate, 'd')} a ${format(global.endDate, 'd')} de ${format(global.endDate, 'MMMM', { locale: ptBR })} de ${format(global.endDate, 'y')}`,
 			countryName: 'Brasil',
-			aboutTitle: 'Sobre a EGB'
+			aboutTitle: 'Sobre a EGB',
+			organizersTitle: 'Organizadores',
+			sponsorsTitle: 'Apoiadores'
 		}
 	};
 </script>
@@ -24,6 +29,26 @@
 <svelte:head>
 	<title>EGB {format(global.startDate, 'y')} &middot; Escola Gaúcha de Bioinformática</title>
 </svelte:head>
+
+{#snippet institutionGroup(title: string, institutions: { institutions_id: Institution }[])}
+	<div class="mx-auto my-20 max-w-7xl px-6">
+		<h2 class="mb-10 text-center text-2xl font-semibold text-gray-700">
+			{title}
+		</h2>
+		<div class="flex flex-wrap justify-center gap-12">
+			{#each institutions as { institutions_id }}
+				<a
+					href={institutions_id.link}
+					title={institutions_id.name}
+					aria-label={institutions_id.name}
+					target="_blank"
+					class="aspect-4/3 w-32 bg-contain bg-center bg-no-repeat"
+					style:background-image="url({PUBLIC_API_URL}/assets/{institutions_id.logo})"
+				></a>
+			{/each}
+		</div>
+	</div>
+{/snippet}
 
 <div class="flex h-screen flex-col items-center justify-center bg-gray-600 px-4 text-center">
 	<p class="text-xl font-extrabold text-gray-300">
@@ -57,3 +82,6 @@
 		style:background-image="url({PUBLIC_API_URL}/assets/{home.aboutImage})"
 	></div>
 </div>
+
+{@render institutionGroup(translations[lang].organizersTitle, home.organizers)}
+{@render institutionGroup(translations[lang].sponsorsTitle, home.sponsors)}

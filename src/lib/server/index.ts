@@ -12,7 +12,16 @@ export async function getGlobal() {
 
 export async function getHome() {
 	const home = await client.request(
-		readSingleton('home', { fields: ['*', { translations: ['*'] }] })
+		readSingleton('home', {
+			fields: [
+				'*',
+				{
+					translations: ['*'],
+					organizers: [{ institutions_id: ['*'] }],
+					sponsors: [{ institutions_id: ['*'] }]
+				}
+			]
+		})
 	);
 	return home;
 }
