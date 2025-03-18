@@ -68,7 +68,7 @@
 >
 	<div>
 		<h2 class="mb-10 text-4xl font-semibold">{translations[lang].aboutTitle}</h2>
-		<p class="mb-10 w-full max-w-160 text-lg text-gray-700">
+		<p class="mb-10 w-full max-w-144 text-lg text-gray-700">
 			{home.translations ? home.translations.find((i) => i.languages_code === lang)?.about : ''}
 		</p>
 		<a href="/about" class="flex w-fit items-center gap-1.5 text-lg font-semibold text-gray-700">

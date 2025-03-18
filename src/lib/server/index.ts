@@ -25,3 +25,11 @@ export async function getHome() {
 	);
 	return home;
 }
+
+export async function getAbout() {
+	const about = await client.request(
+		readSingleton('about', { fields: ['*', { translations: ['*'] }] })
+	);
+	console.log(about);
+	return about;
+}

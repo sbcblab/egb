@@ -28,8 +28,16 @@ export interface Home {
 	sponsors: HomeInstitution[];
 }
 
+export interface About {
+	translations: AboutTranslation[];
+}
+
 export interface HomeTranslation extends Translation {
 	about: string;
+}
+
+export interface AboutTranslation extends Translation {
+	body: string;
 }
 
 export interface HomeInstitution {
@@ -39,6 +47,8 @@ export interface HomeInstitution {
 export interface Schema {
 	global: Global;
 	home: Home;
+	about: About;
 
 	homeTranslations: HomeTranslation[];
+	aboutTranslations: AboutTranslation[];
 }
