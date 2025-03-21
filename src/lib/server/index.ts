@@ -28,8 +28,27 @@ export async function getHome() {
 
 export async function getAbout() {
 	const about = await client.request(
-		readSingleton('about', { fields: ['*', { translations: ['*'] }] })
+		readSingleton('about', {
+			fields: [
+				'*',
+				{
+					translations: ['*'],
+					committee: [
+						{
+							people_id: [
+								'*',
+								{
+									institution: ['*'],
+									picture: ['id', 'title'],
+									country: ['*', { translations: ['*'] }]
+								}
+							]
+						}
+					]
+				}
+			]
+		})
 	);
-	console.log(about);
+	console.log(about.committee[0].people_id.picture);
 	return about;
 }

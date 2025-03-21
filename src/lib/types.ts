@@ -4,6 +4,50 @@ export interface Translation {
 	languages_code: LanguageCode;
 }
 
+export interface HomeTranslation extends Translation {
+	about: string;
+}
+
+export interface AboutTranslation extends Translation {
+	body: string;
+}
+
+export interface CountriesTranslation extends Translation {
+	name: string;
+}
+
+export interface Image {
+	id: string;
+	title: string;
+}
+
+export interface Institution {
+	name: string;
+	link: string | null;
+	logo: string | null;
+}
+
+export interface Country {
+	alpha2: string;
+	translations: CountriesTranslation[];
+}
+
+export interface Person {
+	name: string;
+	picture: Image;
+	country: Country;
+	institution: Institution;
+	link: string | null;
+}
+
+export interface HomeInstitution {
+	institutions_id: Institution;
+}
+
+export interface AboutPerson {
+	people_id: Person;
+}
+
 export interface Global {
 	startDate: string | Date;
 	endDate: string | Date;
@@ -15,12 +59,6 @@ export interface Global {
 	githubLink: string;
 }
 
-export interface Institution {
-	name: string;
-	link: string | null;
-	logo: string | null;
-}
-
 export interface Home {
 	translations: HomeTranslation[];
 	aboutImage: string;
@@ -30,18 +68,7 @@ export interface Home {
 
 export interface About {
 	translations: AboutTranslation[];
-}
-
-export interface HomeTranslation extends Translation {
-	about: string;
-}
-
-export interface AboutTranslation extends Translation {
-	body: string;
-}
-
-export interface HomeInstitution {
-	institutions_id: Institution;
+	committee: AboutPerson[];
 }
 
 export interface Schema {
