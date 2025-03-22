@@ -16,6 +16,10 @@ export interface CountriesTranslation extends Translation {
 	name: string;
 }
 
+export interface PreviousEditionsTranslation extends Translation {
+	description: string;
+}
+
 export interface Image {
 	id: string;
 	title: string;
@@ -71,11 +75,22 @@ export interface About {
 	committee: AboutPerson[];
 }
 
+export interface PreviousEdition {
+	title: string;
+	year: number;
+	translations: PreviousEditionsTranslation[];
+	image: Image;
+}
+
 export interface Schema {
 	global: Global;
 	home: Home;
 	about: About;
+	previousEditions: PreviousEdition[];
 
 	homeTranslations: HomeTranslation[];
 	aboutTranslations: AboutTranslation[];
+	previousEditionsTranslations: PreviousEditionsTranslation[];
+
+	directusFiles: Image[];
 }

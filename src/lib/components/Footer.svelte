@@ -26,8 +26,8 @@
 	<div class="flex flex-col items-center gap-8 py-12">
 		<div class="flex gap-6">
 			{#each socialItems as { Icon, href, title }}
-				<a {href} target="_blank" {title}>
-					<Icon class="size-7 text-gray-500" />
+				<a {href} target="_blank" {title} class="text-gray-500 md:hover:opacity-60">
+					<Icon font-size={24} />
 				</a>
 			{/each}
 		</div>

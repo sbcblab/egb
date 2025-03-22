@@ -1,7 +1,9 @@
-import { getAbout } from '$lib/server';
+import { getAbout, getPreviousEditions } from '$lib/server';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
 	const about = await getAbout();
-	return { about };
+	const previousEditions = await getPreviousEditions();
+
+	return { about, previousEditions };
 };

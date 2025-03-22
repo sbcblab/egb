@@ -31,7 +31,7 @@
 
 <div class="flex gap-14 max-lg:hidden">
 	{#each items as item}
-		<a href={item.href}>{item[lang]}</a>
+		<a href={item.href} class="md:hover:opacity-60">{item[lang]}</a>
 	{/each}
 </div>
 

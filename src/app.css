@@ -5,4 +5,10 @@
 	[role='button']:not(:disabled) {
 		cursor: pointer;
 	}
+
+	.markdown {
+		a:hover {
+			opacity: 0.6;
+		}
+	}
 }

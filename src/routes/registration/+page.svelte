@@ -11,5 +11,5 @@
 </script>
 
 <svelte:head>
-	<title>EGB {format(global.startDate, 'y')} &ndash; {translations[lang].pageTitle}</title>
+	<title>{translations[lang].pageTitle} &ndash; EGB {format(global.startDate, 'y')}</title>
 </svelte:head>

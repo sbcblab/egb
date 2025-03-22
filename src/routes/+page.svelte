@@ -32,7 +32,7 @@
 
 {#snippet institutionGroup(title: string, institutions: { institutions_id: Institution }[])}
 	<div class="mx-auto my-20 max-w-7xl px-6">
-		<h2 class="mb-10 text-center text-2xl font-semibold text-gray-700">
+		<h2 class="mb-10 text-center text-2xl font-semibold tracking-tight text-gray-700">
 			{title}
 		</h2>
 		<div class="flex flex-wrap justify-center gap-12">
@@ -42,7 +42,7 @@
 					title={institutions_id.name}
 					aria-label={institutions_id.name}
 					target="_blank"
-					class="aspect-4/3 w-32 bg-contain bg-center bg-no-repeat"
+					class="aspect-4/3 w-32 bg-contain bg-center bg-no-repeat md:hover:opacity-60"
 					style:background-image="url({PUBLIC_API_URL}/assets/{institutions_id.logo})"
 				></a>
 			{/each}
@@ -67,11 +67,14 @@
 	class="mx-auto my-20 grid w-full max-w-7xl grid-cols-2 flex-col-reverse gap-20 px-6 max-md:flex"
 >
 	<div>
-		<h2 class="mb-10 text-4xl font-semibold">{translations[lang].aboutTitle}</h2>
+		<h2 class="mb-10 text-4xl font-semibold tracking-tight">{translations[lang].aboutTitle}</h2>
 		<p class="mb-10 w-full max-w-144 text-lg text-gray-700">
 			{home.translations ? home.translations.find((i) => i.languages_code === lang)?.about : ''}
 		</p>
-		<a href="/about" class="flex w-fit items-center gap-1.5 text-lg font-semibold text-gray-700">
+		<a
+			href="/about"
+			class="flex w-fit items-center gap-1.5 text-lg font-semibold text-gray-700 md:hover:opacity-60"
+		>
 			<span>About</span>
 			<ChevronRight strokeWidth={3} class="size-4" />
 		</a>

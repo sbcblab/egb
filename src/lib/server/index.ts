@@ -1,13 +1,18 @@
 import { API_TOKEN } from '$env/static/private';
 import { PUBLIC_API_URL } from '$env/static/public';
 import { type Schema } from '$lib/types';
-import { createDirectus, readSingleton, rest, staticToken } from '@directus/sdk';
+import { createDirectus, readItems, readSingleton, rest, staticToken } from '@directus/sdk';
 
 const client = createDirectus<Schema>(PUBLIC_API_URL).with(staticToken(API_TOKEN)).with(rest());
 
 export async function getGlobal() {
 	const global = await client.request(readSingleton('global'));
-	return { ...global, startDate: new Date(global.startDate), endDate: new Date(global.endDate) };
+	console.log(global.startDate);
+	return {
+		...global,
+		startDate: new Date(`${global.startDate}T00:00:00`),
+		endDate: new Date(`${global.endDate}T00:00:00`)
+	};
 }
 
 export async function getHome() {
@@ -49,6 +54,16 @@ export async function getAbout() {
 			]
 		})
 	);
-	console.log(about.committee[0].people_id.picture);
 	return about;
+}
+
+export async function getPreviousEditions() {
+	const previousEditions = (
+		await client.request(
+			readItems('previousEditions', {
+				fields: ['*', { image: ['id', 'title'], translations: ['*'] }]
+			})
+		)
+	).reverse();
+	return previousEditions;
 }
