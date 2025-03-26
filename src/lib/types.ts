@@ -1,55 +1,14 @@
 export type LanguageCode = 'en-US' | 'pt-BR';
 
+export type CourseLevel = 1 | 2 | 3;
+
 export interface Translation {
 	languages_code: LanguageCode;
-}
-
-export interface HomeTranslation extends Translation {
-	about: string;
-}
-
-export interface AboutTranslation extends Translation {
-	body: string;
-}
-
-export interface CountriesTranslation extends Translation {
-	name: string;
-}
-
-export interface PreviousEditionsTranslation extends Translation {
-	description: string;
 }
 
 export interface Image {
 	id: string;
 	title: string;
-}
-
-export interface Institution {
-	name: string;
-	link: string | null;
-	logo: string | null;
-}
-
-export interface Country {
-	alpha2: string;
-	translations: CountriesTranslation[];
-}
-
-export interface Person {
-	name: string;
-	picture: Image;
-	country: Country;
-	institution: Institution;
-	link: string | null;
-}
-
-export interface HomeInstitution {
-	institutions_id: Institution;
-}
-
-export interface AboutPerson {
-	people_id: Person;
 }
 
 export interface Global {
@@ -75,6 +34,29 @@ export interface About {
 	committee: AboutPerson[];
 }
 
+export interface Program {
+	speakers: ProgramPerson[];
+}
+
+export interface Institution {
+	name: string;
+	link: string | null;
+	logo: string | null;
+}
+
+export interface Person {
+	name: string;
+	picture: Image;
+	country: Country;
+	institution: Institution;
+	link: string | null;
+}
+
+export interface Country {
+	alpha2: string;
+	translations: CountriesTranslation[];
+}
+
 export interface PreviousEdition {
 	title: string;
 	year: number;
@@ -82,14 +64,68 @@ export interface PreviousEdition {
 	image: Image;
 }
 
+export interface Course {
+	title: string;
+	duration: number;
+	instructors: CoursePerson[];
+	level: CourseLevel;
+	summary: string;
+	objectives: string;
+	topics: string[];
+	methods: string;
+	prerequisites: string;
+	references: string[];
+}
+
+export interface HomeInstitution {
+	institutions_id: Institution;
+}
+
+export interface AboutPerson {
+	people_id: Person;
+}
+
+export interface ProgramPerson {
+	people_id: Person;
+}
+
+export interface CoursePerson {
+	people_id: Person;
+}
+
+export interface HomeTranslation extends Translation {
+	about: string;
+}
+
+export interface AboutTranslation extends Translation {
+	body: string;
+}
+
+export interface CountriesTranslation extends Translation {
+	name: string;
+}
+
+export interface PreviousEditionsTranslation extends Translation {
+	description: string;
+}
+
 export interface Schema {
 	global: Global;
 	home: Home;
 	about: About;
+	program: Program;
+	institutions: Institution[];
+	people: Person[];
+	countries: Country[];
 	previousEditions: PreviousEdition[];
+
+	homeInstitutions: HomeInstitution[];
+	aboutPeople: AboutPerson[];
+	programPeople: ProgramPerson[];
 
 	homeTranslations: HomeTranslation[];
 	aboutTranslations: AboutTranslation[];
+	countriesTranslations: CountriesTranslation[];
 	previousEditionsTranslations: PreviousEditionsTranslation[];
 
 	directusFiles: Image[];

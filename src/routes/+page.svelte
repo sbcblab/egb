@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PUBLIC_API_URL } from '$env/static/public';
+	import { base } from '$app/paths';
 	import { type Institution } from '$lib/types.js';
 	import { format } from 'date-fns';
 	import { enUS, ptBR } from 'date-fns/locale';
@@ -43,7 +43,7 @@
 					aria-label={institutions_id.name}
 					target="_blank"
 					class="aspect-4/3 w-32 bg-contain bg-center bg-no-repeat md:hover:opacity-60"
-					style:background-image="url({PUBLIC_API_URL}/assets/{institutions_id.logo})"
+					style:background-image="url({base}/api/assets/{institutions_id.logo})"
 				></a>
 			{/each}
 		</div>
@@ -82,9 +82,9 @@
 	</div>
 	<div
 		class="rounded-4xl bg-gray-400 bg-cover bg-center max-md:hidden"
-		style:background-image="url({PUBLIC_API_URL}/assets/{home.aboutImage})"
+		style:background-image="url({base}/api/assets/{home.aboutImage})"
 	></div>
 </div>
 
-{@render institutionGroup(translations[lang].organizersTitle, home.organizers)}
-{@render institutionGroup(translations[lang].sponsorsTitle, home.sponsors)}
+{@render institutionGroup(translations[lang].organizersTitle, home.organizers || [])}
+{@render institutionGroup(translations[lang].sponsorsTitle, home.sponsors || [])}

@@ -7,7 +7,6 @@ const client = createDirectus<Schema>(PUBLIC_API_URL).with(staticToken(API_TOKEN
 
 export async function getGlobal() {
 	const global = await client.request(readSingleton('global'));
-	console.log(global.startDate);
 	return {
 		...global,
 		startDate: new Date(`${global.startDate}T00:00:00`),
@@ -66,4 +65,33 @@ export async function getPreviousEditions() {
 		)
 	).reverse();
 	return previousEditions;
+}
+
+export async function getProgram() {
+	const program = await client.request(
+		readSingleton('program', {
+			fields: [
+				{
+					speakers: [
+						{
+							people_id: [
+								'*',
+								{
+									institution: ['*'],
+									picture: ['id', 'title'],
+									country: ['*', { translations: ['*'] }]
+								}
+							]
+						}
+					]
+				}
+			]
+		})
+	);
+	return program;
+}
+
+export async function getCourses() {
+	const courses = await client.request(readItems('courses'));
+	return courses;
 }

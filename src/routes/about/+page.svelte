@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PUBLIC_API_URL } from '$env/static/public';
+	import { base } from '$app/paths';
 	import Image from '$lib/components/Image.svelte';
 	import { format } from 'date-fns';
 
@@ -42,7 +42,7 @@
 	</div>
 	<div
 		class="rounded-4xl bg-gray-400 bg-cover bg-center max-md:hidden"
-		style:background-image="url({PUBLIC_API_URL}/assets/)"
+		style:background-image="url({base}/api/assets/)"
 	></div>
 </div>
 
@@ -51,7 +51,7 @@
 		{translations[lang].committeeTitle}
 	</h2>
 	<div class="grid gap-6 md:grid-cols-2">
-		{#each about.committee as { people_id }}
+		{#each about.committee || [] as { people_id }}
 			{@const { name, country, picture, institution, link } = people_id}
 			<div class="flex items-center gap-6">
 				<a href={link} target="_blank">
@@ -63,7 +63,7 @@
 					</a>
 					<div class="mb-2 text-lg text-gray-500">
 						{#if institution}{institution.name}<span>, </span>{/if}
-						{country.translations.find((i) => i.languages_code === lang)?.name}
+						{country.translations?.find((i) => i.languages_code === lang)?.name}
 					</div>
 				</div>
 			</div>
@@ -117,7 +117,7 @@
 			</div>
 			<div
 				class="h-full min-h-64 rounded-4xl bg-gray-400 bg-cover bg-center"
-				style:background-image="url({PUBLIC_API_URL}/assets/{image.id})"
+				style:background-image="url({base}/api/assets/{image.id})"
 			></div>
 		</div>
 	{/if}
@@ -126,7 +126,7 @@
 <div class="mx-auto my-16 w-full max-w-7xl px-6 max-lg:hidden">
 	<h2 class="mb-14 text-4xl font-semibold tracking-tight">{translations[lang].editionsTitle}</h2>
 	<div class="flex">
-		<div class="relative h-52 w-64">
+		<div class="relative h-52 w-48">
 			<div
 				class="h-full overflow-y-hidden text-xl tracking-wider text-gray-300"
 				style:writing-mode="vertical-rl"
@@ -163,7 +163,7 @@
 				</div>
 				<div
 					class="rounded-4xl bg-gray-400 bg-cover bg-center"
-					style:background-image="url({PUBLIC_API_URL}/assets/{image.id})"
+					style:background-image="url({base}/api/assets/{image.id})"
 				></div>
 			</div>
 		{/if}
