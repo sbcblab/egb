@@ -58,7 +58,7 @@
 					<Image image={picture} class="h-24 w-20 rounded-2xl object-cover" />
 				</a>
 				<div>
-					<a href={link} target="_blank" class="md:hover:opacity-60">
+					<a href={link} target="_blank">
 						<div class="text-xl">{name}</div>
 					</a>
 					<div class="mb-2 text-lg text-gray-500">

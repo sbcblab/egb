@@ -2,13 +2,23 @@ export type LanguageCode = 'en-US' | 'pt-BR';
 
 export type CourseLevel = 1 | 2 | 3;
 
-export interface Translation {
-	languages_code: LanguageCode;
-}
+export type Reference = {
+	title: string;
+	author: string;
+	link: string | null;
+};
 
-export interface Image {
+export type Image = {
 	id: string;
 	title: string;
+};
+
+export type Topic = {
+	topic: string;
+};
+
+export interface Translation {
+	languages_code: LanguageCode;
 }
 
 export interface Global {
@@ -65,16 +75,12 @@ export interface PreviousEdition {
 }
 
 export interface Course {
-	title: string;
+	slug: string;
 	duration: number;
-	instructors: CoursePerson[];
 	level: CourseLevel;
-	summary: string;
-	objectives: string;
-	topics: string[];
-	methods: string;
-	prerequisites: string;
-	references: string[];
+	instructors: CoursePerson[];
+	references: Reference[];
+	translations: CourseTranslation[];
 }
 
 export interface HomeInstitution {
@@ -109,6 +115,16 @@ export interface PreviousEditionsTranslation extends Translation {
 	description: string;
 }
 
+export interface CourseTranslation extends Translation {
+	title: string;
+	keywords: string[];
+	summary: string;
+	objectives: string;
+	topics: Topic[];
+	methods: string;
+	prerequisites: string;
+}
+
 export interface Schema {
 	global: Global;
 	home: Home;
@@ -118,15 +134,18 @@ export interface Schema {
 	people: Person[];
 	countries: Country[];
 	previousEditions: PreviousEdition[];
+	courses: Course[];
 
 	homeInstitutions: HomeInstitution[];
 	aboutPeople: AboutPerson[];
 	programPeople: ProgramPerson[];
+	coursePeople: CoursePerson[];
 
 	homeTranslations: HomeTranslation[];
 	aboutTranslations: AboutTranslation[];
 	countriesTranslations: CountriesTranslation[];
 	previousEditionsTranslations: PreviousEditionsTranslation[];
+	courseTranslations: CourseTranslation[];
 
 	directusFiles: Image[];
 }

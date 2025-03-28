@@ -92,6 +92,27 @@ export async function getProgram() {
 }
 
 export async function getCourses() {
-	const courses = await client.request(readItems('courses'));
+	const courses = await client.request(
+		readItems('courses', {
+			fields: [
+				'*',
+				{
+					instructors: [
+						{
+							people_id: [
+								'*',
+								{
+									institution: ['*'],
+									picture: ['id', 'title'],
+									country: ['*', { translations: ['*'] }]
+								}
+							]
+						}
+					],
+					translations: ['*']
+				}
+			]
+		})
+	);
 	return courses;
 }

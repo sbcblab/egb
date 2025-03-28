@@ -1,6 +1,9 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import Image from '$lib/components/Image.svelte';
+	import { levelMap } from '$lib/utils';
 	import { format } from 'date-fns';
+	import { GaugeIcon, TimerIcon, UserIcon, UserRoundIcon } from 'lucide-svelte';
 
 	let { data } = $props();
 	let { lang, global, program, courses } = data;
@@ -15,6 +18,13 @@
 	<title>{translations[lang].pageTitle} &ndash; EGB {format(global.startDate, 'y')}</title>
 </svelte:head>
 
+{#snippet coursePropriety(label: string, value: string, Icon: typeof UserIcon)}
+	<div class="flex items-center gap-2">
+		<Icon aria-label={label} class="size-4.5 shrink-0 text-gray-400/70" />
+		<span class="text-gray-600">{value}</span>
+	</div>
+{/snippet}
+
 <div class="mx-auto my-16 w-full max-w-7xl px-6">
 	<h2 class="mb-10 text-4xl font-semibold tracking-tight">
 		{translations[lang].speakersTitle}
@@ -27,7 +37,7 @@
 					<Image image={picture} class="h-24 w-20 rounded-2xl object-cover" />
 				</a>
 				<div>
-					<a href={link} target="_blank" class="md:hover:opacity-60">
+					<a href={link} target="_blank">
 						<div class="text-xl">{name}</div>
 					</a>
 					<div class="mb-2 text-lg text-gray-500">
@@ -44,23 +54,31 @@
 	<h2 class="mb-10 text-4xl font-semibold tracking-tight">
 		{translations[lang].coursesTitle}
 	</h2>
-	<div class="flex flex-col gap-6">
-		{#each courses as {  }}
-			{@const { name, country, picture, institution, link } = people_id}
-			<div class="flex items-center gap-6">
-				<a href={link} target="_blank">
-					<Image image={picture} class="h-24 w-20 rounded-2xl object-cover" />
-				</a>
-				<div>
-					<a href={link} target="_blank" class="md:hover:opacity-60">
-						<div class="text-xl">{name}</div>
-					</a>
-					<div class="mb-2 text-lg text-gray-500">
-						{#if institution}{institution.name}<span>, </span>{/if}
-						{country.translations?.find((i) => i.languages_code === lang)?.name}
-					</div>
+	<div class="flex flex-col gap-7">
+		{#each courses as { slug, duration, instructors, level, translations }}
+			{@const translation = translations?.find((i) => i.languages_code === lang)}
+			<a
+				href="{base}/program/{slug}"
+				class="rounded-2xl border border-gray-200 p-7 shadow-sm active:shadow-inner md:hover:bg-gray-50"
+			>
+				<h3 class="mb-3 text-xl">
+					{translation?.title}
+				</h3>
+				<div class="mb-6 flex flex-wrap gap-x-8 gap-y-2">
+					{@render coursePropriety('Duration', `${duration} hours`, TimerIcon)}
+					{@render coursePropriety('Level', levelMap[lang][level], GaugeIcon)}
+					{@render coursePropriety(
+						'Instructors',
+						instructors?.map((i) => i.people_id.name).join(', ') || '',
+						UserRoundIcon
+					)}
 				</div>
-			</div>
+				<div class="flex flex-wrap gap-3">
+					{#each translation?.keywords || [] as keyword}
+						<span class="rounded-lg bg-gray-100 px-3 py-0.5 text-sm text-gray-600">{keyword}</span>
+					{/each}
+				</div>
+			</a>
 		{/each}
 	</div>
 </div>
