@@ -37,6 +37,7 @@ export async function getAbout() {
 				'*',
 				{
 					translations: ['*'],
+					image: ['id', 'title'],
 					committee: [
 						{
 							people_id: [

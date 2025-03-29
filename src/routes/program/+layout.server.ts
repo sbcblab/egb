@@ -1,8 +1,9 @@
 import { getCourses, getProgram } from '$lib/server';
-import type { PageServerLoad } from './$types';
+import type { LayoutServerLoad } from './$types';
 
-export const load: PageServerLoad = async () => {
+export const load: LayoutServerLoad = async () => {
 	const program = await getProgram();
 	const courses = await getCourses();
+
 	return { program, courses };
 };

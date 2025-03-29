@@ -41,6 +41,7 @@ export interface Home {
 
 export interface About {
 	translations: AboutTranslation[];
+	image: Image | null;
 	committee: AboutPerson[];
 }
 

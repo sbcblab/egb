@@ -30,8 +30,12 @@
 	<title>EGB {format(global.startDate, 'y')} &middot; Escola Gaúcha de Bioinformática</title>
 </svelte:head>
 
-{#snippet institutionGroup(title: string, institutions: { institutions_id: Institution }[])}
-	<div class="mx-auto my-20 max-w-7xl px-6">
+{#snippet institutionGroup(
+	id: string,
+	title: string,
+	institutions: { institutions_id: Institution }[]
+)}
+	<section {id} class="mx-auto my-20 max-w-7xl px-6">
 		<h2 class="mb-10 text-center text-2xl font-semibold tracking-tight text-gray-700">
 			{title}
 		</h2>
@@ -47,10 +51,10 @@
 				></a>
 			{/each}
 		</div>
-	</div>
+	</section>
 {/snippet}
 
-<div class="flex h-screen flex-col items-center justify-center bg-gray-600 px-4 text-center">
+<section class="flex h-screen flex-col items-center justify-center bg-gray-600 px-4 text-center">
 	<p class="text-xl font-extrabold text-gray-300">
 		EGB {format(global.startDate, 'y')}
 	</p>
@@ -61,9 +65,10 @@
 		{translations[lang].dateRange}
 	</p>
 	<p class="text-gray-300">Porto Alegre, RS, {translations[lang].countryName}</p>
-</div>
+</section>
 
-<div
+<section
+	id="about"
 	class="mx-auto my-20 grid w-full max-w-7xl grid-cols-2 flex-col-reverse gap-20 px-6 max-md:flex"
 >
 	<div>
@@ -78,13 +83,13 @@
 			<span>About</span>
 			<ChevronRight strokeWidth={3} class="size-4" />
 		</a>
-		<div class="mt-16 h-64 rounded-4xl bg-gray-400 md:hidden"></div>
+		<div class="mt-16 h-64 rounded-4xl bg-gray-300 md:hidden"></div>
 	</div>
 	<div
-		class="rounded-4xl bg-gray-400 bg-cover bg-center max-md:hidden"
+		class="rounded-4xl bg-gray-300 bg-cover bg-center max-md:hidden"
 		style:background-image="url({base}/api/assets/{home.aboutImage})"
 	></div>
-</div>
+</section>
 
-{@render institutionGroup(translations[lang].organizersTitle, home.organizers || [])}
-{@render institutionGroup(translations[lang].sponsorsTitle, home.sponsors || [])}
+{@render institutionGroup('organizers', translations[lang].organizersTitle, home.organizers || [])}
+{@render institutionGroup('sponsors', translations[lang].sponsorsTitle, home.sponsors || [])}

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import Image from '$lib/components/Image.svelte';
+	import Person from '$lib/components/Person.svelte';
 	import { format } from 'date-fns';
 
 	let { data } = $props();
@@ -28,7 +29,8 @@
 	<title>{translations[lang].pageTitle} &ndash; EGB {format(global.startDate, 'y')}</title>
 </svelte:head>
 
-<div
+<section
+	id="about"
 	class="mx-auto mt-8 mb-16 grid w-full max-w-7xl grid-cols-2 flex-col-reverse gap-20 px-6 max-md:flex md:mt-16"
 >
 	<div>
@@ -40,38 +42,31 @@
 		</div>
 		<div class="mt-10 h-64 rounded-4xl bg-gray-400 md:hidden"></div>
 	</div>
-	<div
-		class="rounded-4xl bg-gray-400 bg-cover bg-center max-md:hidden"
-		style:background-image="url({base}/api/assets/)"
-	></div>
-</div>
+	<Image
+		image={about.image}
+		class="rounded-4xl bg-gray-300 object-cover object-center max-md:hidden"
+	/>
+</section>
 
-<div class="mx-auto my-16 w-full max-w-7xl px-6">
+<section id="committee" class="mx-auto my-16 w-full max-w-7xl px-6">
 	<h2 class="mb-10 text-4xl font-semibold tracking-tight">
 		{translations[lang].committeeTitle}
 	</h2>
 	<div class="grid gap-6 md:grid-cols-2">
 		{#each about.committee || [] as { people_id }}
-			{@const { name, country, picture, institution, link } = people_id}
-			<div class="flex items-center gap-6">
-				<a href={link} target="_blank">
-					<Image image={picture} class="h-24 w-20 rounded-2xl object-cover" />
-				</a>
-				<div>
-					<a href={link} target="_blank">
-						<div class="text-xl">{name}</div>
-					</a>
-					<div class="mb-2 text-lg text-gray-500">
-						{#if institution}{institution.name}<span>, </span>{/if}
-						{country.translations?.find((i) => i.languages_code === lang)?.name}
-					</div>
-				</div>
-			</div>
+			{@const { name, link, institution, country, picture } = people_id}
+			<Person
+				{name}
+				{link}
+				{picture}
+				institution={institution.name}
+				country={country.translations?.find((i) => i.languages_code === lang)?.name || ''}
+			/>
 		{/each}
 	</div>
-</div>
+</section>
 
-<div class="mx-auto my-16 w-full max-w-7xl px-6 lg:hidden">
+<section id="previousEditions" class="mx-auto my-16 w-full max-w-7xl px-6 lg:hidden">
 	<h2 class="mb-10 text-4xl font-semibold tracking-tight">
 		{translations[lang].editionsTitle}
 	</h2>
@@ -121,9 +116,9 @@
 			></div>
 		</div>
 	{/if}
-</div>
+</section>
 
-<div class="mx-auto my-16 w-full max-w-7xl px-6 max-lg:hidden">
+<section id="previousEditions" class="mx-auto my-16 w-full max-w-7xl px-6 max-lg:hidden">
 	<h2 class="mb-14 text-4xl font-semibold tracking-tight">{translations[lang].editionsTitle}</h2>
 	<div class="flex">
 		<div class="relative h-52 w-48">
@@ -168,4 +163,4 @@
 			</div>
 		{/if}
 	</div>
-</div>
+</section>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	import Image from '$lib/components/Image.svelte';
+	import Person from '$lib/components/Person.svelte';
 	import { levelMap } from '$lib/utils';
 	import { format } from 'date-fns';
 	import { GaugeIcon, TimerIcon, UserIcon, UserRoundIcon } from 'lucide-svelte';
@@ -8,51 +8,54 @@
 	let { data } = $props();
 	let { lang, global, program, courses } = data;
 
-	const translations = {
-		'en-US': { pageTitle: 'Program', speakersTitle: 'Speakers', coursesTitle: 'Courses' },
-		'pt-BR': { pageTitle: 'Programa', speakersTitle: 'Palestrantes', coursesTitle: 'Cursos' }
+	const globalTranslations = {
+		'en-US': {
+			pageTitle: 'Program',
+			speakersTitle: 'Speakers',
+			coursesTitle: 'Courses',
+			hours: 'hours'
+		},
+		'pt-BR': {
+			pageTitle: 'Programa',
+			speakersTitle: 'Palestrantes',
+			coursesTitle: 'Cursos',
+			hours: 'horas'
+		}
 	};
 </script>
 
 <svelte:head>
-	<title>{translations[lang].pageTitle} &ndash; EGB {format(global.startDate, 'y')}</title>
+	<title>{globalTranslations[lang].pageTitle} &ndash; EGB {format(global.startDate, 'y')}</title>
 </svelte:head>
 
 {#snippet coursePropriety(label: string, value: string, Icon: typeof UserIcon)}
 	<div class="flex items-center gap-2">
-		<Icon aria-label={label} class="size-4.5 shrink-0 text-gray-400/70" />
-		<span class="text-gray-600">{value}</span>
+		<Icon aria-label={label} class="size-4.5 shrink-0 text-gray-400/60" />
+		<span class="text-gray-500">{value}</span>
 	</div>
 {/snippet}
 
-<div class="mx-auto my-16 w-full max-w-7xl px-6">
-	<h2 class="mb-10 text-4xl font-semibold tracking-tight">
-		{translations[lang].speakersTitle}
+<section id="speakers" class="mx-auto my-16 w-full max-w-7xl px-6">
+	<h2 class="mb-8 text-4xl font-medium tracking-tight">
+		{globalTranslations[lang].speakersTitle}
 	</h2>
 	<div class="grid gap-6 md:grid-cols-2">
 		{#each program.speakers || [] as { people_id }}
-			{@const { name, country, picture, institution, link } = people_id}
-			<div class="flex items-center gap-6">
-				<a href={link} target="_blank">
-					<Image image={picture} class="h-24 w-20 rounded-2xl object-cover" />
-				</a>
-				<div>
-					<a href={link} target="_blank">
-						<div class="text-xl">{name}</div>
-					</a>
-					<div class="mb-2 text-lg text-gray-500">
-						{#if institution}{institution.name}<span>, </span>{/if}
-						{country.translations?.find((i) => i.languages_code === lang)?.name}
-					</div>
-				</div>
-			</div>
+			{@const { name, link, institution, country, picture } = people_id}
+			<Person
+				{name}
+				{link}
+				{picture}
+				institution={institution.name}
+				country={country.translations?.find((i) => i.languages_code === lang)?.name || ''}
+			/>
 		{/each}
 	</div>
-</div>
+</section>
 
-<div class="mx-auto my-16 w-full max-w-7xl px-6">
-	<h2 class="mb-10 text-4xl font-semibold tracking-tight">
-		{translations[lang].coursesTitle}
+<section id="courses" class="mx-auto my-16 w-full max-w-7xl px-6">
+	<h2 class="mb-8 text-4xl font-medium tracking-tight">
+		{globalTranslations[lang].coursesTitle}
 	</h2>
 	<div class="flex flex-col gap-7">
 		{#each courses as { slug, duration, instructors, level, translations }}
@@ -65,7 +68,11 @@
 					{translation?.title}
 				</h3>
 				<div class="mb-6 flex flex-wrap gap-x-8 gap-y-2">
-					{@render coursePropriety('Duration', `${duration} hours`, TimerIcon)}
+					{@render coursePropriety(
+						'Duration',
+						`${duration} ${globalTranslations[lang].hours}`,
+						TimerIcon
+					)}
 					{@render coursePropriety('Level', levelMap[lang][level], GaugeIcon)}
 					{@render coursePropriety(
 						'Instructors',
@@ -81,4 +88,4 @@
 			</a>
 		{/each}
 	</div>
-</div>
+</section>
