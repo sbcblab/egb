@@ -35,8 +35,8 @@
 	</div>
 {/snippet}
 
-<section id="speakers" class="mx-auto my-16 w-full max-w-7xl px-6">
-	<h2 class="mb-8 text-4xl font-medium tracking-tight">
+<section id="speakers" class="mx-auto mt-18 mb-32 w-full max-w-6xl px-6">
+	<h2 class="mb-10 text-4xl font-semibold tracking-tight">
 		{globalTranslations[lang].speakersTitle}
 	</h2>
 	<div class="grid gap-6 md:grid-cols-2">
@@ -53,8 +53,8 @@
 	</div>
 </section>
 
-<section id="courses" class="mx-auto my-16 w-full max-w-7xl px-6">
-	<h2 class="mb-8 text-4xl font-medium tracking-tight">
+<section id="courses" class="mx-auto mb-16 w-full max-w-6xl px-6">
+	<h2 class="mb-10 text-4xl font-semibold tracking-tight">
 		{globalTranslations[lang].coursesTitle}
 	</h2>
 	<div class="flex flex-col gap-7">
@@ -62,7 +62,7 @@
 			{@const translation = translations?.find((i) => i.languages_code === lang)}
 			<a
 				href="{base}/program/{slug}"
-				class="rounded-2xl border border-gray-200 p-7 shadow-sm active:shadow-inner md:hover:bg-gray-50"
+				class="rounded-2xl border border-gray-200 p-7 shadow-sm transition-all active:shadow-inner md:hover:scale-[1.01] md:hover:shadow-lg"
 			>
 				<h3 class="mb-3 text-xl">
 					{translation?.title}

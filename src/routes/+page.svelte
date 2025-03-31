@@ -35,18 +35,18 @@
 	title: string,
 	institutions: { institutions_id: Institution }[]
 )}
-	<section {id} class="mx-auto my-20 max-w-7xl px-6">
-		<h2 class="mb-10 text-center text-2xl font-semibold tracking-tight text-gray-700">
+	<section {id} class="mx-auto mb-32 max-w-6xl px-6">
+		<h2 class="mb-10 text-center text-xl tracking-tight text-gray-950">
 			{title}
 		</h2>
-		<div class="flex flex-wrap justify-center gap-12">
+		<div class="flex flex-wrap justify-center gap-10">
 			{#each institutions as { institutions_id }}
 				<a
 					href={institutions_id.link}
 					title={institutions_id.name}
 					aria-label={institutions_id.name}
 					target="_blank"
-					class="aspect-4/3 w-32 bg-contain bg-center bg-no-repeat md:hover:opacity-60"
+					class="aspect-4/3 w-30 bg-contain bg-center bg-no-repeat transition-transform md:hover:scale-110"
 					style:background-image="url({base}/api/assets/{institutions_id.logo})"
 				></a>
 			{/each}
@@ -54,22 +54,30 @@
 	</section>
 {/snippet}
 
-<section class="flex h-screen flex-col items-center justify-center bg-gray-600 px-4 text-center">
-	<p class="text-xl font-extrabold text-gray-300">
+<section
+	style:background-image="url('https://destinopoa.com.br/wp-content/uploads/2023/10/29MAR2022_AlexRocha_Esquadrilha_Fumaca_-9.jpg')"
+	class="relative flex h-screen flex-col items-center justify-center bg-sky-700 bg-cover bg-top px-4 text-center bg-blend-luminosity"
+>
+	<div class="absolute inset-0 bg-gray-900 opacity-60"></div>
+	<p class="text-2xl font-extrabold text-cyan-100 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]">
 		EGB {format(global.startDate, 'y')}
 	</p>
-	<h1 class="mt-2 mb-14 text-5xl font-semibold tracking-tight text-white">
+	<h1
+		class="mt-3 mb-16 text-5xl font-semibold tracking-tight text-white drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
+	>
 		Escola Gaúcha de Bioinformática
 	</h1>
-	<p class="mb-1 text-2xl font-semibold text-gray-200">
+	<p class="mb-1 text-3xl font-semibold text-cyan-100 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]">
 		{translations[lang].dateRange}
 	</p>
-	<p class="text-gray-300">Porto Alegre, RS, {translations[lang].countryName}</p>
+	<p class="text-lg text-cyan-200 drop-shadow-[0_0_1.5rem_rgba(0,0,0,0.5)]">
+		Porto Alegre, RS, {translations[lang].countryName}
+	</p>
 </section>
 
 <section
 	id="about"
-	class="mx-auto my-20 grid w-full max-w-7xl grid-cols-2 flex-col-reverse gap-20 px-6 max-md:flex"
+	class="mx-auto mt-32 mb-32 grid w-full max-w-6xl grid-cols-2 flex-col-reverse gap-20 px-6 max-md:flex"
 >
 	<div>
 		<h2 class="mb-10 text-4xl font-semibold tracking-tight">{translations[lang].aboutTitle}</h2>

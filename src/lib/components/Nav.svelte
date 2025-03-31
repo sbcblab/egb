@@ -5,7 +5,7 @@
 	import { expoOut } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
 
-	let { lang }: { lang: LanguageCode } = $props();
+	let { isHome, lang }: { isHome: boolean; lang: LanguageCode } = $props();
 
 	const items = [
 		{ 'en-US': 'Home', 'pt-BR': 'Início', href: '/' },
@@ -31,7 +31,12 @@
 
 <div class="flex gap-14 max-lg:hidden">
 	{#each items as item}
-		<a href={item.href} class="md:hover:opacity-60">{item[lang]}</a>
+		<a
+			href={item.href}
+			class="md:hover:opacity-60 {isHome ? 'drop-shadow-[1px_1px_3px_rgba(0,0,0,0.2)]' : ''}"
+		>
+			{item[lang]}
+		</a>
 	{/each}
 </div>
 

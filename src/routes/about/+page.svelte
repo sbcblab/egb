@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	import Image from '$lib/components/Image.svelte';
 	import Person from '$lib/components/Person.svelte';
 	import { format } from 'date-fns';
 
@@ -13,14 +12,18 @@
 		'en-US': {
 			pageTitle: 'About',
 			aboutTitle: 'What is EGB?',
-			committeeTitle: 'Organizing Committee',
-			editionsTitle: 'Previous Editions'
+			venueTitle: 'The venue',
+			tripTitle: 'Plan your trip',
+			committeeTitle: 'Organizing committee',
+			editionsTitle: 'Previous editions'
 		},
 		'pt-BR': {
 			pageTitle: 'Sobre',
 			aboutTitle: 'O que é a EGB?',
-			committeeTitle: 'Comitê Organizador',
-			editionsTitle: 'Edições Anteriores'
+			venueTitle: 'Local do evento',
+			tripTitle: 'Planeje sua viagem',
+			committeeTitle: 'Comitê organizador',
+			editionsTitle: 'Edições anteriores'
 		}
 	};
 </script>
@@ -31,25 +34,53 @@
 
 <section
 	id="about"
-	class="mx-auto mt-8 mb-16 grid w-full max-w-7xl grid-cols-2 flex-col-reverse gap-20 px-6 max-md:flex md:mt-16"
+	class="mx-auto mt-18 mb-36 grid w-full max-w-6xl grid-cols-2 flex-col-reverse items-center gap-20 px-6 max-md:flex md:mt-28 md:mb-56"
 >
 	<div>
-		<h2 class="mb-10 text-4xl font-semibold tracking-tight">{translations[lang].aboutTitle}</h2>
-		<div class="markdown w-full space-y-7 text-lg text-gray-700 max-md:mb-10 md:max-w-144">
+		<h2 class="mb-10 text-4xl font-semibold tracking-tight text-gray-900">
+			{translations[lang].aboutTitle}
+		</h2>
+		<div class="markdown w-full space-y-7 text-lg/[1.75] text-gray-700 max-md:mb-10 md:max-w-144">
 			{@html about.translations
 				? about.translations.find((i) => i.languages_code === lang)?.body
 				: ''}
 		</div>
-		<div class="mt-10 h-64 rounded-4xl bg-gray-400 md:hidden"></div>
+		<div
+			style:background-image="url({base}/api/assets/{about.image?.id})"
+			class="mt-10 h-64 rounded-3xl bg-gray-300 bg-cover bg-center md:hidden"
+		></div>
 	</div>
-	<Image
-		image={about.image}
-		class="rounded-4xl bg-gray-300 object-cover object-center max-md:hidden"
-	/>
+	<div
+		style:background-image="url({base}/api/assets/{about.image?.id})"
+		class="h-full rounded-3xl bg-gray-300 bg-cover bg-center max-md:hidden"
+	></div>
 </section>
 
-<section id="committee" class="mx-auto my-16 w-full max-w-7xl px-6">
-	<h2 class="mb-10 text-4xl font-semibold tracking-tight">
+<section
+	id="venue"
+	class="mx-auto mb-36 grid w-full max-w-6xl grid-cols-2 flex-col-reverse items-center gap-20 px-6 max-md:flex md:mb-52"
+>
+	<div
+		style:background-image="url(https://inscer.pucrs.br/media/resize/930x2000/pasta/1/62d1a08d8d6d3.jpg?t=1657905270256)"
+		class="min-h-72 rounded-3xl bg-gray-300 bg-cover bg-center max-md:hidden"
+	></div>
+	<div>
+		<h2 class="mb-10 text-4xl font-semibold tracking-tight text-gray-900">
+			{translations[lang].venueTitle}
+		</h2>
+		<div class="markdown w-full space-y-7 text-lg text-gray-700 max-md:mb-10 md:max-w-144">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac finibus lacus, sed ullamcorper
+			augue. Duis posuere non elit eu imperdiet. Proin tempus ex ac nisi mollis, eu porta tortor
+			lobortis. Etiam tincidunt euismod purus eget dapibus. Aenean at commodo dolor, id ultricies
+			neque. Suspendisse potenti. Sed consequat tortor non ligula facilisis, at viverra magna
+			dignissim.
+		</div>
+		<div class="mt-10 h-64 rounded-3xl bg-gray-400 md:hidden"></div>
+	</div>
+</section>
+
+<section id="committee" class="mx-auto mb-36 w-full max-w-6xl px-6 md:mb-52">
+	<h2 class="mb-13 text-4xl font-semibold tracking-tight">
 		{translations[lang].committeeTitle}
 	</h2>
 	<div class="grid gap-6 md:grid-cols-2">
@@ -66,11 +97,11 @@
 	</div>
 </section>
 
-<section id="previousEditions" class="mx-auto my-16 w-full max-w-7xl px-6 lg:hidden">
-	<h2 class="mb-10 text-4xl font-semibold tracking-tight">
+<section id="previousEditions" class="mx-auto w-full max-w-6xl px-6 lg:hidden">
+	<h2 class="mb-12 text-4xl font-semibold tracking-tight">
 		{translations[lang].editionsTitle}
 	</h2>
-	<div class="my-14">
+	<div class="mt-14 mb-16">
 		<div class="flex justify-around">
 			{#each previousEditions as edition}
 				{@const isSelected = edition.year === selectedEdition?.year}
@@ -111,14 +142,14 @@
 				</p>
 			</div>
 			<div
-				class="h-full min-h-64 rounded-4xl bg-gray-400 bg-cover bg-center"
+				class="h-full min-h-64 rounded-3xl bg-gray-400 bg-cover bg-center"
 				style:background-image="url({base}/api/assets/{image.id})"
 			></div>
 		</div>
 	{/if}
 </section>
 
-<section id="previousEditions" class="mx-auto my-16 w-full max-w-7xl px-6 max-lg:hidden">
+<section id="previousEditions" class="mx-auto mb-16 w-full max-w-6xl px-6 max-lg:hidden md:mb-36">
 	<h2 class="mb-14 text-4xl font-semibold tracking-tight">{translations[lang].editionsTitle}</h2>
 	<div class="flex">
 		<div class="relative h-52 w-48">
@@ -157,7 +188,7 @@
 					</p>
 				</div>
 				<div
-					class="rounded-4xl bg-gray-400 bg-cover bg-center"
+					class="rounded-3xl bg-gray-400 bg-cover bg-center"
 					style:background-image="url({base}/api/assets/{image.id})"
 				></div>
 			</div>

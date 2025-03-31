@@ -19,7 +19,7 @@
 
 <div class="flex items-center gap-6">
 	<a href={link} target="_blank">
-		<Image image={picture} class="h-24 w-20 rounded-2xl object-cover" />
+		<Image image={picture} class="h-24 w-20 rounded-xl object-cover" />
 	</a>
 	<div>
 		<a href={link} target="_blank">

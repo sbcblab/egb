@@ -65,10 +65,10 @@
 {#if course}
 	{@const { duration, instructors, level, references, translations } = course}
 	{@const translation = translations?.find((t) => t.languages_code === lang)}
-	<div class="mx-auto mt-6 mb-16 w-full max-w-7xl gap-20 px-6 md:mt-12">
+	<div class="mx-auto mt-6 mb-16 w-full max-w-6xl gap-20 px-6 md:mt-12">
 		<a
 			href="{base}/program#courses"
-			class="mb-6 flex items-center gap-1 text-gray-700 md:hover:text-gray-500"
+			class="mb-8 inline-flex items-center gap-1 text-gray-700 md:hover:text-gray-500"
 		>
 			<ChevronLeft strokeWidth={2.5} class="size-5" />
 			<span class="text-lg font-medium">{globalTranslations[lang].courses}</span>
