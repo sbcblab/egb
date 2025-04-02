@@ -36,7 +36,7 @@
 {/snippet}
 
 <section id="speakers" class="mx-auto mt-18 mb-32 w-full max-w-6xl px-6">
-	<h2 class="mb-10 text-4xl font-semibold tracking-tight">
+	<h2 class="mb-10 text-4xl font-semibold tracking-tight text-gray-900">
 		{globalTranslations[lang].speakersTitle}
 	</h2>
 	<div class="grid gap-6 md:grid-cols-2">
@@ -54,7 +54,7 @@
 </section>
 
 <section id="courses" class="mx-auto mb-16 w-full max-w-6xl px-6">
-	<h2 class="mb-10 text-4xl font-semibold tracking-tight">
+	<h2 class="mb-10 text-4xl font-semibold tracking-tight text-gray-900">
 		{globalTranslations[lang].coursesTitle}
 	</h2>
 	<div class="flex flex-col gap-7">

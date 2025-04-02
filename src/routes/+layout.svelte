@@ -10,15 +10,17 @@
 	let isHome = $derived(page.url.pathname === '/');
 </script>
 
-<div
-	class="mb-20 flex min-h-full flex-col text-pretty text-gray-950 subpixel-antialiased selection:bg-sky-600 selection:text-white"
->
-	<Header {isHome} {lang} />
-	<main class="contents">
-		{@render children?.()}
-	</main>
+<div class="flex min-h-full flex-col">
+	<div
+		class="mb-20 flex grow flex-col text-pretty text-gray-950 subpixel-antialiased selection:bg-sky-600 selection:text-white"
+	>
+		<Header {isHome} {lang} />
+		<main class="contents">
+			{@render children?.()}
+		</main>
+	</div>
+	<Footer {global} {lang} />
 </div>
-<Footer {global} {lang} />
 
 <style>
 	:global(html, body) {
