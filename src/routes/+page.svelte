@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
+	import Header from '$lib/components/Header.svelte';
 	import { type Institution } from '$lib/types.js';
 	import { format } from 'date-fns';
 	import { enUS, ptBR } from 'date-fns/locale';
@@ -56,35 +57,41 @@
 
 <section
 	style:background-image="url({base}/api/assets/9045ab3e-90b9-439a-a9cd-fcca24b371e2)"
-	class="relative flex h-screen flex-col items-center justify-center bg-cover bg-top px-4 pt-16 text-center"
+	class="relative h-screen bg-cover bg-top"
 >
-	<div class="absolute inset-0 bg-gray-950 opacity-65"></div>
-	<p
-		class="text-3xl font-bold tracking-tight text-white/70 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
-	>
-		EGB {format(global.startDate, 'y')}
-	</p>
-	<h1
-		class="mt-3 mb-14 text-[2.875rem]/[1.1] sm:text-[3.5rem]/[1] font-semibold tracking-tight text-white drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
-	>
-		Escola Gaúcha de Bioinformática
-	</h1>
-	<p class="mb-1.5 text-3xl font-semibold text-white/90 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]">
-		{translations[lang].dateRange}
-	</p>
-	<p class="text-lg text-white/80 drop-shadow-[0_0_1.5rem_rgba(0,0,0,0.5)]">
-		Porto Alegre, RS, {translations[lang].countryName}
-	</p>
-	<a
-		href="{base}/registration"
-		class="group mt-16 flex items-center gap-1.5 rounded-full border border-white/50 bg-white/20 px-6 py-2.5 text-white shadow-md backdrop-blur-sm transition-all md:hover:bg-white/25 md:hover:shadow-[0_0_1rem_rgba(255,255,255,0.1)]"
-	>
-		<span class="drop-shadow-[1px_1px_3px_rgba(0,0,0,.5)]">Register now</span>
-		<ChevronRightIcon
-			strokeWidth={1.5}
-			class="size-4.5 drop-shadow-[1px_1px_3px_rgba(0,0,0,.5)] transition-all md:group-hover:translate-x-1"
-		/>
-	</a>
+	<div class="absolute inset-0 flex flex-col bg-gray-950/65">
+		<Header {lang} />
+		<div class="flex grow flex-col items-center justify-center text-center">
+			<p
+				class="text-3xl font-bold tracking-tight text-white/70 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
+			>
+				EGB {format(global.startDate, 'y')}
+			</p>
+			<h1
+				class="mt-3 mb-14 text-[2.875rem]/[1.1] font-semibold tracking-tight text-white drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)] sm:text-[3.5rem]/[1]"
+			>
+				Escola Gaúcha de Bioinformática
+			</h1>
+			<p
+				class="mb-1.5 text-3xl font-semibold text-white/90 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
+			>
+				{translations[lang].dateRange}
+			</p>
+			<p class="text-lg text-white/80 drop-shadow-[0_0_1.5rem_rgba(0,0,0,0.5)]">
+				Porto Alegre, RS, {translations[lang].countryName}
+			</p>
+			<a
+				href="{base}/registration"
+				class="group mt-16 flex items-center gap-1.5 rounded-full border border-white/50 bg-white/20 px-6 py-2.5 text-white shadow-md backdrop-blur-sm transition-all md:hover:bg-white/25 md:hover:shadow-[0_0_1rem_rgba(255,255,255,0.1)]"
+			>
+				<span class="drop-shadow-[1px_1px_3px_rgba(0,0,0,.5)]">Register now</span>
+				<ChevronRightIcon
+					strokeWidth={1.5}
+					class="size-4.5 drop-shadow-[1px_1px_3px_rgba(0,0,0,.5)] transition-all md:group-hover:translate-x-1"
+				/>
+			</a>
+		</div>
+	</div>
 </section>
 
 <!-- <section

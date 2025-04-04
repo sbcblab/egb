@@ -1,7 +1,7 @@
 <script>
 	import { page } from '$app/state';
 	import Footer from '$lib/components/Footer.svelte';
-	import Header from '$lib/components/Header.svelte';
+	import MobileNav from '$lib/components/MobileNav.svelte';
 	import '../app.css';
 
 	let { children, data } = $props();
@@ -11,14 +11,10 @@
 </script>
 
 <div class="flex min-h-full flex-col">
-	<div
-		class="flex grow flex-col text-pretty text-gray-950 subpixel-antialiased selection:bg-sky-600 selection:text-white"
-	>
-		<Header {isHome} {lang} />
-		<main class="contents">
-			{@render children?.()}
-		</main>
-	</div>
+	<MobileNav {lang} />
+	<main class="flex grow flex-col text-pretty text-gray-950 subpixel-antialiased">
+		{@render children?.()}
+	</main>
 	{#if !isHome}
 		<Footer {global} {lang} />
 	{/if}

@@ -1,21 +1,12 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import type { LanguageCode } from '$lib/types';
 	import Nav from './Nav.svelte';
 
-	let { isHome, lang }: { isHome: boolean; lang: LanguageCode } = $props();
+	let { lang }: { lang: LanguageCode } = $props();
 </script>
 
-<header
-	class="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6 {isHome
-		? 'absolute top-0 right-0 left-0 z-10 text-white'
-		: ''}"
->
-	<a
-		href="/"
-		class="text-4xl font-extrabold tracking-tight {isHome ? 'text-white' : 'text-gray-800'}"
-	>
-		EGB
-		<!-- <Logo class="w-36" /> -->
-	</a>
-	<Nav {lang} {isHome} />
-</header>
+<div class="mx-auto flex w-full max-w-6xl items-center justify-between p-6">
+	<a href="{base}/" class="text-4xl font-extrabold tracking-tight text-white/90"> EGB</a>
+	<Nav {lang} isHome={true} />
+</div>

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { base } from '$app/paths';
+	import Banner from '$lib/components/Banner.svelte';
 	import { format } from 'date-fns';
 	import { MailIcon, PhoneIcon } from 'lucide-svelte';
 
@@ -23,10 +25,14 @@
 	<title>{translations[lang].pageTitle} &ndash; EGB {format(global.startDate, 'y')}</title>
 </svelte:head>
 
-<section id="courses" class="mx-auto mt-18 w-full max-w-6xl px-6">
-	<h2 class="mb-8 text-4xl font-semibold tracking-tight text-gray-900">
-		{translations[lang].title}
-	</h2>
+<Banner
+	{lang}
+	title={translations[lang].pageTitle}
+	imageUrl="{base}/api/assets/6024038c-612d-4bec-984f-0e77deaec8f5"
+	class="bg-[100%_25%]"
+/>
+
+<section id="courses" class="mx-auto mt-12 w-full max-w-6xl px-6">
 	<p class="max-w-128 text-lg text-gray-700">{translations[lang].text}</p>
 	<div class="mt-12 flex flex-col gap-4">
 		<div class="flex items-center gap-5.5">

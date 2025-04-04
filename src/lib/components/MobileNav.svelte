@@ -5,7 +5,7 @@
 	import { expoOut } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
 
-	let { isHome, lang }: { isHome: boolean; lang: LanguageCode } = $props();
+	let { lang }: { lang: LanguageCode } = $props();
 
 	const items = [
 		{ 'en-US': 'Home', 'pt-BR': 'Início', href: '/' },
@@ -29,32 +29,19 @@
 	}
 </script>
 
-<div class="flex gap-10 max-lg:hidden">
-	{#each items as item}
-		<a
-			href={item.href}
-			class="p-2 text-white transition-all md:hover:drop-shadow-[0_0_0.5rem_rgba(255,255,255,0.75)] {isHome
-				? 'drop-shadow-[1px_1px_3px_rgba(0,0,0,0.2)]'
-				: ''}"
-		>
-			{item[lang]}
-		</a>
-	{/each}
-</div>
-
-<!-- <button onclick={open} class="translate-x-2 p-2 lg:hidden">
-	<MenuIcon class="text-white" />
-</button> -->
+<button onclick={open} class="absolute top-6 right-4 z-20 p-2 lg:hidden">
+	<MenuIcon strokeWidth={1.5} class="text-white" />
+</button>
 
 {#if isOpen}
 	<div
-		transition:fly={{ duration: 300, easing: expoOut }}
+		transition:fly={{ duration: 150, easing: expoOut }}
 		class="fixed inset-0 z-20 bg-gray-950/60"
 	></div>
 	<div
 		use:clickOutside
 		onoutsideclick={close}
-		transition:fly={{ duration: 300, x: '100%', opacity: 1, easing: expoOut }}
+		transition:fly={{ duration: 150, x: '100%', opacity: 1, easing: expoOut }}
 		class="fixed top-0 right-0 bottom-0 z-30 w-full max-w-64 bg-white px-7 py-7 shadow-lg"
 	>
 		<button onclick={close} class="-translate-x-4 -translate-y-4 p-2">

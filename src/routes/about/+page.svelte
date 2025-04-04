@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
+	import Banner from '$lib/components/Banner.svelte';
 	import Person from '$lib/components/Person.svelte';
 	import { format } from 'date-fns';
 
@@ -32,15 +33,22 @@
 	<title>{translations[lang].pageTitle} &ndash; EGB {format(global.startDate, 'y')}</title>
 </svelte:head>
 
+<Banner
+	{lang}
+	title={translations[lang].pageTitle}
+	imageUrl="{base}/api/assets/46157eab-8cb1-4c72-9cb6-2635fa4c6a65"
+	class="bg-[50%_90%]"
+/>
+
 <section
 	id="about"
-	class="mx-auto mt-28 mb-56 grid w-full max-w-6xl grid-cols-2 flex-col-reverse items-center gap-20 px-6 max-md:flex"
+	class="mx-auto my-18 grid w-full max-w-6xl grid-cols-2 flex-col-reverse items-center gap-18 px-6 max-md:flex"
 >
 	<div>
 		<h2 class="mb-10 text-4xl font-semibold tracking-tight text-gray-900">
 			{translations[lang].aboutTitle}
 		</h2>
-		<div class="markdown w-full space-y-7 text-lg/[1.75] text-gray-700 max-md:mb-10 md:max-w-144">
+		<div class="markdown w-full space-y-7 text-lg text-gray-700 max-md:mb-10 md:max-w-144">
 			{@html about.translations
 				? about.translations.find((i) => i.languages_code === lang)?.body
 				: ''}
@@ -58,28 +66,28 @@
 
 <section
 	id="venue"
-	class="mx-auto mb-36 grid w-full max-w-6xl grid-cols-2 flex-col-reverse items-center gap-20 px-6 max-md:flex md:mb-52"
+	class="mx-auto my-18 grid w-full max-w-6xl grid-cols-2 flex-col-reverse items-center gap-10 px-6 max-md:flex md:gap-18"
 >
 	<div
-		style:background-image="url(https://inscer.pucrs.br/media/resize/930x2000/pasta/1/62d1a08d8d6d3.jpg?t=1657905270256)"
-		class="min-h-72 rounded-3xl bg-gray-300 bg-cover bg-center max-md:hidden"
+		style:background-image="url({base}/api/assets/46157eab-8cb1-4c72-9cb6-2635fa4c6a65)"
+		class="h-full min-h-72 w-full rounded-3xl bg-gray-300 bg-cover bg-center"
 	></div>
 	<div>
 		<h2 class="mb-10 text-4xl font-semibold tracking-tight text-gray-900">
 			{translations[lang].venueTitle}
 		</h2>
-		<div class="markdown w-full space-y-7 text-lg text-gray-700 max-md:mb-10 md:max-w-144">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac finibus lacus, sed ullamcorper
-			augue. Duis posuere non elit eu imperdiet. Proin tempus ex ac nisi mollis, eu porta tortor
-			lobortis. Etiam tincidunt euismod purus eget dapibus. Aenean at commodo dolor, id ultricies
-			neque. Suspendisse potenti. Sed consequat tortor non ligula facilisis, at viverra magna
-			dignissim.
+		<div class="markdown w-full space-y-7 text-lg text-gray-700 md:max-w-144">
+			This year's edition will be held at the Brain Institute of Rio Grande do Sul (InsCer), located
+			on the Health Campus of PUCRS in Porto Alegre. InsCer is a renowned institution dedicated to
+			research, medical support, and innovation in neuroscience. Its facilities span over 9,300
+			square meters, housing the Molecular Imaging Center, Radiopharmaceutical Production Center,
+			Pre-Clinical Research Center, and Clinical Research and Investigation Center, providing an
+			ideal environment for scientific events.
 		</div>
-		<div class="mt-10 h-64 rounded-3xl bg-gray-400 md:hidden"></div>
 	</div>
 </section>
 
-<section id="committee" class="mx-auto mb-36 w-full max-w-6xl px-6 md:mb-52">
+<section id="committee" class="mx-auto my-18 w-full max-w-6xl px-6">
 	<h2 class="mb-13 text-4xl font-semibold tracking-tight">
 		{translations[lang].committeeTitle}
 	</h2>
@@ -97,7 +105,7 @@
 	</div>
 </section>
 
-<section id="previousEditions" class="mx-auto w-full max-w-6xl px-6 lg:hidden">
+<section id="previousEditions" class="mx-auto my-18 w-full max-w-6xl px-6 lg:hidden">
 	<h2 class="mb-12 text-4xl font-semibold tracking-tight">
 		{translations[lang].editionsTitle}
 	</h2>
@@ -149,7 +157,7 @@
 	{/if}
 </section>
 
-<section id="previousEditions" class="mx-auto mb-16 w-full max-w-6xl px-6 max-lg:hidden md:mb-36">
+<section id="previousEditions" class="mx-auto my-18 w-full max-w-6xl px-6 max-lg:hidden">
 	<h2 class="mb-14 text-4xl font-semibold tracking-tight">{translations[lang].editionsTitle}</h2>
 	<div class="flex">
 		<div class="relative h-52 w-48">

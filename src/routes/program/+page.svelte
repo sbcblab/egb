@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
+	import Banner from '$lib/components/Banner.svelte';
 	import { levelMap } from '$lib/utils';
 	import { format } from 'date-fns';
 	import { GaugeIcon, TimerIcon, UserIcon, UserRoundIcon } from 'lucide-svelte';
@@ -33,6 +34,13 @@
 		<span class="text-gray-500">{value}</span>
 	</div>
 {/snippet}
+
+<Banner
+	{lang}
+	title={globalTranslations[lang].pageTitle}
+	imageUrl="{base}/api/assets/988afe9d-473a-4853-92d6-7d52a34dc518"
+	class="bg-[50%_46%] backdrop-blur-lg"
+/>
 
 <!-- <section id="speakers" class="mx-auto mt-18 mb-32 w-full max-w-6xl px-6">
 	<h2 class="mb-10 text-4xl font-semibold tracking-tight text-gray-900">

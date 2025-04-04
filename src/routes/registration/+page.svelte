@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { base } from '$app/paths';
+	import Banner from '$lib/components/Banner.svelte';
 	import { format } from 'date-fns';
 
 	let { data } = $props();
@@ -38,7 +40,14 @@
 	</a>
 {/snippet}
 
-<section id="trip" class="mx-auto mt-18 mb-36 max-w-6xl px-6 max-md:flex md:mt-16 md:mb-56">
+<Banner
+	{lang}
+	title={translations[lang].pageTitle}
+	imageUrl="{base}/api/assets/013d2473-b0fa-4f15-b610-29de984645d1"
+	class="bg-[60%_60%]"
+/>
+
+<section id="trip" class="mx-auto mt-18 mb-36 max-w-6xl px-6 md:mt-16 md:mb-56">
 	<h2 class="mb-12 text-4xl font-semibold tracking-tight text-gray-900">
 		{translations[lang].tripTitle}
 	</h2>
