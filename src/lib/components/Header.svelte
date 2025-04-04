@@ -12,9 +12,10 @@
 >
 	<a
 		href="/"
-		class="text-4xl font-extrabold tracking-tight {isHome ? 'text-white' : 'text-gray-700'}"
+		class="text-4xl font-extrabold tracking-tight {isHome ? 'text-white' : 'text-gray-800'}"
 	>
 		EGB
+		<!-- <Logo class="w-36" /> -->
 	</a>
 	<Nav {lang} {isHome} />
 </header>

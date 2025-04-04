@@ -12,14 +12,16 @@
 
 <div class="flex min-h-full flex-col">
 	<div
-		class="mb-20 flex grow flex-col text-pretty text-gray-950 subpixel-antialiased selection:bg-sky-600 selection:text-white"
+		class="flex grow flex-col text-pretty text-gray-950 subpixel-antialiased selection:bg-sky-600 selection:text-white"
 	>
 		<Header {isHome} {lang} />
 		<main class="contents">
 			{@render children?.()}
 		</main>
 	</div>
-	<Footer {global} {lang} />
+	{#if !isHome}
+		<Footer {global} {lang} />
+	{/if}
 </div>
 
 <style>

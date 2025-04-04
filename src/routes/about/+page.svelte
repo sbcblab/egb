@@ -34,7 +34,7 @@
 
 <section
 	id="about"
-	class="mx-auto mt-18 mb-36 grid w-full max-w-6xl grid-cols-2 flex-col-reverse items-center gap-20 px-6 max-md:flex md:mt-28 md:mb-56"
+	class="mx-auto mt-28 mb-56 grid w-full max-w-6xl grid-cols-2 flex-col-reverse items-center gap-20 px-6 max-md:flex"
 >
 	<div>
 		<h2 class="mb-10 text-4xl font-semibold tracking-tight text-gray-900">

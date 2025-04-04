@@ -3,7 +3,7 @@
 	import { type Institution } from '$lib/types.js';
 	import { format } from 'date-fns';
 	import { enUS, ptBR } from 'date-fns/locale';
-	import { ChevronRight } from 'lucide-svelte';
+	import { ChevronRightIcon } from 'lucide-svelte';
 
 	let { data } = $props();
 	let { lang, global, home } = data;
@@ -55,27 +55,39 @@
 {/snippet}
 
 <section
-	style:background-image="url('https://destinopoa.com.br/wp-content/uploads/2023/10/29MAR2022_AlexRocha_Esquadrilha_Fumaca_-9.jpg')"
-	class="relative flex h-screen flex-col items-center justify-center bg-sky-700 bg-cover bg-top px-4 text-center bg-blend-luminosity"
+	style:background-image="url({base}/api/assets/9045ab3e-90b9-439a-a9cd-fcca24b371e2)"
+	class="relative flex h-screen flex-col items-center justify-center bg-cover bg-top px-4 pt-16 text-center"
 >
-	<div class="absolute inset-0 bg-gray-900 opacity-60"></div>
-	<p class="text-2xl font-extrabold text-cyan-100 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]">
+	<div class="absolute inset-0 bg-gray-950 opacity-65"></div>
+	<p
+		class="text-3xl font-bold tracking-tight text-white/70 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
+	>
 		EGB {format(global.startDate, 'y')}
 	</p>
 	<h1
-		class="mt-3 mb-16 text-5xl font-semibold tracking-tight text-white drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
+		class="mt-3 mb-14 text-[2.875rem]/[1.1] sm:text-[3.5rem]/[1] font-semibold tracking-tight text-white drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
 	>
 		Escola Gaúcha de Bioinformática
 	</h1>
-	<p class="mb-1 text-3xl font-semibold text-cyan-100 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]">
+	<p class="mb-1.5 text-3xl font-semibold text-white/90 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]">
 		{translations[lang].dateRange}
 	</p>
-	<p class="text-lg text-cyan-200 drop-shadow-[0_0_1.5rem_rgba(0,0,0,0.5)]">
+	<p class="text-lg text-white/80 drop-shadow-[0_0_1.5rem_rgba(0,0,0,0.5)]">
 		Porto Alegre, RS, {translations[lang].countryName}
 	</p>
+	<a
+		href="{base}/registration"
+		class="group mt-16 flex items-center gap-1.5 rounded-full border border-white/50 bg-white/20 px-6 py-2.5 text-white shadow-md backdrop-blur-sm transition-all md:hover:bg-white/25 md:hover:shadow-[0_0_1rem_rgba(255,255,255,0.1)]"
+	>
+		<span class="drop-shadow-[1px_1px_3px_rgba(0,0,0,.5)]">Register now</span>
+		<ChevronRightIcon
+			strokeWidth={1.5}
+			class="size-4.5 drop-shadow-[1px_1px_3px_rgba(0,0,0,.5)] transition-all md:group-hover:translate-x-1"
+		/>
+	</a>
 </section>
 
-<section
+<!-- <section
 	id="about"
 	class="mx-auto mt-32 mb-32 grid w-full max-w-6xl grid-cols-2 flex-col-reverse gap-20 px-6 max-md:flex"
 >
@@ -100,4 +112,4 @@
 </section>
 
 {@render institutionGroup('organizers', translations[lang].organizersTitle, home.organizers || [])}
-{@render institutionGroup('sponsors', translations[lang].sponsorsTitle, home.sponsors || [])}
+{@render institutionGroup('sponsors', translations[lang].sponsorsTitle, home.sponsors || [])} -->

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	import Person from '$lib/components/Person.svelte';
 	import { levelMap } from '$lib/utils';
 	import { format } from 'date-fns';
 	import { GaugeIcon, TimerIcon, UserIcon, UserRoundIcon } from 'lucide-svelte';
@@ -35,7 +34,7 @@
 	</div>
 {/snippet}
 
-<section id="speakers" class="mx-auto mt-18 mb-32 w-full max-w-6xl px-6">
+<!-- <section id="speakers" class="mx-auto mt-18 mb-32 w-full max-w-6xl px-6">
 	<h2 class="mb-10 text-4xl font-semibold tracking-tight text-gray-900">
 		{globalTranslations[lang].speakersTitle}
 	</h2>
@@ -51,9 +50,9 @@
 			/>
 		{/each}
 	</div>
-</section>
+</section> -->
 
-<section id="courses" class="mx-auto mb-16 w-full max-w-6xl px-6">
+<section id="courses" class="mx-auto mt-18 mb-16 w-full max-w-6xl px-6">
 	<h2 class="mb-10 text-4xl font-semibold tracking-tight text-gray-900">
 		{globalTranslations[lang].coursesTitle}
 	</h2>

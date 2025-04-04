@@ -21,7 +21,7 @@
 	};
 </script>
 
-<footer class="px-6">
+<footer class="mt-20 px-6">
 	<hr class="border-gray-200" />
 	<div class="flex flex-col items-center gap-8 py-12">
 		<div class="flex gap-6">

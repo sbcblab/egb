@@ -29,11 +29,13 @@
 	}
 </script>
 
-<div class="flex gap-14 max-lg:hidden">
+<div class="flex gap-10 max-lg:hidden">
 	{#each items as item}
 		<a
 			href={item.href}
-			class="md:hover:opacity-60 {isHome ? 'drop-shadow-[1px_1px_3px_rgba(0,0,0,0.2)]' : ''}"
+			class="p-2 transition-all md:hover:drop-shadow-[0_0_0.5rem_rgba(255,255,255,0.75)] {isHome
+				? 'drop-shadow-[1px_1px_3px_rgba(0,0,0,0.2)]'
+				: ''}"
 		>
 			{item[lang]}
 		</a>
