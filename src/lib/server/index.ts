@@ -58,13 +58,11 @@ export async function getAbout() {
 }
 
 export async function getPreviousEditions() {
-	const previousEditions = (
-		await client.request(
-			readItems('previousEditions', {
-				fields: ['*', { image: ['id', 'title'], translations: ['*'] }]
-			})
-		)
-	).reverse();
+	const previousEditions = await client.request(
+		readItems('previousEditions', {
+			fields: ['*', { image: ['id', 'title'], translations: ['*'] }]
+		})
+	);
 	return previousEditions;
 }
 

@@ -6,26 +6,15 @@
 	import { GaugeIcon, TimerIcon, UserIcon, UserRoundIcon } from 'lucide-svelte';
 
 	let { data } = $props();
-	let { lang, global, program, courses } = data;
+	let { lang, global, courses } = data;
 
-	const globalTranslations = {
-		'en-US': {
-			pageTitle: 'Program',
-			speakersTitle: 'Speakers',
-			coursesTitle: 'Courses',
-			hours: 'hours'
-		},
-		'pt-BR': {
-			pageTitle: 'Programa',
-			speakersTitle: 'Palestrantes',
-			coursesTitle: 'Cursos',
-			hours: 'horas'
-		}
-	};
+	function translate(enStr: string, ptStr: string) {
+		return lang === 'pt-BR' ? ptStr : enStr;
+	}
 </script>
 
 <svelte:head>
-	<title>{globalTranslations[lang].pageTitle} &ndash; EGB {format(global.startDate, 'y')}</title>
+	<title>{translate('Program', 'Programa')} &ndash; EGB {format(global.startDate, 'y')}</title>
 </svelte:head>
 
 {#snippet coursePropriety(label: string, value: string, Icon: typeof UserIcon)}
@@ -37,7 +26,7 @@
 
 <Banner
 	{lang}
-	title={globalTranslations[lang].pageTitle}
+	title={translate('Program', 'Programa')}
 	imageUrl="{base}/api/assets/988afe9d-473a-4853-92d6-7d52a34dc518"
 	class="bg-[50%_46%] backdrop-blur-lg"
 />
@@ -62,7 +51,7 @@
 
 <section id="courses" class="mx-auto mt-18 mb-16 w-full max-w-6xl px-6">
 	<h2 class="mb-10 text-4xl font-semibold tracking-tight text-gray-900">
-		{globalTranslations[lang].coursesTitle}
+		{translate('Courses', 'Cursos')}
 	</h2>
 	<div class="flex flex-col gap-7">
 		{#each courses as { slug, duration, instructors, level, translations }}
@@ -77,7 +66,7 @@
 				<div class="mb-6 flex flex-wrap gap-x-8 gap-y-2">
 					{@render coursePropriety(
 						'Duration',
-						`${duration} ${globalTranslations[lang].hours}`,
+						`${duration} ${translate('hours', 'horas')}`,
 						TimerIcon
 					)}
 					{@render coursePropriety('Level', levelMap[lang][level], GaugeIcon)}

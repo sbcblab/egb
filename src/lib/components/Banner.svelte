@@ -17,7 +17,7 @@
 			: 'bg-gray-700'}"
 	>
 		<Header {lang} />
-		<h1 class="mx-auto mb-10 w-full max-w-6xl px-6 text-5xl font-medium tracking-tight text-white">
+		<h1 class="mx-auto mb-10 w-full max-w-6xl px-6 text-6xl tracking-tight text-white">
 			{title}
 		</h1>
 	</div>

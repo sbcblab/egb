@@ -6,19 +6,19 @@
 	let { data } = $props();
 	let { lang, global } = data;
 
-	const translations = {
-		'en-US': { pageTitle: 'Submissions', headerTitle: 'Call for posters' },
-		'pt-BR': { pageTitle: 'Submissões', headerTitle: 'Chamada de pôsteres' }
-	};
+	function translate(enStr: string, ptStr: string) {
+		return lang === 'pt-BR' ? ptStr : enStr;
+	}
 </script>
 
 <svelte:head>
-	<title>{translations[lang].pageTitle} &ndash; EGB {format(global.startDate, 'y')}</title>
+	<title>{translate('Submissions', 'Submissões')} &ndash; EGB {format(global.startDate, 'y')}</title
+	>
 </svelte:head>
 
 <Banner
 	{lang}
-	title={translations[lang].pageTitle}
+	title={translate('Submissions', 'Submissões')}
 	imageUrl="{base}/api/assets/cada5c39-03ab-4406-b038-d679077654a0"
 	class="bg-top"
 />

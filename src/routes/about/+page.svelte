@@ -2,51 +2,37 @@
 	import { base } from '$app/paths';
 	import Banner from '$lib/components/Banner.svelte';
 	import Person from '$lib/components/Person.svelte';
+	import type { Institution } from '$lib/types.js';
 	import { format } from 'date-fns';
 
 	let { data } = $props();
-	let { lang, global, about, previousEditions } = data;
+	let { lang, global, home, about, previousEditions } = data;
 
-	let selectedEdition = $state(previousEditions[0]);
+	let selectedEdition = $state(previousEditions.at(-1));
 
-	const translations = {
-		'en-US': {
-			pageTitle: 'About',
-			aboutTitle: 'What is EGB?',
-			venueTitle: 'The venue',
-			tripTitle: 'Plan your trip',
-			committeeTitle: 'Organizing committee',
-			editionsTitle: 'Previous editions'
-		},
-		'pt-BR': {
-			pageTitle: 'Sobre',
-			aboutTitle: 'O que é a EGB?',
-			venueTitle: 'Local do evento',
-			tripTitle: 'Planeje sua viagem',
-			committeeTitle: 'Comitê organizador',
-			editionsTitle: 'Edições anteriores'
-		}
-	};
+	function translate(enStr: string, ptStr: string) {
+		return lang === 'pt-BR' ? ptStr : enStr;
+	}
 </script>
 
 <svelte:head>
-	<title>{translations[lang].pageTitle} &ndash; EGB {format(global.startDate, 'y')}</title>
+	<title>{translate('About', 'Sobre')} &ndash; EGB {format(global.startDate, 'y')}</title>
 </svelte:head>
 
 <Banner
 	{lang}
-	title={translations[lang].pageTitle}
+	title={translate('About', 'Sobre')}
 	imageUrl="{base}/api/assets/46157eab-8cb1-4c72-9cb6-2635fa4c6a65"
 	class="bg-[50%_90%]"
 />
 
 <section
 	id="about"
-	class="mx-auto my-18 grid w-full max-w-6xl grid-cols-2 flex-col-reverse items-center gap-18 px-6 max-md:flex"
+	class="mx-auto mt-14 mb-28 grid w-full max-w-6xl grid-cols-2 flex-col-reverse items-center gap-18 px-6 max-md:flex"
 >
 	<div>
-		<h2 class="mb-10 text-4xl font-semibold tracking-tight text-gray-900">
-			{translations[lang].aboutTitle}
+		<h2 class="mb-7 text-3xl font-semibold tracking-tight text-gray-900">
+			{translate('What is EGB?', 'O que é a EGB?')}
 		</h2>
 		<div class="markdown w-full space-y-7 text-lg text-gray-700 max-md:mb-10 md:max-w-144">
 			{@html about.translations
@@ -66,30 +52,28 @@
 
 <section
 	id="venue"
-	class="mx-auto my-18 grid w-full max-w-6xl grid-cols-2 flex-col-reverse items-center gap-10 px-6 max-md:flex md:gap-18"
+	class="mx-auto mb-28 grid w-full max-w-6xl grid-cols-2 flex-col-reverse items-center gap-10 px-6 max-md:flex md:gap-18"
 >
 	<div
 		style:background-image="url({base}/api/assets/46157eab-8cb1-4c72-9cb6-2635fa4c6a65)"
 		class="h-full min-h-72 w-full rounded-3xl bg-gray-300 bg-cover bg-center"
 	></div>
 	<div>
-		<h2 class="mb-10 text-4xl font-semibold tracking-tight text-gray-900">
-			{translations[lang].venueTitle}
+		<h2 class="mb-7 text-3xl font-semibold tracking-tight text-gray-900">
+			{translate('The venue', 'Local do evento')}
 		</h2>
 		<div class="markdown w-full space-y-7 text-lg text-gray-700 md:max-w-144">
-			This year's edition will be held at the Brain Institute of Rio Grande do Sul (InsCer), located
-			on the Health Campus of PUCRS in Porto Alegre. InsCer is a renowned institution dedicated to
-			research, medical support, and innovation in neuroscience. Its facilities span over 9,300
-			square meters, housing the Molecular Imaging Center, Radiopharmaceutical Production Center,
-			Pre-Clinical Research Center, and Clinical Research and Investigation Center, providing an
-			ideal environment for scientific events.
+			{translate(
+				"This year's edition will be held at the Brain Institute of Rio Grande do Sul (InsCer), located on the Health Campus of PUCRS in Porto Alegre. InsCer is a renowned institution dedicated to research, medical support, and innovation in neuroscience. Its facilities span over 9,300 square meters, housing the Molecular Imaging Center, Radiopharmaceutical Production Center, Pre-Clinical Research Center, and Clinical Research and Investigation Center, providing an ideal environment for scientific events.",
+				'A edição deste ano será realizada no Instituto do Cérebro do Rio Grande do Sul (InsCer), localizado no Campus da Saúde da PUCRS, em Porto Alegre. O InsCer é uma instituição de renome dedicada à pesquisa, ao suporte médico e à inovação em neurociência. Suas instalações contam com mais de 9.300 metros quadrados e abrigam o Centro de Imagem Molecular, o Centro de Produção de Radiofármacos, o Centro de Pesquisa Pré-Clínica e o Centro de Pesquisa e Investigação Clínica, oferecendo um ambiente ideal para a realização de eventos científicos.'
+			)}
 		</div>
 	</div>
 </section>
 
-<section id="committee" class="mx-auto my-18 w-full max-w-6xl px-6">
-	<h2 class="mb-13 text-4xl font-semibold tracking-tight">
-		{translations[lang].committeeTitle}
+<section id="committee" class="mx-auto mb-28 w-full max-w-6xl px-6">
+	<h2 class="mb-7 text-3xl font-semibold tracking-tight">
+		{translate('Organizing committee', 'Comitê organizador')}
 	</h2>
 	<div class="grid gap-6 md:grid-cols-2">
 		{#each about.committee || [] as { people_id }}
@@ -105,9 +89,9 @@
 	</div>
 </section>
 
-<section id="previousEditions" class="mx-auto my-18 w-full max-w-6xl px-6 lg:hidden">
-	<h2 class="mb-12 text-4xl font-semibold tracking-tight">
-		{translations[lang].editionsTitle}
+<section id="previousEditions" class="mx-auto mb-28 w-full max-w-6xl px-6 lg:hidden">
+	<h2 class="mb-9 text-3xl font-semibold tracking-tight">
+		{translate('Previous editions', 'Edições anteriores')}
 	</h2>
 	<div class="mt-14 mb-16">
 		<div class="flex justify-around">
@@ -157,8 +141,10 @@
 	{/if}
 </section>
 
-<section id="previousEditions" class="mx-auto my-18 w-full max-w-6xl px-6 max-lg:hidden">
-	<h2 class="mb-14 text-4xl font-semibold tracking-tight">{translations[lang].editionsTitle}</h2>
+<section id="previousEditions" class="mx-auto mb-28 w-full max-w-6xl px-6 max-lg:hidden">
+	<h2 class="mb-12 text-3xl font-semibold tracking-tight">
+		{translate('Previous editions', 'Edições anteriores')}
+	</h2>
 	<div class="flex">
 		<div class="relative h-52 w-48">
 			<div
@@ -203,3 +189,34 @@
 		{/if}
 	</div>
 </section>
+
+{#snippet institutionGroup(
+	id: string,
+	title: string,
+	institutions: { institutions_id: Institution }[]
+)}
+	<section {id} class="mx-auto mb-28 max-w-6xl px-6">
+		<h2 class="mb-9 text-center text-xl font-medium tracking-tight">
+			{title}
+		</h2>
+		<div class="flex flex-wrap justify-center gap-10">
+			{#each institutions as { institutions_id }}
+				{@const { name, link, logo } = institutions_id}
+				<a
+					href={link}
+					title={name}
+					aria-label={name}
+					target="_blank"
+					class="aspect-4/3 w-30 bg-contain bg-center bg-no-repeat transition-transform md:hover:scale-110"
+					style:background-image="url({base}/api/assets/{logo})"
+				></a>
+			{/each}
+		</div>
+	</section>
+{/snippet}
+{@render institutionGroup(
+	'organizers',
+	translate('Organized by', 'Organizadores'),
+	home.organizers || []
+)}
+{@render institutionGroup('sponsors', translate('Sponsored by', 'Apoiadores'), home.sponsors || [])}

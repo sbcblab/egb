@@ -17,15 +17,13 @@
 	} = $props();
 </script>
 
-<div class="flex items-center gap-6">
+<div class="flex items-center gap-5">
 	<a href={link} target="_blank">
-		<Image image={picture} class="h-24 w-20 rounded-xl object-cover" />
+		<Image image={picture} class="size-18 rounded-2xl border border-gray-200 object-cover" />
 	</a>
 	<div>
-		<a href={link} target="_blank">
-			<div class="text-xl">{name}</div>
-		</a>
-		<div class="mb-2 text-lg text-gray-500">
+		<a href={link} target="_blank" class="text-lg">{name}</a>
+		<div class=" text-gray-500">
 			{#if institution}{institution}<span>, </span>{/if}
 			{country}
 		</div>
