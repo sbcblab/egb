@@ -13,11 +13,13 @@
 <header style:background-image="url({imageUrl})" class="relative h-80 bg-cover {_class}">
 	<div
 		class="absolute inset-0 flex flex-col justify-between backdrop-blur-xs {imageUrl
-			? 'bg-gray-950/65'
+			? 'bg-gray-950/60'
 			: 'bg-gray-700'}"
 	>
 		<Header {lang} />
-		<h1 class="mx-auto mb-10 w-full max-w-6xl px-6 text-6xl tracking-tight text-white">
+		<h1
+			class="mx-auto mb-10 w-full max-w-6xl px-6 text-6xl font-semibold tracking-tight text-white"
+		>
 			{title}
 		</h1>
 	</div>

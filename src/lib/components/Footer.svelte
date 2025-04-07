@@ -26,12 +26,17 @@
 	<div class="flex flex-col items-center gap-8 py-12">
 		<div class="flex gap-6">
 			{#each socialItems as { Icon, href, title }}
-				<a {href} target="_blank" {title} class="text-gray-500 md:hover:opacity-60">
-					<Icon font-size={24} />
+				<a
+					{href}
+					target="_blank"
+					{title}
+					class="text-gray-600 transition-all md:hover:text-gray-800"
+				>
+					<Icon class="text-[1.25rem]" />
 				</a>
 			{/each}
 		</div>
-		<div class="text-center text-sm text-gray-400">
+		<div class="text-center text-sm text-gray-600">
 			Copyright © {format(global.startDate, 'y')} SBCB Laboratory. {translations[lang].rights}
 		</div>
 	</div>

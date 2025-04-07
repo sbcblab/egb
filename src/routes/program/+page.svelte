@@ -28,7 +28,7 @@
 	{lang}
 	title={translate('Program', 'Programa')}
 	imageUrl="{base}/api/assets/988afe9d-473a-4853-92d6-7d52a34dc518"
-	class="bg-[50%_46%] backdrop-blur-lg"
+	class="bg-[50%_47%] backdrop-blur-lg"
 />
 
 <!-- <section id="speakers" class="mx-auto mt-18 mb-32 w-full max-w-6xl px-6">

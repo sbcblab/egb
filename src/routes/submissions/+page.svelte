@@ -19,11 +19,11 @@
 <Banner
 	{lang}
 	title={translate('Submissions', 'Submissões')}
-	imageUrl="{base}/api/assets/cada5c39-03ab-4406-b038-d679077654a0"
+	imageUrl="{base}/api/assets/544ff6c5-c527-4c0d-aeab-214058f86d95"
 	class="bg-top"
 />
 
-<div class="mx-auto mt-12 w-full max-w-6xl px-6">
+<div class="mx-auto mt-18 mb-24 w-full max-w-6xl px-6">
 	<div class="prose prose-lg">
 		<h2 id="submission-guidelines">Submission guidelines</h2>
 		<h3 id="eligibility">Eligibility</h3>
