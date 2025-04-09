@@ -1,9 +1,12 @@
-import { getCourses, getProgram } from '$lib/server';
+import { getActivities, getCourses, getProgram } from '$lib/server';
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async () => {
-	const program = await getProgram();
-	const courses = await getCourses();
+	const [program, courses, activities] = await Promise.all([
+		getProgram(),
+		getCourses(),
+		getActivities()
+	]);
 
-	return { program, courses };
+	return { program, courses, activities };
 };

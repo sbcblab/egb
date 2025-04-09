@@ -18,3 +18,8 @@ export const levelMap = {
 	'en-US': { 1: 'Beginner', 2: 'Intermediate', 3: 'Advanced' },
 	'pt-BR': { 1: 'Básico', 2: 'Intermediário', 3: 'Avançado' }
 };
+
+export function getFlagEmoji(alpha2: string): string {
+	const codePoints = Array.from(alpha2).map((char) => 0x1f1e6 - 65 + char.charCodeAt(0));
+	return String.fromCodePoint(...codePoints);
+}

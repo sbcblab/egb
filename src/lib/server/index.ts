@@ -115,3 +115,32 @@ export async function getCourses() {
 	);
 	return courses;
 }
+
+export async function getActivities() {
+	const activities = await client.request(
+		readItems('activities', {
+			fields: [
+				'*',
+				{
+					speakers: [
+						{
+							people_id: [
+								'*',
+								{
+									institution: ['*'],
+									picture: ['id', 'title'],
+									country: ['*', { translations: ['*'] }]
+								}
+							]
+						}
+					],
+					translations: ['*']
+				}
+			]
+		})
+	);
+	return activities.map((activity) => ({
+		...activity,
+		date: `${activity.date}T00:00:00`
+	}));
+}

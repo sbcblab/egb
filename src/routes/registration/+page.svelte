@@ -151,7 +151,7 @@
 			'Are the lectures recorded?',
 			'No. All lectures are live only (synchronous) and will not be available afterward.'
 		)}
-		{@render faqItem(	
+		{@render faqItem(
 			'How are course spots allocated?',
 			'Course seats are limited and will be filled strictly in order of registration (first-come, first-served).'
 		)}

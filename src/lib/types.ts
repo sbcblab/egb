@@ -84,6 +84,14 @@ export interface Course {
 	translations: CourseTranslation[];
 }
 
+export interface Activity {
+	translations: ActivityTranslation[];
+	date: string | null;
+	startTime: string | null;
+	endTime: string | null;
+	speakers: ActivityPerson[];
+}
+
 export interface HomeInstitution {
 	institutions_id: Institution;
 }
@@ -97,6 +105,10 @@ export interface ProgramPerson {
 }
 
 export interface CoursePerson {
+	people_id: Person;
+}
+
+export interface ActivityPerson {
 	people_id: Person;
 }
 
@@ -126,6 +138,10 @@ export interface CourseTranslation extends Translation {
 	prerequisites: string;
 }
 
+export interface ActivityTranslation extends Translation {
+	title: string;
+}
+
 export interface Schema {
 	global: Global;
 	home: Home;
@@ -136,17 +152,20 @@ export interface Schema {
 	countries: Country[];
 	previousEditions: PreviousEdition[];
 	courses: Course[];
+	activities: Activity[];
 
 	homeInstitutions: HomeInstitution[];
 	aboutPeople: AboutPerson[];
 	programPeople: ProgramPerson[];
 	coursePeople: CoursePerson[];
+	activityPeople: ActivityPerson[];
 
 	homeTranslations: HomeTranslation[];
 	aboutTranslations: AboutTranslation[];
 	countriesTranslations: CountriesTranslation[];
 	previousEditionsTranslations: PreviousEditionsTranslation[];
 	courseTranslations: CourseTranslation[];
+	activityTranslations: ActivityTranslation[];
 
 	directusFiles: Image[];
 }

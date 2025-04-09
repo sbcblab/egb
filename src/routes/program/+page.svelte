@@ -1,12 +1,18 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import Banner from '$lib/components/Banner.svelte';
-	import { levelMap } from '$lib/utils';
+	import { getFlagEmoji, levelMap } from '$lib/utils';
 	import { format } from 'date-fns';
 	import { GaugeIcon, TimerIcon, UserIcon, UserRoundIcon } from 'lucide-svelte';
 
 	let { data } = $props();
-	let { lang, global, courses } = data;
+	let { lang, global, courses, activities } = data;
+
+	let validActivities = activities.filter(
+		(a) => a.date !== null && a.startTime !== null && a.endTime !== null
+	);
+	let dates = Array.from(new Set(validActivities.map((a) => a.date as string)));
+	let selectedDate = $state(dates[0]);
 
 	function translate(enStr: string, ptStr: string) {
 		return lang === 'pt-BR' ? ptStr : enStr;
@@ -18,9 +24,9 @@
 </svelte:head>
 
 {#snippet coursePropriety(label: string, value: string, Icon: typeof UserIcon)}
-	<div class="flex items-center gap-2">
-		<Icon aria-label={label} class="size-4.5 shrink-0 text-gray-400/60" />
-		<span class="text-gray-500">{value}</span>
+	<div class="flex items-center gap-1.5">
+		<Icon aria-label={label} class="mb-1 size-4 shrink-0 text-gray-400" />
+		<span class="text-sm text-gray-600">{value}</span>
 	</div>
 {/snippet}
 
@@ -31,39 +37,72 @@
 	class="bg-[50%_47%] backdrop-blur-lg"
 />
 
-<!-- <section id="speakers" class="mx-auto mt-18 mb-32 w-full max-w-6xl px-6">
-	<h2 class="mb-10 text-4xl font-semibold tracking-tight text-gray-900">
-		{globalTranslations[lang].speakersTitle}
+<section id="activities" class="mx-auto mt-18 mb-24 w-full max-w-6xl px-6">
+	<h2 class="mb-6 text-3xl font-semibold tracking-tight text-gray-900">
+		{translate('Activities', 'Atividades')}
 	</h2>
-	<div class="grid gap-6 md:grid-cols-2">
-		{#each program.speakers || [] as { people_id }}
-			{@const { name, link, institution, country, picture } = people_id}
-			<Person
-				{name}
-				{link}
-				{picture}
-				institution={institution.name}
-				country={country.translations?.find((i) => i.languages_code === lang)?.name || ''}
-			/>
-		{/each}
+	<div class="flex flex-col gap-3">
+		<div class="flex overflow-x-auto rounded-2xl bg-gray-100 p-1">
+			{#each dates as date}
+				{@const isSelected = date === selectedDate}
+				<button
+					onclick={() => (selectedDate = date)}
+					class="grow rounded-xl px-3 py-1 text-sm font-medium transition-all {isSelected
+						? 'bg-white shadow-sm'
+						: 'bg-gray-100 text-gray-500'}"
+				>
+					<div>
+						<span class="md:hidden">{format(date, 'E')}</span>
+						<span class="max-md:hidden">{format(date, 'EEEE')}</span>
+					</div>
+					<div>{format(date, 'dd/MM')}</div>
+				</button>
+			{/each}
+		</div>
+		<div class="flex flex-col gap-1.5">
+			{#each activities.filter((a) => a.date === selectedDate) as { translations, startTime, endTime, speakers }}
+				<a
+					href="{base}/program"
+					class="flex justify-between gap-3 rounded-2xl border border-gray-200 p-6 shadow-sm transition-all active:shadow-inner max-md:flex-col-reverse md:items-center md:gap-6 md:hover:bg-gray-50"
+				>
+					<div class="flex flex-col gap-2 md:gap-1.5">
+						<div>{translations?.find((i) => i.languages_code === lang)?.title}</div>
+						{#if speakers?.length || 0 > 0}
+							<div class="flex flex-col gap-0.5">
+								{#each speakers || [] as { people_id }}
+									{@const { name, institution, country, link, picture } = people_id}
+									<div class="flex items-center gap-2">
+										<span class="text-sm">{getFlagEmoji(country.alpha2)}</span>
+										<span class="text-sm text-gray-600">{name}</span>
+									</div>
+								{/each}
+							</div>
+						{/if}
+					</div>
+					<div class="text-sm whitespace-nowrap text-gray-600">
+						{startTime?.substring(0, 5)} &ndash; {endTime?.substring(0, 5)}
+					</div>
+				</a>
+			{/each}
+		</div>
 	</div>
-</section> -->
+</section>
 
-<section id="courses" class="mx-auto mt-18 mb-16 w-full max-w-6xl px-6">
-	<h2 class="mb-10 text-4xl font-semibold tracking-tight text-gray-900">
+<section id="courses" class="mx-auto mb-18 w-full max-w-6xl px-6">
+	<h2 class="mb-6 text-3xl font-semibold tracking-tight text-gray-900">
 		{translate('Courses', 'Cursos')}
 	</h2>
-	<div class="flex flex-col gap-7">
+	<div class="grid gap-2 md:grid-cols-2">
 		{#each courses as { slug, duration, instructors, level, translations }}
 			{@const translation = translations?.find((i) => i.languages_code === lang)}
 			<a
 				href="{base}/program/{slug}"
-				class="rounded-2xl border border-gray-200 p-7 shadow-sm transition-all active:shadow-inner md:hover:scale-[1.01] md:hover:shadow-lg"
+				class="flex flex-col gap-2.5 rounded-2xl border border-gray-200 p-6 shadow-sm transition-all active:shadow-inner md:hover:bg-gray-50"
 			>
-				<h3 class="mb-3 text-xl">
+				<div>
 					{translation?.title}
-				</h3>
-				<div class="mb-6 flex flex-wrap gap-x-8 gap-y-2">
+				</div>
+				<div class="flex flex-wrap gap-x-6 gap-y-1.5">
 					{@render coursePropriety(
 						'Duration',
 						`${duration} ${translate('hours', 'horas')}`,
@@ -75,11 +114,6 @@
 						instructors?.map((i) => i.people_id.name).join(', ') || '',
 						UserRoundIcon
 					)}
-				</div>
-				<div class="flex flex-wrap gap-3">
-					{#each translation?.keywords || [] as keyword}
-						<span class="rounded-lg bg-gray-100 px-3 py-0.5 text-sm text-gray-600">{keyword}</span>
-					{/each}
 				</div>
 			</a>
 		{/each}
