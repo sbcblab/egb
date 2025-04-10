@@ -60,20 +60,17 @@
 			{/each}
 		</div>
 		<div class="flex flex-col gap-1.5">
-			{#each activities.filter((a) => a.date === selectedDate) as { translations, startTime, endTime, speakers }}
-				<a
-					href="{base}/program"
-					class="flex justify-between gap-3 rounded-2xl border border-gray-200 p-6 shadow-sm transition-all active:shadow-inner max-md:flex-col-reverse md:items-center md:gap-6 md:hover:bg-gray-50"
-				>
+			{#each activities.filter((a) => a.date === selectedDate) as { translations, startTime, endTime, speakers, clickable }}
+				{#snippet content()}
 					<div class="flex flex-col gap-2 md:gap-1.5">
 						<div>{translations?.find((i) => i.languages_code === lang)?.title}</div>
 						{#if speakers?.length || 0 > 0}
 							<div class="flex flex-col gap-0.5">
 								{#each speakers || [] as { people_id }}
-									{@const { name, institution, country, link, picture } = people_id}
+									{@const { name, institution, country } = people_id}
 									<div class="flex items-center gap-2">
 										<span class="text-sm">{getFlagEmoji(country.alpha2)}</span>
-										<span class="text-sm text-gray-600">{name}</span>
+										<span class="text-sm text-gray-600">{name}, {institution.name}</span>
 									</div>
 								{/each}
 							</div>
@@ -82,7 +79,21 @@
 					<div class="text-sm whitespace-nowrap text-gray-600">
 						{startTime?.substring(0, 5)} &ndash; {endTime?.substring(0, 5)}
 					</div>
-				</a>
+				{/snippet}
+				{#if clickable}
+					<a
+						href="{base}/program"
+						class="flex justify-between gap-3 rounded-2xl border border-gray-200 p-6 shadow-sm transition-all active:shadow-inner max-md:flex-col-reverse md:items-center md:gap-6 md:hover:bg-gray-50"
+					>
+						{@render content()}
+					</a>
+				{:else}
+					<div
+						class="flex justify-between gap-2 rounded-2xl bg-gray-50 px-6 py-5 text-gray-800 max-md:flex-col-reverse md:items-center md:gap-6"
+					>
+						{@render content()}
+					</div>
+				{/if}
 			{/each}
 		</div>
 	</div>

@@ -139,8 +139,11 @@ export async function getActivities() {
 			]
 		})
 	);
-	return activities.map((activity) => ({
-		...activity,
-		date: `${activity.date}T00:00:00`
-	}));
+	return activities
+		.map((activity) => ({
+			...activity,
+			date: `${activity.date}T00:00:00`
+		}))
+		.filter((a) => a.date !== null && a.startTime !== null && a.endTime !== null)
+		.sort((a, b) => (a.startTime as string).localeCompare(b.startTime as string));
 }

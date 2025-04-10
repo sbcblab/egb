@@ -90,6 +90,7 @@ export interface Activity {
 	startTime: string | null;
 	endTime: string | null;
 	speakers: ActivityPerson[];
+	clickable: boolean;
 }
 
 export interface HomeInstitution {
