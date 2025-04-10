@@ -25,14 +25,17 @@
 	class="bg-[60%_17%]"
 />
 
-<section id="fees" class="mx-auto mt-18 mb-36 w-full max-w-6xl xl:px-6">
-	<div class="flex flex-col gap-12 xl:grid xl:grid-cols-7">
-		<div class="col-span-4">
-			<h2 class="mb-3 text-3xl font-semibold tracking-tight text-gray-900 max-xl:px-6">
-				{translate('Event', 'Taxa do evento')}
+<section id="fees" class="mx-auto mt-16 mb-32 w-full max-w-6xl xl:px-6">
+	<div class="flex gap-16 max-xl:flex-col">
+		<div class="grow">
+			<h2 class="mb-4 text-3xl font-semibold tracking-tight text-gray-900 max-xl:px-6">
+				{translate('Full event pass', 'Passe completo do evento')}
 			</h2>
-			<p class="mb-7 max-w-136 text-gray-600 max-xl:px-6">
-				Get complete access to the entire 5-day in-person program (July 21&ndash;25).
+			<p class="mb-8 text-gray-600 max-xl:px-6">
+				{translate(
+					'Complete access to all 5 days of on-site activities (July 21\u201325).',
+					'Acesso completo a todos os 5 dias de atividades presenciais (21 a 25 de julho).'
+				)}
 			</p>
 			<div class="overflow-x-auto">
 				<div class="min-w-fit rounded-2xl border border-gray-200 shadow-sm max-xl:mx-6">
@@ -81,12 +84,15 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-span-3">
-			<h2 class="mb-3 text-3xl font-semibold tracking-tight text-gray-900 max-xl:px-6">
-				{translate('Courses', 'Taxas dos cursos')}
+		<div class="">
+			<h2 class="mb-4 text-3xl font-semibold tracking-tight text-gray-900 max-xl:px-6">
+				{translate('Live online courses', 'Cursos online ao vivo')}
 			</h2>
-			<p class="mb-7 max-w-136 text-gray-600 max-xl:px-6">
-				Get access to the live online courses (July 14&ndash;18).
+			<p class="mb-8 text-gray-600 max-xl:px-6">
+				{translate(
+					'Enroll in one or more courses (July 14\u201318).',
+					'Inscreva-se em um ou mais cursos online (14 a 18 de julho).'
+				)}
 			</p>
 			<div class="overflow-auto">
 				<div class="min-w-fit rounded-2xl border border-gray-200 shadow-sm max-xl:mx-6">
@@ -118,13 +124,13 @@
 			</div>
 		</div>
 	</div>
-	<div class="mt-12 max-xl:px-6">
+	<div class="mt-16 max-xl:px-6">
 		<a
 			href="https://www.even3.com.br/egb2023"
 			target="_blank"
-			class="group flex w-fit items-center gap-2 rounded-xl bg-gray-900 px-4 py-2.25 font-medium text-white shadow-sm transition-all md:hover:bg-gray-900/85 md:hover:shadow-md"
+			class="group flex w-fit items-center gap-2 rounded-xl bg-gray-950 px-6 py-3 font-medium text-white shadow-sm transition-all md:hover:bg-gray-950/90 md:hover:shadow-md"
 		>
-			<span class="text-sm whitespace-nowrap">
+			<span class="whitespace-nowrap">
 				{translate('Register', 'Inscrever-se')}
 			</span>
 			<ChevronRightIcon class="size-4.5 transition-all md:group-hover:translate-x-1" />
@@ -170,7 +176,7 @@
 	</div>
 </section>
 
-<section id="trip" class="mx-auto mb-40 max-w-6xl px-6">
+<section id="trip" class="mx-auto mb-32 max-w-6xl px-6">
 	<h2 class="mb-12 text-5xl font-semibold tracking-tight text-gray-900">
 		{translate('Plan your trip', 'Planeje sua viagem')}
 	</h2>

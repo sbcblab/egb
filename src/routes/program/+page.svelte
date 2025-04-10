@@ -3,6 +3,7 @@
 	import Banner from '$lib/components/Banner.svelte';
 	import { getFlagEmoji, levelMap } from '$lib/utils';
 	import { format } from 'date-fns';
+	import { ptBR } from 'date-fns/locale';
 	import { GaugeIcon, TimerIcon, UserIcon, UserRoundIcon } from 'lucide-svelte';
 
 	let { data } = $props();
@@ -52,8 +53,12 @@
 						: 'bg-gray-100 text-gray-500'}"
 				>
 					<div>
-						<span class="md:hidden">{format(date, 'E')}</span>
-						<span class="max-md:hidden">{format(date, 'EEEE')}</span>
+						<span class="md:hidden"
+							>{translate(format(date, 'EEEEEE'), format(date, 'EEEEEE', { locale: ptBR }))}</span
+						>
+						<span class="max-md:hidden"
+							>{translate(format(date, 'E'), format(date, 'E', { locale: ptBR }))}</span
+						>
 					</div>
 					<div>{format(date, 'dd/MM')}</div>
 				</button>
@@ -103,7 +108,7 @@
 	<h2 class="mb-6 text-3xl font-semibold tracking-tight text-gray-900">
 		{translate('Courses', 'Cursos')}
 	</h2>
-	<div class="grid gap-2 md:grid-cols-2">
+	<div class="grid gap-2 md:grid-cols-2 md:gap-1.5">
 		{#each courses as { slug, duration, instructors, level, translations }}
 			{@const translation = translations?.find((i) => i.languages_code === lang)}
 			<a
