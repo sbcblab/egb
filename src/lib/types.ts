@@ -17,6 +17,11 @@ export type Topic = {
 	topic: string;
 };
 
+export type PersonLink = {
+	type: 'website' | 'lattes' | 'linkedin' | 'orcid' | 'scholar' | 'researchgate' | 'github';
+	link: string;
+};
+
 export interface Translation {
 	languages_code: LanguageCode;
 }
@@ -60,7 +65,8 @@ export interface Person {
 	picture: Image;
 	country: Country;
 	institution: Institution;
-	link: string | null;
+	links: PersonLink[];
+	translations: PersonTranslation[];
 }
 
 export interface Country {
@@ -85,12 +91,15 @@ export interface Course {
 }
 
 export interface Activity {
+	slug: string | null;
+	type: string | null;
 	translations: ActivityTranslation[];
 	date: string | null;
 	startTime: string | null;
 	endTime: string | null;
+	locationLine1: string | null;
+	locationLine2: string | null;
 	speakers: ActivityPerson[];
-	clickable: boolean;
 }
 
 export interface HomeInstitution {
@@ -121,6 +130,10 @@ export interface AboutTranslation extends Translation {
 	body: string;
 }
 
+export interface PersonTranslation extends Translation {
+	summary: string | null;
+}
+
 export interface CountriesTranslation extends Translation {
 	name: string;
 }
@@ -141,6 +154,8 @@ export interface CourseTranslation extends Translation {
 
 export interface ActivityTranslation extends Translation {
 	title: string;
+	topics: string[];
+	summary: string | null;
 }
 
 export interface Schema {

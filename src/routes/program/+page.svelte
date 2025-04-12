@@ -9,10 +9,7 @@
 	let { data } = $props();
 	let { lang, global, courses, activities } = data;
 
-	let validActivities = activities.filter(
-		(a) => a.date !== null && a.startTime !== null && a.endTime !== null
-	);
-	let dates = Array.from(new Set(validActivities.map((a) => a.date as string)));
+	let dates = Array.from(new Set(activities.map((a) => a.date as string)));
 	let selectedDate = $state(dates[0]);
 
 	function translate(enStr: string, ptStr: string) {
@@ -38,8 +35,8 @@
 	class="bg-[50%_47%] backdrop-blur-lg"
 />
 
-<section id="activities" class="mx-auto mt-18 mb-24 w-full max-w-6xl px-6">
-	<h2 class="mb-6 text-3xl font-semibold tracking-tight text-gray-900">
+<section id="activities" class="mx-auto mt-16 mb-32 w-full max-w-6xl px-6">
+	<h2 class="mb-7 text-4xl font-semibold tracking-tight text-gray-900">
 		{translate('Activities', 'Atividades')}
 	</h2>
 	<div class="flex flex-col gap-3">
@@ -50,14 +47,14 @@
 					onclick={() => (selectedDate = date)}
 					class="grow rounded-xl px-3 py-1 text-sm font-medium transition-all {isSelected
 						? 'bg-white shadow-sm'
-						: 'bg-gray-100 text-gray-500'}"
+						: 'text-gray-500'}"
 				>
 					<div>
 						<span class="md:hidden"
-							>{translate(format(date, 'EEEEEE'), format(date, 'EEEEEE', { locale: ptBR }))}</span
+							>{translate(format(date, 'E'), format(date, 'EEEEEE', { locale: ptBR }))}</span
 						>
 						<span class="max-md:hidden"
-							>{translate(format(date, 'E'), format(date, 'E', { locale: ptBR }))}</span
+							>{translate(format(date, 'EEEE'), format(date, 'EEEE', { locale: ptBR }))}</span
 						>
 					</div>
 					<div>{format(date, 'dd/MM')}</div>
@@ -65,7 +62,7 @@
 			{/each}
 		</div>
 		<div class="flex flex-col gap-1.5">
-			{#each activities.filter((a) => a.date === selectedDate) as { translations, startTime, endTime, speakers, clickable }}
+			{#each activities.filter((a) => a.date === selectedDate) as { slug, translations, startTime, endTime, speakers }}
 				{#snippet content()}
 					<div class="flex flex-col gap-2 md:gap-1.5">
 						<div>{translations?.find((i) => i.languages_code === lang)?.title}</div>
@@ -85,9 +82,9 @@
 						{startTime?.substring(0, 5)} &ndash; {endTime?.substring(0, 5)}
 					</div>
 				{/snippet}
-				{#if clickable}
+				{#if slug}
 					<a
-						href="{base}/program"
+						href="{base}/program/{slug}"
 						class="flex justify-between gap-3 rounded-2xl border border-gray-200 p-6 shadow-sm transition-all active:shadow-inner max-md:flex-col-reverse md:items-center md:gap-6 md:hover:bg-gray-50"
 					>
 						{@render content()}
@@ -104,7 +101,7 @@
 	</div>
 </section>
 
-<section id="courses" class="mx-auto mb-18 w-full max-w-6xl px-6">
+<section id="courses" class="mx-auto mb-32 w-full max-w-6xl px-6">
 	<h2 class="mb-6 text-3xl font-semibold tracking-tight text-gray-900">
 		{translate('Courses', 'Cursos')}
 	</h2>

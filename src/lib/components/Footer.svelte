@@ -30,13 +30,13 @@
 					{href}
 					target="_blank"
 					{title}
-					class="text-gray-600 transition-all md:hover:text-gray-800"
+					class="text-gray-500 transition-all md:hover:text-gray-950"
 				>
 					<Icon class="text-[1.25rem]" />
 				</a>
 			{/each}
 		</div>
-		<div class="text-center text-sm text-gray-600">
+		<div class="text-center text-sm text-gray-500">
 			Copyright © {format(global.startDate, 'y')} SBCB Laboratory. {translations[lang].rights}
 		</div>
 	</div>

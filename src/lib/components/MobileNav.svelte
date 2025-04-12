@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import type { LanguageCode } from '$lib/types';
 	import { clickOutside } from '$lib/utils';
 	import { MenuIcon, XIcon } from 'lucide-svelte';
@@ -29,8 +30,12 @@
 	}
 </script>
 
-<button onclick={open} class="absolute top-6 right-4 z-20 p-2 lg:hidden">
-	<MenuIcon strokeWidth={1.5} class="text-white" />
+<button
+	onclick={open}
+	class="absolute top-6 right-4 z-20 p-2 lg:hidden"
+	class:text-white={!(page.url.pathname.includes('SL') || page.url.pathname.includes('MC'))}
+>
+	<MenuIcon strokeWidth={1.5} />
 </button>
 
 {#if isOpen}

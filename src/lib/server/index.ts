@@ -129,21 +129,21 @@ export async function getActivities() {
 								{
 									institution: ['*'],
 									picture: ['id', 'title'],
-									country: ['*', { translations: ['*'] }]
+									country: ['*', { translations: ['*'] }],
+									translations: ['*']
 								}
 							]
 						}
 					],
 					translations: ['*']
 				}
-			]
+			],
+			filter: { date: { _nnull: true }, startTime: { _nnull: true }, endTime: { _nnull: true } },
+			sort: ['date', 'startTime']
 		})
 	);
-	return activities
-		.map((activity) => ({
-			...activity,
-			date: `${activity.date}T00:00:00`
-		}))
-		.filter((a) => a.date !== null && a.startTime !== null && a.endTime !== null)
-		.sort((a, b) => (a.startTime as string).localeCompare(b.startTime as string));
+	return activities.map((activity) => ({
+		...activity,
+		date: `${activity.date}T00:00:00`
+	}));
 }

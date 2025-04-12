@@ -37,11 +37,11 @@
 	<div class="mt-12 flex flex-col gap-4">
 		<div class="flex items-center gap-5.5">
 			<MailIcon strokeWidth={1} class="size-8 text-gray-400" />
-			<span class="text-lg text-gray-800">{global.email}</span>
+			<span class="text-lg text-gray-950">{global.email}</span>
 		</div>
 		<div class="flex items-center gap-5">
 			<PhoneIcon strokeWidth={1} class="size-8 text-gray-400" />
-			<span class="text-lg text-gray-800">{global.phone}</span>
+			<span class="text-lg text-gray-950">{global.phone}</span>
 		</div>
 	</div>
 </section>

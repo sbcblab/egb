@@ -28,7 +28,7 @@
 
 <section
 	id="about"
-	class="mx-auto mt-14 mb-28 grid w-full max-w-6xl grid-cols-2 flex-col-reverse items-center gap-18 px-6 max-md:flex"
+	class="mx-auto mt-16 mb-32 grid w-full max-w-6xl grid-cols-2 flex-col-reverse items-center gap-18 px-6 max-md:flex"
 >
 	<div>
 		<h2 class="mb-7 text-3xl font-semibold tracking-tight text-gray-900">
@@ -52,7 +52,7 @@
 
 <section
 	id="venue"
-	class="mx-auto mb-28 grid w-full max-w-6xl grid-cols-2 flex-col-reverse items-center gap-10 px-6 max-md:flex md:gap-18"
+	class="mx-auto mb-32 grid w-full max-w-6xl grid-cols-2 flex-col-reverse items-center gap-10 px-6 max-md:flex md:gap-18"
 >
 	<div
 		style:background-image="url({base}/api/assets/46157eab-8cb1-4c72-9cb6-2635fa4c6a65)"
@@ -60,7 +60,7 @@
 	></div>
 	<div>
 		<h2 class="mb-7 text-3xl font-semibold tracking-tight text-gray-900">
-			{translate('The venue', 'Local do evento')}
+			{translate('The Venue', 'Local do evento')}
 		</h2>
 		<div class="markdown w-full space-y-7 text-lg text-gray-700 md:max-w-144">
 			{translate(
@@ -71,16 +71,15 @@
 	</div>
 </section>
 
-<section id="committee" class="mx-auto mb-28 w-full max-w-6xl px-6">
-	<h2 class="mb-7 text-3xl font-semibold tracking-tight">
-		{translate('Organizing committee', 'Comitê organizador')}
+<section id="committee" class="mx-auto mb-32 w-full max-w-6xl px-6">
+	<h2 class="mb-7 text-3xl font-semibold tracking-tight text-gray-900">
+		{translate('Organizing Committee', 'Comitê organizador')}
 	</h2>
 	<div class="grid gap-6 md:grid-cols-2">
 		{#each about.committee || [] as { people_id }}
-			{@const { name, link, institution, country, picture } = people_id}
+			{@const { name, institution, country, picture } = people_id}
 			<Person
 				{name}
-				{link}
 				{picture}
 				institution={institution.name}
 				country={country.translations?.find((i) => i.languages_code === lang)?.name || ''}
@@ -89,9 +88,9 @@
 	</div>
 </section>
 
-<section id="previousEditions" class="mx-auto mb-28 w-full max-w-6xl px-6 lg:hidden">
-	<h2 class="mb-9 text-3xl font-semibold tracking-tight">
-		{translate('Previous editions', 'Edições anteriores')}
+<section id="previousEditions" class="mx-auto mb-32 w-full max-w-6xl px-6 lg:hidden">
+	<h2 class="mb-9 text-3xl font-semibold tracking-tight text-gray-900">
+		{translate('Previous Editions', 'Edições anteriores')}
 	</h2>
 	<div class="mt-14 mb-16">
 		<div class="flex justify-around">
@@ -128,7 +127,7 @@
 		{@const { title, translations, image } = selectedEdition}
 		<div class="grid items-center gap-9 md:grid-cols-2 md:gap-16">
 			<div>
-				<h3 class="mb-6 text-2xl font-semibold text-gray-800">{title}</h3>
+				<h3 class="mb-6 text-xl font-semibold text-gray-900">{title}</h3>
 				<p class="w-full text-lg text-gray-700">
 					{translations?.find((i) => i.languages_code === lang)?.description}
 				</p>
@@ -141,7 +140,7 @@
 	{/if}
 </section>
 
-<section id="previousEditions" class="mx-auto mb-28 w-full max-w-6xl px-6 max-lg:hidden">
+<section id="previousEditions" class="mx-auto mb-32 w-full max-w-6xl px-6 max-lg:hidden">
 	<h2 class="mb-12 text-3xl font-semibold tracking-tight">
 		{translate('Previous editions', 'Edições anteriores')}
 	</h2>
@@ -153,7 +152,7 @@
 			>
 				..............................................................................................................................................................................
 			</div>
-			<div class="absolute top-0 bottom-0 left-6.5 flex flex-col justify-between">
+			<div class="absolute top-0 bottom-0 left-6.5 flex flex-col-reverse justify-between">
 				{#each previousEditions as edition}
 					{@const isSelected = edition.year === selectedEdition?.year}
 					<button
@@ -195,8 +194,8 @@
 	title: string,
 	institutions: { institutions_id: Institution }[]
 )}
-	<section {id} class="mx-auto mb-28 max-w-6xl px-6">
-		<h2 class="mb-9 text-center text-xl font-medium tracking-tight">
+	<section {id} class="mx-auto mb-32 max-w-6xl px-6">
+		<h2 class="mb-9 text-center text-xl font-medium tracking-tight text-gray-900">
 			{title}
 		</h2>
 		<div class="flex flex-wrap justify-center gap-10">
@@ -216,7 +215,7 @@
 {/snippet}
 {@render institutionGroup(
 	'organizers',
-	translate('Organized by', 'Organizadores'),
+	translate('Organized By', 'Organizadores'),
 	home.organizers || []
 )}
-{@render institutionGroup('sponsors', translate('Sponsored by', 'Apoiadores'), home.sponsors || [])}
+{@render institutionGroup('sponsors', translate('Sponsored By', 'Apoiadores'), home.sponsors || [])}

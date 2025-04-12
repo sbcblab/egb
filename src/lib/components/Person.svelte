@@ -6,23 +6,19 @@
 		name,
 		institution,
 		country,
-		link,
 		picture
 	}: {
 		name: string;
 		country: string;
 		picture: ImageT;
 		institution: string;
-		link: string | null;
 	} = $props();
 </script>
 
 <div class="flex items-center gap-5">
-	<a href={link} target="_blank">
-		<Image image={picture} class="size-18 rounded-2xl border border-gray-200 object-cover" />
-	</a>
+	<Image image={picture} class="size-18 rounded-2xl border border-gray-200 object-cover" />
 	<div>
-		<a href={link} target="_blank" class="text-lg">{name}</a>
+		<div class="text-lg">{name}</div>
 		<div class=" text-gray-500">
 			{#if institution}{institution}<span>, </span>{/if}
 			{country}
