@@ -18,7 +18,7 @@
 </script>
 
 <svelte:head>
-	<title>{translate('Program', 'Programa')} &ndash; EGB {format(global.startDate, 'y')}</title>
+	<title>{translate('Program', 'Programa')} &ndash; EGB {format(global.eventStartDate, 'y')}</title>
 </svelte:head>
 
 {#snippet coursePropriety(label: string, value: string, Icon: typeof UserIcon)}

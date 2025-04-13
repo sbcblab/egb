@@ -16,7 +16,7 @@
 </script>
 
 <svelte:head>
-	<title>{translate('About', 'Sobre')} &ndash; EGB {format(global.startDate, 'y')}</title>
+	<title>{translate('About', 'Sobre')} &ndash; EGB {format(global.eventStartDate, 'y')}</title>
 </svelte:head>
 
 <Banner

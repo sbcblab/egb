@@ -22,7 +22,7 @@
 </script>
 
 <svelte:head>
-	<title>{translations[lang].pageTitle} &ndash; EGB {format(global.startDate, 'y')}</title>
+	<title>{translations[lang].pageTitle} &ndash; EGB {format(global.eventStartDate, 'y')}</title>
 </svelte:head>
 
 <Banner

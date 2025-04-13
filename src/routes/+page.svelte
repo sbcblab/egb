@@ -14,7 +14,7 @@
 </script>
 
 <svelte:head>
-	<title>EGB {format(global.startDate, 'y')} &middot; Escola Gaúcha de Bioinformática</title>
+	<title>EGB {format(global.eventStartDate, 'y')} &middot; Escola Gaúcha de Bioinformática</title>
 </svelte:head>
 
 <section
@@ -27,7 +27,7 @@
 			<p
 				class="text-3xl font-bold tracking-tight text-white/70 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
 			>
-				EGB {format(global.startDate, 'y')}
+				EGB {format(global.eventStartDate, 'y')}
 			</p>
 			<h1
 				class="mt-3 mb-14 text-[2.875rem]/[1.1] font-semibold tracking-tight text-white drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)] sm:text-[3.5rem]/[1]"
@@ -38,8 +38,8 @@
 				class="mb-1.5 text-3xl font-semibold text-white/90 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
 			>
 				{translate(
-					`${format(global.startDate, 'MMMM d', { locale: enUS })} \u2013 ${format(global.endDate, 'd, y')}`,
-					`${format(global.startDate, 'd')} a ${format(global.endDate, 'd')} de ${format(global.endDate, 'MMMM', { locale: ptBR })} de ${format(global.endDate, 'y')}`
+					`${format(global.eventStartDate, 'MMMM d', { locale: enUS })} \u2013 ${format(global.eventEndDate, 'd, y')}`,
+					`${format(global.eventStartDate, 'd')} a ${format(global.eventEndDate, 'd')} de ${format(global.eventEndDate, 'MMMM', { locale: ptBR })} de ${format(global.eventEndDate, 'y')}`
 				)}
 			</p>
 			<p class="text-lg text-white/80 drop-shadow-[0_0_1.5rem_rgba(0,0,0,0.5)]">

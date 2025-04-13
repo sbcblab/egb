@@ -37,7 +37,7 @@
 			{/each}
 		</div>
 		<div class="text-center text-sm text-gray-500">
-			Copyright © {format(global.startDate, 'y')} SBCB Laboratory. {translations[lang].rights}
+			Copyright © {format(global.eventStartDate, 'y')} SBCB Laboratory. {translations[lang].rights}
 		</div>
 	</div>
 </footer>

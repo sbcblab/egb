@@ -71,7 +71,7 @@
 		>{activity
 			? activity.translations?.find((t) => t.languages_code === lang)?.title
 			: course?.translations?.find((t) => t.languages_code === lang)?.title} &ndash; EGB {format(
-			global.startDate,
+			global.eventStartDate,
 			'y'
 		)}</title
 	>

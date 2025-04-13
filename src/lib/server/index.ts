@@ -9,8 +9,10 @@ export async function getGlobal() {
 	const global = await client.request(readSingleton('global'));
 	return {
 		...global,
-		startDate: new Date(`${global.startDate}T00:00:00`),
-		endDate: new Date(`${global.endDate}T00:00:00`)
+		eventStartDate: new Date(`${global.eventStartDate}T00:00:00`),
+		eventEndDate: new Date(`${global.eventEndDate}T00:00:00`),
+		coursesStartDate: new Date(`${global.coursesStartDate}T00:00:00`),
+		coursesEndDate: new Date(`${global.coursesEndDate}T00:00:00`)
 	};
 }
 
@@ -146,4 +148,31 @@ export async function getActivities() {
 		...activity,
 		date: `${activity.date}T00:00:00`
 	}));
+}
+
+export async function getRegistration() {
+	const registration = await client.request(
+		readSingleton('registration', {
+			fields: [
+				'*',
+				{
+					translations: ['*'],
+					image: ['id', 'title'],
+					committee: [
+						{
+							people_id: [
+								'*',
+								{
+									institution: ['*'],
+									picture: ['id', 'title'],
+									country: ['*', { translations: ['*'] }]
+								}
+							]
+						}
+					]
+				}
+			]
+		})
+	);
+	return registration;
 }

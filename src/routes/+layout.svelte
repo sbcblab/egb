@@ -10,9 +10,9 @@
 	let isHome = $derived(page.url.pathname === '/');
 </script>
 
-<div class="flex min-h-full flex-col">
+<div class="flex min-h-full flex-col text-pretty text-gray-950 subpixel-antialiased">
 	<MobileNav {lang} />
-	<main class="flex grow flex-col text-pretty text-gray-950 subpixel-antialiased">
+	<main class="flex grow flex-col">
 		{@render children?.()}
 	</main>
 	{#if !isHome}

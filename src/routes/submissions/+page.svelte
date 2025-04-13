@@ -12,7 +12,11 @@
 </script>
 
 <svelte:head>
-	<title>{translate('Submissions', 'Submissões')} &ndash; EGB {format(global.startDate, 'y')}</title
+	<title
+		>{translate('Submissions', 'Submissões')} &ndash; EGB {format(
+			global.eventStartDate,
+			'y'
+		)}</title
 	>
 </svelte:head>
 
