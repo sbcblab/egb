@@ -2,6 +2,16 @@
 	import { base } from '$app/paths';
 	import Banner from '$lib/components/Banner.svelte';
 	import { format } from 'date-fns';
+	import {
+		ChevronDownIcon,
+		ChevronRightIcon,
+		DownloadIcon,
+		FileInputIcon,
+		GlassesIcon,
+		MailCheckIcon,
+		PresentationIcon,
+		SendIcon
+	} from 'lucide-svelte';
 
 	let { data } = $props();
 	let { lang, global } = data;
@@ -22,80 +32,179 @@
 
 <Banner
 	{lang}
-	title={translate('Submissions', 'Submissões')}
+	title={translate('Call for Posters', 'Chamada de Pôsteres')}
 	imageUrl="{base}/api/assets/544ff6c5-c527-4c0d-aeab-214058f86d95"
 	class="bg-top"
 />
 
-<div class="mx-auto mt-18 mb-24 w-full max-w-6xl px-6">
-	<div class="prose prose-lg">
-		<h2 id="submission-guidelines">Submission guidelines</h2>
-		<h3 id="eligibility">Eligibility</h3>
-		<p>
-			We invite authors to submit <strong>original work</strong> (completed or in progress) related
-			to
-			<strong>bioinformatics</strong>.
-		</p>
-		<ul>
-			<li>
-				Only <strong>poster presentations</strong> (with an accompanying abstract) will be accepted.
-			</li>
-			<li>All accepted abstracts will be presented in dedicated poster sessions.</li>
-		</ul>
-		<h3 id="submission-requirements">Submission requirements</h3>
-		<ul>
-			<li><strong>Originality</strong>: Submissions must be unpublished.</li>
-			<li>
-				<strong>Review process</strong>: Double-blind peer review by the program committee. Omit
-				author details in the submitted abstract.
-			</li>
-			<li><strong>Format</strong>: PDF, following the provided templates (LaTeX or Word).</li>
-			<li><strong>Length</strong>: 1&ndash;4 pages maximum.</li>
-			<li><strong>Language</strong>: English or Portuguese (English preferred).</li>
-			<li><strong>Keywords</strong>: Include up to five keywords.</li>
-		</ul>
-		<h3 id="templates">Templates</h3>
-		<ul>
-			<li>
-				<a href="https://www.ufrgs.br/egb/wp-content/uploads/2019/01/Latex.zip"
-					>LaTeX template (Recommended)</a
-				>
-			</li>
-			<li>
-				<a href="https://www.ufrgs.br/egb/wp-content/uploads/2019/01/Word.zip">Word template</a>
-			</li>
-		</ul>
-		<h3 id="how-to-submit">How to submit</h3>
-		<p>Upload your PDF via the submission system by the deadline:</p>
-		<p><a href="https://cmt3.research.microsoft.com/EGB2023" target="_blank">Submit here</a></p>
-		<h2 id="poster-presentation-guidelines">Poster presentation guidelines</h2>
-		<p>
-			Poster sessions allow authors to showcase their work and engage in discussions with attendees.
-		</p>
-		<h3 id="poster-design-recommendations">Poster design recommendations</h3>
-		<ul>
-			<li>
-				<strong>Content</strong>: Focus on key findings—minimize text, emphasize figures, diagrams,
-				and graphs.
-			</li>
-			<li><strong>Language</strong>: English (preferred) or Portuguese.</li>
-			<li><strong>Title</strong>: Display at the top in CAPITAL LETTERS.</li>
-			<li><strong>Authors and affiliations</strong>: Include below the title.</li>
-			<li><strong>Logos</strong>: Add institutional and funding agency logos.</li>
-			<li>
-				<strong>Size</strong>: Width: 90 cm | Height: 90&ndash;120 cm (max).
-			</li>
-		</ul>
-		<h3 id="presentation-details">Presentation details</h3>
-		<ul>
-			<li>Posters will be displayed <strong>throughout the event</strong>.</li>
-			<li>Each poster will be assigned a numbered space.</li>
-			<li>Presenting authors will receive a participation <strong>certificate</strong>.</li>
-		</ul>
-		<h2 id="important-dates">Important dates</h2>
-		<ul>
-			<li>Submission Deadline: <strong>July 15, 2025</strong></li>
-			<li>Acceptance Notification: July 18, 2025</li>
-		</ul>
+<section id="overview" class="mx-auto mt-20 mb-32 w-full max-w-6xl px-6">
+	<h2 class="mb-4 text-3xl font-semibold tracking-tight text-gray-900">
+		{translate('Submission Overview', 'Submission Overview')}
+	</h2>
+	<p class="mb-14 max-w-128 leading-[1.55] text-gray-600">
+		{translate(
+			'We invite authors to submit original work (completed or ongoing) related to Bioinformatics.',
+			'We invite authors to submit original work (completed or ongoing) related to Bioinformatics.'
+		)}
+	</p>
+	<div class="flex items-center justify-center gap-4 max-md:flex-col">
+		{#snippet step(date: string, title: string, description: string, Icon: any)}
+			<div class="flex w-56 flex-col items-center text-center">
+				<Icon strokeWidth={1.25} class="mb-6 size-16 text-gray-900" />
+				<div class="mb-0.5 text-sm font-medium text-gray-400">{date}</div>
+				<h3 class="mb-2.5 font-medium">{title}</h3>
+				<p class="text-sm/[1.5] text-gray-500">
+					{description}
+				</p>
+			</div>
+		{/snippet}
+		{@render step(
+			translate('15 Aug \u2013 15 Sep', '15 Aug \u2013 15 Sep'),
+			translate('Abstract Submission', 'Abstract Submission'),
+			translate(
+				'Submit a 1\u20134 page PDF summary of your work using the provided templates.',
+				'Submit a 1\u20134 page PDF summary of your work using the provided templates.'
+			),
+			FileInputIcon
+		)}
+		<ChevronDownIcon strokeWidth={2} class="size-12 text-gray-200 md:-rotate-90" />
+		{@render step(
+			translate('15 Sep \u2013 18 Sep', '15 Sep \u2013 18 Sep'),
+			translate('Double-Blind Peer Review', 'Double-Blind Peer Review'),
+			translate(
+				'Anonymous review process where authors and reviewers remain undisclosed to each other.',
+				'Anonymous review process where authors and reviewers remain undisclosed to each other.'
+			),
+			GlassesIcon
+		)}
+		<ChevronDownIcon strokeWidth={2} class="size-12 text-gray-200 md:-rotate-90" />
+		{@render step(
+			translate('25 Sep \u2013 29 Sep', '25 Sep \u2013 29 Sep'),
+			translate('Poster Presentation', 'Poster Presentation'),
+			translate(
+				'Visually focused display of research highlights, presented in-person during dedicated sessions.',
+				'Visually focused display of research highlights, presented in-person during dedicated sessions.'
+			),
+			PresentationIcon
+		)}
 	</div>
+</section>
+
+<div class="mx-auto mb-20 grid w-full max-w-6xl gap-20 px-6 md:grid-cols-2">
+	{#snippet guidelinesLi(text: string)}
+		<li class="ml-4.5 list-disc text-gray-600 marker:text-gray-300">
+			{text}
+		</li>
+	{/snippet}
+	<section id="abstract-guidelines">
+		<h2 class="mb-4 text-3xl font-semibold tracking-tight text-gray-900">
+			{translate('Abstract Guidelines', 'Abstract Guidelines')}
+		</h2>
+		<ul class="space-y-2.5">
+			{@render guidelinesLi(
+				translate('Submissions must be unpublished.', 'Submissions must be unpublished.')
+			)}
+			{@render guidelinesLi(
+				translate(
+					'Omit author details (double-blind peer review).',
+					'Omit author details (double-blind peer review).'
+				)
+			)}
+			{@render guidelinesLi(translate('Include up to 5 keywords.', 'Include up to 5 keywords.'))}
+			{@render guidelinesLi(translate('1\u20134 pages.', '1\u20134 pages.'))}
+			<li class="ml-4.5 list-disc text-gray-600 marker:text-gray-300">
+				<div class="mb-4">
+					{translate(
+						'The submitted abstract should be in PDF format, using one of the following templates:',
+						'The submitted abstract should be in PDF format, using one of the following templates:'
+					)}
+				</div>
+				<div class="flex gap-2">
+					{#snippet templateLink(label: string, href: string)}
+						<a
+							{href}
+							target="_blank"
+							class="inline-flex items-center gap-2 rounded-xl border border-gray-200 px-3 py-1.5 text-sm font-medium text-gray-900 shadow-sm transition-all active:shadow-inner md:hover:bg-gray-100"
+						>
+							<DownloadIcon class="size-4" />
+							<span>{label}</span>
+						</a>
+					{/snippet}
+					<div>
+						{@render templateLink(
+							'Lattes',
+							'https://www.ufrgs.br/egb/wp-content/uploads/2019/01/Latex.zip'
+						)}
+					</div>
+					{@render templateLink(
+						'Word',
+						'https://www.ufrgs.br/egb/wp-content/uploads/2019/01/Word.zip'
+					)}
+				</div>
+			</li>
+		</ul>
+	</section>
+	<section id="poster-guidelines">
+		<h2 class="mb-4 text-3xl font-semibold tracking-tight text-gray-900">
+			{translate('Poster Guidelines', 'Poster Guidelines')}
+		</h2>
+		<ul class="space-y-2.5">
+			{@render guidelinesLi(
+				translate(
+					'Focus on key findings—minimize text, emphasize figures, diagrams, and graphs.',
+					'Focus on key findings—minimize text, emphasize figures, diagrams, and graphs.'
+				)
+			)}
+			{@render guidelinesLi(
+				translate(
+					'Uppercase title at the top with authors and affiliations below.',
+					'Uppercase title at the top with authors and affiliations below.'
+				)
+			)}
+			{@render guidelinesLi(
+				translate(
+					'Include institutional and funding agency logos.',
+					'Include institutional and funding agency logos.'
+				)
+			)}
+			{@render guidelinesLi(
+				translate(
+					'English or Portuguese (English preferred).',
+					'English or Portuguese (English preferred).'
+				)
+			)}
+		</ul>
+	</section>
 </div>
+
+<section id="submit" class="mx-auto mb-20 flex w-full max-w-6xl justify-center px-6">
+	<a
+		href="https://cmt3.research.microsoft.com/EGB2023"
+		target="_blank"
+		class="group inline-flex items-center gap-2 rounded-2xl bg-gray-950 px-6 py-3 font-medium text-white shadow-sm transition-all md:hover:bg-gray-950/90 md:hover:shadow-md"
+	>
+		<span class="whitespace-nowrap">
+			{translate('Submit Your Work', 'Submit Your Work')}
+		</span>
+		<ChevronRightIcon class="size-4.5 transition-all md:group-hover:translate-x-1" />
+	</a>
+</section>
+
+<section id="important-dates" class="mx-auto mb-40 w-full max-w-6xl px-6">
+	<h2 class="mb-9 text-3xl font-semibold tracking-tight text-gray-900">
+		{translate('Important Dates', 'Important Dates')}
+	</h2>
+	<ul class="space-y-7">
+		{#snippet date(name: string, date: string, Icon: any)}
+			<li class="flex items-center gap-5">
+				<Icon strokeWidth={1.25} class="size-12 text-gray-900" />
+				<div>
+					<div class="font-medium">{name}</div>
+					<div class="text-gray-600">{date}</div>
+				</div>
+			</li>
+		{/snippet}
+		{@render date('Submission Deadline', 'Sep 15, 2023', SendIcon)}
+		{@render date('Acceptance Notification', 'Sep 18, 2023', MailCheckIcon)}
+	</ul>
+</section>
