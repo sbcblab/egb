@@ -46,7 +46,7 @@
 	class="bg-top"
 />
 
-<section id="overview" class="mx-auto mt-14 mb-28 w-full max-w-6xl px-6">
+<section id="overview" class="mx-auto mt-20 mb-32 w-full max-w-6xl px-6">
 	<h2 class="mb-4 text-3xl font-semibold tracking-tight text-gray-900">
 		{translate('Submission Overview', 'Visão geral')}
 	</h2>
@@ -115,7 +115,7 @@
 	</div>
 </section>
 
-<div class="mx-auto mb-28 grid w-full max-w-6xl gap-28 px-6 md:mb-18 md:grid-cols-2">
+<div class="mx-auto mb-32 grid w-full max-w-6xl gap-32 px-6 md:mb-18 md:grid-cols-2">
 	{#snippet guidelinesLi(text: string)}
 		<li class="ml-4.5 list-disc text-gray-600 marker:text-gray-300">
 			{text}
@@ -202,7 +202,7 @@
 	</section>
 </div>
 
-<section id="submit" class="mx-auto mb-28 flex w-full max-w-6xl justify-center px-6 md:mb-18">
+<section id="submit" class="mx-auto mb-32 flex w-full max-w-6xl justify-center px-6 md:mb-18">
 	<a
 		href={submitLink}
 		target="_blank"
@@ -217,7 +217,7 @@
 	</a>
 </section>
 
-<section id="important-dates" class="mx-auto mb-28 w-full max-w-6xl px-6">
+<section id="important-dates" class="mx-auto mb-32 w-full max-w-6xl px-6">
 	<h2 class="mb-9 text-3xl font-semibold tracking-tight text-gray-900">
 		{translate('Important Dates', 'Datas importantes')}
 	</h2>

@@ -25,12 +25,12 @@
 		<Header {lang} />
 		<div class="flex grow flex-col items-center justify-center text-center">
 			<p
-				class="text-3xl font-bold tracking-tight text-white/70 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
+				class="mb-3 text-[1.75rem] font-bold tracking-tight text-white/75 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
 			>
 				EGB {format(global.eventStartDate, 'y')}
 			</p>
 			<h1
-				class="mt-3 mb-14 text-[2.875rem]/[1.1] font-semibold tracking-tight text-white drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)] sm:text-[3.5rem]/[1]"
+				class="mb-14 text-[2.875rem]/[1.1] font-bold tracking-tight text-white drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)] sm:text-[3.5rem]/[1]"
 			>
 				Escola Gaúcha de Bioinformática
 			</h1>
