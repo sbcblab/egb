@@ -8,6 +8,7 @@ export interface Schema {
 	aboutPeople: AboutPerson[];
 	program: Program;
 	programPeople: ProgramPerson[];
+	submissions: Submissions;
 	registration: Registration;
 	registrationTranslations: RegistrationTranslation[];
 	institutions: Institution[];
@@ -26,10 +27,10 @@ export interface Schema {
 }
 
 export interface Global {
-	eventStartDate: string | Date;
-	eventEndDate: string | Date;
-	coursesStartDate: string | Date;
-	coursesEndDate: string | Date;
+	eventStartDate: string;
+	eventEndDate: string;
+	coursesStartDate: string;
+	coursesEndDate: string;
 	email: string;
 	phone: string;
 	instagramLink: string;
@@ -69,6 +70,15 @@ export interface Program {
 
 export interface ProgramPerson {
 	people_id: Person;
+}
+
+export interface Submissions {
+	lattesTemplate: string | null;
+	wordTemplate: string | null;
+	submitLink: string | null;
+	submissionStart: string | null;
+	submissionDeadline: string | null;
+	acceptanceNotification: string | null;
 }
 
 export interface Registration {

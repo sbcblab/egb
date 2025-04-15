@@ -9,10 +9,10 @@ export async function getGlobal() {
 	const global = await client.request(readSingleton('global'));
 	return {
 		...global,
-		eventStartDate: new Date(`${global.eventStartDate}T00:00:00`),
-		eventEndDate: new Date(`${global.eventEndDate}T00:00:00`),
-		coursesStartDate: new Date(`${global.coursesStartDate}T00:00:00`),
-		coursesEndDate: new Date(`${global.coursesEndDate}T00:00:00`)
+		eventStartDate: `${global.eventStartDate}T00:00:00`,
+		eventEndDate: `${global.eventEndDate}T00:00:00`,
+		coursesStartDate: `${global.coursesStartDate}T00:00:00`,
+		coursesEndDate: `${global.coursesEndDate}T00:00:00`
 	};
 }
 
@@ -175,4 +175,17 @@ export async function getRegistration() {
 		})
 	);
 	return registration;
+}
+export async function getSubmissions() {
+	const submissions = await client.request(readSingleton('submissions'));
+	return {
+		...submissions,
+		submissionStart: submissions.submissionStart ? `${submissions.submissionStart}T00:00:00` : null,
+		submissionDeadline: submissions.submissionDeadline
+			? `${submissions.submissionDeadline}T00:00:00`
+			: null,
+		acceptanceNotification: submissions.acceptanceNotification
+			? `${submissions.acceptanceNotification}T00:00:00`
+			: null
+	};
 }
