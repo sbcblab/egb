@@ -78,16 +78,16 @@
 	{lang}
 	title={translate('Registration', 'Inscrição')}
 	imageUrl="{base}/api/assets/06e17320-8cc9-4491-bb0f-a4e82202e2d9"
-	class="bg-[60%_17%]"
+	class="mb-20 bg-[60%_17%]"
 />
 
-<section id="fees" class="mx-auto mt-20 mb-40 w-full max-w-6xl xl:px-6">
+<section id="fees" class="mx-auto mb-36 w-full max-w-6xl xl:px-6">
 	<div class="flex gap-20 max-xl:flex-col">
 		<div class="grow">
-			<h2 class="mb-2.5 text-3xl font-semibold tracking-tight text-gray-900 max-xl:px-6">
+			<h2 class="mb-3 text-3xl font-semibold tracking-tight text-gray-900 max-xl:px-6">
 				{translate('Full Event Pass', 'Passe completo do evento')}
 			</h2>
-			<p class="mb-7 text-gray-600 max-xl:px-6">
+			<p class="mb-8 text-gray-600 max-xl:px-6">
 				{translate(
 					`Complete access to all 5 days of on-site activities (${format(global.eventStartDate, 'MMMM d')}\u2013${format(global.eventEndDate, 'd')}).`,
 					`Acesso completo a todos os 5 dias de atividades presenciais (${format(global.eventStartDate, 'd')} a ${format(global.eventEndDate, 'd')} de ${format(global.eventEndDate, 'MMMM', { locale: ptBR })}).`
@@ -127,10 +127,10 @@
 			</div>
 		</div>
 		<div class="grow">
-			<h2 class="mb-2.5 text-3xl font-semibold tracking-tight text-gray-900 max-xl:px-6">
+			<h2 class="mb-3 text-3xl font-semibold tracking-tight text-gray-900 max-xl:px-6">
 				{translate('Live Online Courses', 'Cursos online ao vivo')}
 			</h2>
-			<p class="mb-7 text-gray-600 max-xl:px-6">
+			<p class="mb-8 text-gray-600 max-xl:px-6">
 				{translate(
 					`Enroll in one or more courses (${format(global.coursesStartDate, 'MMMM d')}\u2013${format(global.coursesEndDate, 'd')}).`,
 					`Inscreva-se em um ou mais cursos (${format(global.coursesStartDate, 'd')} a ${format(global.coursesEndDate, 'd')} de ${format(global.coursesEndDate, 'MMMM', { locale: ptBR })}).`
@@ -173,14 +173,14 @@
 			</div>
 		</div>
 	</div>
-	<div class="mt-20 max-xl:px-6 xl:mt-4">
+	<div class="mt-20 flex justify-center max-xl:px-6 xl:mt-12">
 		<a
 			href={registration.registrationLink}
 			aria-disabled={!registration.registrationLink}
 			target="_blank"
-			class="group flex w-fit items-center gap-2 rounded-xl px-5 py-2.5 font-medium text-white {registration.registrationLink
-				? 'bg-gray-950 shadow-sm transition-all md:hover:bg-gray-950/90 md:hover:shadow-md'
-				: 'pointer-events-none bg-gray-400'}"
+			class="group inline-flex items-center gap-2 rounded-2xl px-6 py-3 font-medium {registration.registrationLink
+				? 'bg-gray-950 text-white shadow-sm transition-all hover:shadow-md active:shadow-inner md:hover:bg-gray-950/90'
+				: 'pointer-events-none bg-gray-400 text-gray-200'}"
 		>
 			<span class="whitespace-nowrap">
 				{translate('Register', 'Inscrever-se')}
@@ -192,14 +192,14 @@
 
 {#if faqItems && faqItems.length > 0}
 	<section id="FAQ" class="mx-auto mb-40 w-full max-w-6xl px-6">
-		<h2 class="mb-20 text-[2.75rem]/[1.1] font-semibold tracking-tight text-gray-900">
+		<h2 class="mb-20 text-4xl font-semibold tracking-tight text-gray-900">
 			{translate('Frequently Asked Questions', 'Perguntas frequentes')}
 		</h2>
 		<div class="divide-y divide-gray-200">
 			{#each faqItems as { question, answer }}
-				<div class="grid gap-8 not-first:pt-8 not-last:pb-8 md:grid-cols-2">
-					<div class="font-semibold text-gray-900">{question}</div>
-					<div class="text-gray-700">{answer}</div>
+				<div class="grid gap-4 not-first:pt-8 not-last:pb-8 md:grid-cols-2">
+					<div class="font-medium text-gray-900">{question}</div>
+					<div class="text-gray-600">{answer}</div>
 				</div>
 			{/each}
 		</div>
@@ -207,7 +207,7 @@
 {/if}
 
 <section id="trip" class="mx-auto mb-40 max-w-6xl px-6">
-	<h2 class="mb-12 text-[2.75rem]/[1.1] font-semibold tracking-tight text-gray-900">
+	<h2 class="mb-10 text-4xl font-semibold tracking-tight text-gray-900">
 		{translate('Plan your trip', 'Planeje sua viagem')}
 	</h2>
 	<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-2">

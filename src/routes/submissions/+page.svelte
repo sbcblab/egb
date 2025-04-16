@@ -43,11 +43,11 @@
 	{lang}
 	title={translate('Call for Posters', 'Chamada de pôsteres')}
 	imageUrl="{base}/api/assets/544ff6c5-c527-4c0d-aeab-214058f86d95"
-	class="bg-top"
+	class="mb-20 bg-top"
 />
 
-<section id="overview" class="mx-auto mt-20 mb-32 w-full max-w-6xl px-6">
-	<h2 class="mb-4 text-3xl font-semibold tracking-tight text-gray-900">
+<section id="overview" class="mx-auto mb-32 w-full max-w-6xl px-6">
+	<h2 class="mb-5 text-3xl font-semibold tracking-tight text-gray-900">
 		{translate('Submission Overview', 'Visão geral')}
 	</h2>
 	<p class="mb-14 max-w-128 leading-[1.55] text-gray-600">
@@ -122,7 +122,7 @@
 		</li>
 	{/snippet}
 	<section id="abstract-guidelines">
-		<h2 class="mb-4 text-3xl font-semibold tracking-tight text-gray-900">
+		<h2 class="mb-5 text-3xl font-semibold tracking-tight text-gray-900">
 			{translate('Abstract Guidelines', 'Diretrizes para resumos')}
 		</h2>
 		<ul class="space-y-2.5">
@@ -170,7 +170,7 @@
 		</ul>
 	</section>
 	<section id="poster-guidelines">
-		<h2 class="mb-4 text-3xl font-semibold tracking-tight text-gray-900">
+		<h2 class="mb-5 text-3xl font-semibold tracking-tight text-gray-900">
 			{translate('Poster Guidelines', 'Diretrizes para pôsteres')}
 		</h2>
 		<ul class="space-y-2.5">
