@@ -40,13 +40,13 @@
 
 {#if isOpen}
 	<div
-		transition:fly={{ duration: 150, easing: expoOut }}
+		transition:fly={{ duration: 400, easing: expoOut }}
 		class="fixed inset-0 z-20 bg-gray-950/60"
 	></div>
 	<div
 		use:clickOutside
 		onoutsideclick={close}
-		transition:fly={{ duration: 150, x: '100%', opacity: 1, easing: expoOut }}
+		transition:fly={{ duration: 400, x: '100%', opacity: 1, easing: expoOut }}
 		class="fixed top-0 right-0 bottom-0 z-30 w-full max-w-64 bg-white px-7 py-7 shadow-lg"
 	>
 		<button onclick={close} class="-translate-x-4 -translate-y-4 p-2">

@@ -16,7 +16,7 @@
 </script>
 
 <div class="flex items-center gap-5">
-	<Image image={picture} class="size-18 rounded-2xl border border-gray-200 object-cover" />
+	<Image image={picture} class="h-20 w-18 rounded-2xl border border-gray-200 object-cover" />
 	<div>
 		<div class="text-lg">{name}</div>
 		<div class=" text-gray-500">

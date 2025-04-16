@@ -1,28 +1,26 @@
 export interface Schema {
 	global: Global;
-	home: Home;
-	homeTranslations: HomeTranslation[];
-	homeInstitutions: HomeInstitution[];
 	about: About;
-	aboutTranslations: AboutTranslation[];
 	aboutPeople: AboutPerson[];
+	aboutTranslations: AboutTranslation[];
+	aboutInstitutions: AboutInstitution[];
 	program: Program;
 	programPeople: ProgramPerson[];
 	submissions: Submissions;
 	registration: Registration;
 	registrationTranslations: RegistrationTranslation[];
-	institutions: Institution[];
+	activities: Activity[];
+	activityTranslations: ActivityTranslation[];
+	activityPeople: ActivityPerson[];
+	courses: Course[];
+	courseTranslations: CourseTranslation[];
+	coursePeople: CoursePerson[];
 	people: Person[];
+	institutions: Institution[];
 	countries: Country[];
 	countriesTranslations: CountriesTranslation[];
 	previousEditions: PreviousEdition[];
 	previousEditionsTranslations: PreviousEditionsTranslation[];
-	courses: Course[];
-	courseTranslations: CourseTranslation[];
-	coursePeople: CoursePerson[];
-	activities: Activity[];
-	activityTranslations: ActivityTranslation[];
-	activityPeople: ActivityPerson[];
 	directusFiles: Image[];
 }
 
@@ -39,29 +37,22 @@ export interface Global {
 	githubLink: string;
 }
 
-export interface Home {
-	translations: HomeTranslation[];
-	aboutImage: string;
-	organizers: HomeInstitution[];
-	sponsors: HomeInstitution[];
-}
-
-export interface HomeTranslation extends Translation {
-	about: string;
-}
-
-export interface HomeInstitution {
-	institutions_id: Institution;
-}
-
 export interface About {
 	translations: AboutTranslation[];
-	image: Image | null;
+	whatIsEgbImage: Image | null;
+	theVenueImage: Image | null;
 	committee: AboutPerson[];
+	organizers: AboutInstitution[];
+	sponsors: AboutInstitution[];
 }
 
 export interface AboutTranslation extends Translation {
-	body: string;
+	whatIsEgb: string | null;
+	theVenue: string | null;
+}
+
+export interface AboutInstitution {
+	institutions_id: Institution;
 }
 
 export interface Program {

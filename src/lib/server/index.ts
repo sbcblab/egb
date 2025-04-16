@@ -16,22 +16,6 @@ export async function getGlobal() {
 	};
 }
 
-export async function getHome() {
-	const home = await client.request(
-		readSingleton('home', {
-			fields: [
-				'*',
-				{
-					translations: ['*'],
-					organizers: [{ institutions_id: ['*'] }],
-					sponsors: [{ institutions_id: ['*'] }]
-				}
-			]
-		})
-	);
-	return home;
-}
-
 export async function getAbout() {
 	const about = await client.request(
 		readSingleton('about', {
@@ -39,19 +23,22 @@ export async function getAbout() {
 				'*',
 				{
 					translations: ['*'],
-					image: ['id', 'title'],
+					whatIsEgbImage: ['id', 'title'],
+					theVenueImage: ['id', 'title'],
 					committee: [
 						{
 							people_id: [
 								'*',
 								{
-									institution: ['*'],
 									picture: ['id', 'title'],
+									institution: ['*'],
 									country: ['*', { translations: ['*'] }]
 								}
 							]
 						}
-					]
+					],
+					organizers: [{ institutions_id: ['*'] }],
+					sponsors: [{ institutions_id: ['*'] }]
 				}
 			]
 		})
