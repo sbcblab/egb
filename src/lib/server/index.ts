@@ -55,30 +55,6 @@ export async function getPreviousEditions() {
 	return previousEditions;
 }
 
-export async function getProgram() {
-	const program = await client.request(
-		readSingleton('program', {
-			fields: [
-				{
-					speakers: [
-						{
-							people_id: [
-								'*',
-								{
-									institution: ['*'],
-									picture: ['id', 'title'],
-									country: ['*', { translations: ['*'] }]
-								}
-							]
-						}
-					]
-				}
-			]
-		})
-	);
-	return program;
-}
-
 export async function getCourses() {
 	const courses = await client.request(
 		readItems('courses', {
