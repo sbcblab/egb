@@ -143,13 +143,13 @@ export interface Course {
 }
 
 export interface CourseTranslation extends Translation {
-	title: string;
+	title: string | null;
 	keywords: string[];
-	summary: string;
-	objectives: string;
+	summary: string | null;
+	objectives: string | null;
 	topics: Topic[];
-	methods: string;
-	prerequisites: string;
+	methods: string | null;
+	prerequisites: string | null;
 }
 
 export interface CoursePerson {

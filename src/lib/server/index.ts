@@ -68,7 +68,8 @@ export async function getCourses() {
 								{
 									institution: ['*'],
 									picture: ['id', 'title'],
-									country: ['*', { translations: ['*'] }]
+									country: ['*', { translations: ['*'] }],
+									translations: ['*']
 								}
 							]
 						}

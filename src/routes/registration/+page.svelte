@@ -179,7 +179,7 @@
 			aria-disabled={!registration.registrationLink}
 			target="_blank"
 			class="group inline-flex items-center gap-2 rounded-2xl px-6 py-3 font-medium {registration.registrationLink
-				? 'bg-gray-950 text-white shadow-sm transition-all hover:shadow-md active:shadow-inner md:hover:bg-gray-950/90'
+				? 'bg-gray-950 text-white shadow-sm transition-all hover:bg-gray-950/90 hover:shadow-md active:shadow-inner'
 				: 'pointer-events-none bg-gray-400 text-gray-200'}"
 		>
 			<span class="whitespace-nowrap">

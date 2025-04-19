@@ -218,7 +218,7 @@
 					title={name}
 					aria-label={name}
 					target="_blank"
-					class="aspect-4/3 w-30 bg-contain bg-center bg-no-repeat transition-all md:hover:opacity-70"
+					class="aspect-4/3 w-30 bg-contain bg-center bg-no-repeat transition-all hover:opacity-70"
 					style:background-image="url({base}/api/assets/{logo})"
 				></a>
 			{/each}

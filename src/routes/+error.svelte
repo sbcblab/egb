@@ -24,10 +24,7 @@
 			'Desculpe, não encontramos a página que você está procurando.'
 		)}
 	</p>
-	<a
-		href="{base}/"
-		class="flex items-center gap-1.5 font-semibold text-gray-600 md:hover:opacity-60"
-	>
+	<a href="{base}/" class="flex items-center gap-1.5 font-semibold text-gray-600 hover:opacity-60">
 		<ArrowLeftIcon strokeWidth={2.5} class="size-3.5" />
 		<span>{translate('Back to home', 'Voltar ao início')}</span>
 	</a>

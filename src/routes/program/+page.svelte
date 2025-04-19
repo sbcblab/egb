@@ -45,11 +45,11 @@
 				{@const isSelected = date === selectedDate}
 				<button
 					onclick={() => (selectedDate = date)}
-					class="grow rounded-xl px-3 py-1 text-sm font-medium transition-all {isSelected
+					class="grow rounded-xl px-3 py-1.25 text-sm font-medium {isSelected
 						? 'bg-white shadow-sm'
 						: 'text-gray-500'}"
 				>
-					<div>
+					<div class="mb-0.25">
 						<span class="md:hidden"
 							>{translate(format(date, 'E'), format(date, 'EEEEEE', { locale: ptBR }))}</span
 						>
@@ -57,7 +57,7 @@
 							>{translate(format(date, 'EEEE'), format(date, 'EEEE', { locale: ptBR }))}</span
 						>
 					</div>
-					<div>{format(date, 'dd/MM')}</div>
+					<div class="text-xs">{format(date, 'dd/MM')}</div>
 				</button>
 			{/each}
 		</div>
@@ -78,14 +78,14 @@
 							</div>
 						{/if}
 					</div>
-					<div class="text-sm whitespace-nowrap text-gray-600">
+					<div class="text-sm whitespace-nowrap text-gray-500">
 						{startTime?.substring(0, 5)} &ndash; {endTime?.substring(0, 5)}
 					</div>
 				{/snippet}
 				{#if slug}
 					<a
 						href="{base}/program/{slug}"
-						class="flex justify-between gap-3 rounded-2xl border border-gray-200 p-6 shadow-sm transition-all active:shadow-inner max-md:flex-col-reverse md:items-center md:gap-6 md:hover:bg-gray-50"
+						class="flex justify-between gap-3 rounded-2xl border border-gray-200 p-6 shadow-sm hover:bg-gray-50 active:shadow-inner max-md:flex-col-reverse md:items-center md:gap-6"
 					>
 						{@render content()}
 					</a>
@@ -110,7 +110,7 @@
 			{@const translation = translations?.find((i) => i.languages_code === lang)}
 			<a
 				href="{base}/program/{slug}"
-				class="flex flex-col gap-2.5 rounded-2xl border border-gray-200 p-6 shadow-sm transition-all active:shadow-inner md:hover:bg-gray-50"
+				class="flex flex-col gap-2.5 rounded-2xl border border-gray-200 p-6 shadow-sm transition-all hover:bg-gray-50 active:shadow-inner"
 			>
 				<div>
 					{translation?.title}

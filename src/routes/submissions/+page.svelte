@@ -155,7 +155,7 @@
 							target="_blank"
 							class="inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 text-sm font-medium {!fileId
 								? 'pointer-events-none border-gray-100 bg-gray-100 text-gray-300 shadow-none'
-								: 'border-gray-200 text-gray-900 shadow-sm transition-all active:shadow-inner md:hover:bg-gray-100'}"
+								: 'border-gray-200 text-gray-900 shadow-sm transition-all hover:bg-gray-100 active:shadow-inner'}"
 						>
 							<DownloadIcon class="size-4" />
 							<span>{label}</span>
@@ -207,7 +207,7 @@
 		href={submitLink}
 		target="_blank"
 		class="group inline-flex items-center gap-2 rounded-2xl px-6 py-3 font-medium {submitLink
-			? 'bg-gray-950 text-white shadow-sm transition-all hover:shadow-md active:shadow-inner md:hover:bg-gray-950/90'
+			? 'bg-gray-950 text-white shadow-sm transition-all hover:bg-gray-950/90 hover:shadow-md active:shadow-inner'
 			: 'pointer-events-none bg-gray-400 text-gray-200'}"
 	>
 		<span class="whitespace-nowrap">
