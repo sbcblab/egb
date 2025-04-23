@@ -12,7 +12,7 @@
 		href="{base}/"
 		class="text-4xl font-extrabold tracking-tight {flat ? 'text-gray-800' : 'text-white'}"
 	>
-		<Logo class="w-36 md:w-48" />
+		<Logo class="w-42 md:w-56" />
 	</a>
 	<Nav {lang} {flat} />
 </div>

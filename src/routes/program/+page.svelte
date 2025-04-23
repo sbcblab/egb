@@ -22,9 +22,9 @@
 </svelte:head>
 
 {#snippet coursePropriety(label: string, value: string, Icon: typeof UserIcon)}
-	<div class="flex items-center gap-1.5">
-		<Icon aria-label={label} class="mb-1 size-4 shrink-0 text-gray-400" />
-		<span class="text-sm text-gray-600">{value}</span>
+	<div class="flex items-center gap-2">
+		<Icon aria-label={label} class="mb-1 size-4 shrink-0 text-gray-300" />
+		<span class="text-sm text-gray-500">{value}</span>
 	</div>
 {/snippet}
 
@@ -45,9 +45,9 @@
 				{@const isSelected = date === selectedDate}
 				<button
 					onclick={() => (selectedDate = date)}
-					class="grow rounded-xl px-3 py-1.25 text-sm font-medium {isSelected
-						? 'bg-white shadow-sm'
-						: 'text-gray-500'}"
+					class="grow rounded-xl px-3 py-1.25 text-sm font-medium transition-all {isSelected
+						? 'bg-white shadow-xs'
+						: 'text-gray-500 hover:text-gray-800'}"
 				>
 					<div class="mb-0.25">
 						<span class="md:hidden"
@@ -85,7 +85,7 @@
 				{#if slug}
 					<a
 						href="{base}/program/{slug}"
-						class="flex justify-between gap-3 rounded-2xl border border-gray-200 p-6 shadow-sm hover:bg-gray-50 active:shadow-inner max-md:flex-col-reverse md:items-center md:gap-6"
+						class="flex justify-between gap-3 rounded-2xl border border-gray-200 p-6 shadow-xs hover:bg-gray-50 active:shadow-inner max-md:flex-col-reverse md:items-center md:gap-6"
 					>
 						{@render content()}
 					</a>
@@ -110,7 +110,7 @@
 			{@const translation = translations?.find((i) => i.languages_code === lang)}
 			<a
 				href="{base}/program/{slug}"
-				class="flex flex-col gap-2.5 rounded-2xl border border-gray-200 p-6 shadow-sm transition-all hover:bg-gray-50 active:shadow-inner"
+				class="flex flex-col gap-2.5 rounded-2xl border border-gray-200 p-6 shadow-xs hover:bg-gray-50 active:shadow-inner"
 			>
 				<div>
 					{translation?.title}

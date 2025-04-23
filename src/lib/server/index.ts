@@ -79,7 +79,12 @@ export async function getCourses() {
 			]
 		})
 	);
-	return courses;
+	return courses.map((course) => ({
+		...course,
+		schedule: course.schedule
+			? course.schedule.map((s) => ({ ...s, date: `${s.date}T00:00:00` }))
+			: null
+	}));
 }
 
 export async function getActivities() {

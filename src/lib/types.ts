@@ -140,6 +140,7 @@ export interface Course {
 	instructors: CoursePerson[];
 	references: Reference[];
 	translations: CourseTranslation[];
+	schedule: CourseScheduleItem[] | null;
 }
 
 export interface CourseTranslation extends Translation {
@@ -214,4 +215,10 @@ export type CourseCategory = {
 export type FaqItem = {
 	question: string;
 	answer: string;
+};
+
+export type CourseScheduleItem = {
+	date: string;
+	startTime: string;
+	endTime: string;
 };

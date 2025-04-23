@@ -2,7 +2,7 @@
 	import { base } from '$app/paths';
 	import { page } from '$app/state';
 	import Header from '$lib/components/Header.svelte';
-	import { levelMap } from '$lib/utils.js';
+	import { getDatesBetween, levelMap } from '$lib/utils.js';
 	import { format } from 'date-fns';
 	import { ptBR } from 'date-fns/locale';
 	import { ChevronLeft, GaugeIcon, GlobeIcon, HourglassIcon } from 'lucide-svelte';
@@ -19,7 +19,6 @@
 
 	let activity = activities.find((a) => a.slug === page.params.slug) || null;
 	let course = activity ? null : courses.find((c) => c.slug === page.params.slug) || null;
-	console.log(course);
 
 	const linkMap = {
 		website: { title: 'Website', colorClass: 'bg-gray-500', Icon: GlobeIcon },
@@ -101,7 +100,7 @@
 						{translation?.title}
 					</h1>
 					{#if translation?.topics}
-						<div class="flex flex-wrap gap-3">
+						<div class="flex flex-wrap gap-2.5">
 							{#each translation?.topics || [] as topic}
 								<span class="rounded-full bg-gray-100/80 px-2.75 py-1.25 text-sm/[1] text-gray-500">
 									{topic}
@@ -213,7 +212,7 @@
 		</div>
 	</div>
 {:else if course}
-	{@const { duration, instructors, level, references, slug, translations } = course}
+	{@const { duration, instructors, level, references, slug, translations, schedule } = course}
 	{@const translation = translations?.find((i) => i.languages_code === lang)}
 	<div class="mx-auto mt-6 mb-32 w-full max-w-6xl px-6 md:mt-10">
 		<div class="mb-8 md:mb-12">
@@ -234,7 +233,7 @@
 						{translation?.title}
 					</h1>
 					{#if translation?.keywords}
-						<div class="flex flex-wrap gap-3">
+						<div class="flex flex-wrap gap-2.5">
 							{#each translation?.keywords || [] as keyword}
 								<span class="rounded-full bg-gray-100/80 px-2.75 py-1.25 text-sm/[1] text-gray-500">
 									{keyword}
@@ -243,12 +242,10 @@
 						</div>
 					{/if}
 				</div>
-				<div class="mb-16 flex gap-x-16 gap-y-8 max-sm:flex-col md:max-lg:flex-col">
+				<div class="mb-16 flex gap-16">
 					<div class="flex items-center gap-3.5">
-						<div
-							class="flex size-9 items-center justify-center overflow-hidden rounded-lg border border-gray-200"
-						>
-							<HourglassIcon class="size-4.5 text-gray-500" />
+						<div class="flex size-9 items-center justify-center rounded-lg border border-gray-200">
+							<HourglassIcon strokeWidth={1.5} class="size-5 text-gray-950" />
 						</div>
 						<div>
 							<div class="mb-0.25 text-sm font-medium">{translate('Duration', 'Duração')}</div>
@@ -259,10 +256,8 @@
 						</div>
 					</div>
 					<div class="flex items-center gap-3">
-						<div
-							class="flex size-9 items-center justify-center overflow-hidden rounded-lg border border-gray-200"
-						>
-							<GaugeIcon class="size-4.5 text-gray-500" />
+						<div class="flex size-9 items-center justify-center rounded-lg border border-gray-200">
+							<GaugeIcon strokeWidth={2} class="size-5 text-gray-700" />
 						</div>
 						<div>
 							<div class="mb-0.25 text-sm font-medium">{translate('Level', 'Nível')}</div>
@@ -270,6 +265,47 @@
 						</div>
 					</div>
 				</div>
+				{#if schedule}
+					<div class="mb-16">
+						<div class="flex">
+							<div class="w-11"></div>
+							<div class="grid grow grid-cols-3 gap-1">
+								{#each [translate('Morning', 'Manhã'), translate('Afternoon', 'Tarde'), translate('Evening', 'Noite')] as day}
+									<div class="pb-1 text-center text-sm text-gray-400">{day}</div>
+								{/each}
+							</div>
+						</div>
+						<div class="flex flex-col gap-1 p-1">
+							{#each getDatesBetween(global.coursesStartDate, global.coursesEndDate) as date}
+								<div class="flex h-7.5 gap-1">
+									<div class="flex w-10 items-center justify-end pr-3 text-sm text-gray-400">
+										{translate(format(date, 'E'), format(date, 'E', { locale: ptBR }))}
+									</div>
+									<div class="grid grow grid-cols-3 gap-1">
+										{#snippet timePeriodCol(condition: (s: string) => boolean)}
+											<div class="flex flex-col gap-1">
+												{#each schedule.filter((s) => s.date === date && condition(s.startTime)) as item}
+													<div
+														class="flex h-full items-center justify-center rounded-md bg-gray-900 text-xs font-medium text-gray-100 sm:text-sm"
+													>
+														{item.startTime.slice(0, 5)} &ndash; {item.endTime.slice(0, 5)}
+													</div>
+												{:else}
+													<div
+														class="flex h-full items-center justify-center rounded-md bg-gray-50 text-sm font-medium text-white"
+													></div>
+												{/each}
+											</div>
+										{/snippet}
+										{@render timePeriodCol((s) => s < '12:00:00')}
+										{@render timePeriodCol((s) => s >= '12:00:00' && s < '18:00:00')}
+										{@render timePeriodCol((s) => s >= '18:00:00')}
+									</div>
+								</div>
+							{/each}
+						</div>
+					</div>
+				{/if}
 				{#snippet courseSection(label: string, text?: string | null)}
 					{#if text}
 						<div class="mb-10">
