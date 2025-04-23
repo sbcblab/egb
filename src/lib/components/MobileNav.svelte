@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import { page } from '$app/state';
 	import type { LanguageCode } from '$lib/types';
 	import { clickOutside } from '$lib/utils';
@@ -10,12 +11,12 @@
 	let { lang }: { lang: LanguageCode } = $props();
 
 	const items = [
-		{ 'en-US': 'Home', 'pt-BR': 'Início', href: '/' },
-		{ 'en-US': 'About', 'pt-BR': 'Sobre', href: '/about' },
-		{ 'en-US': 'Program', 'pt-BR': 'Programa', href: '/program' },
-		{ 'en-US': 'Submissions', 'pt-BR': 'Submissões', href: '/submissions' },
-		{ 'en-US': 'Registration', 'pt-BR': 'Inscrição', href: '/registration' },
-		{ 'en-US': 'Contact', 'pt-BR': 'Contato', href: '/contact' }
+		{ 'en-US': 'Home', 'pt-BR': 'Início', href: `${base}/` },
+		{ 'en-US': 'About', 'pt-BR': 'Sobre', href: `${base}/about` },
+		{ 'en-US': 'Program', 'pt-BR': 'Programa', href: `${base}/program` },
+		{ 'en-US': 'Submissions', 'pt-BR': 'Submissões', href: `${base}/submissions` },
+		{ 'en-US': 'Registration', 'pt-BR': 'Inscrição', href: `${base}/registration` },
+		{ 'en-US': 'Contact', 'pt-BR': 'Contato', href: `${base}/contact` }
 	];
 
 	let isOpen = $state(false);
