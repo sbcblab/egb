@@ -23,10 +23,10 @@
 
 <footer class="px-6">
 	<hr class="border-gray-200" />
-	<div class="flex flex-col items-center gap-8 py-12">
-		<div class="flex gap-6">
+	<div class="flex flex-col items-center gap-6 pt-10 pb-12">
+		<div class="flex gap-2">
 			{#each socialItems as { Icon, href, title }}
-				<a {href} target="_blank" {title} class="text-gray-500 transition-all hover:text-gray-950">
+				<a {href} target="_blank" {title} class="p-2 text-gray-500 hover:text-gray-950">
 					<Icon class="text-[1.25rem]" />
 				</a>
 			{/each}

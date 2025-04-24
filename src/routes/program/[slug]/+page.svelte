@@ -267,8 +267,8 @@
 				</div>
 				{#if schedule}
 					<div class="mb-16">
-						<div class="flex">
-							<div class="w-11"></div>
+						<div class="flex gap-2">
+							<div class="w-18 pr-3"></div>
 							<div class="grid grow grid-cols-3 gap-1">
 								{#each [translate('Morning', 'Manhã'), translate('Afternoon', 'Tarde'), translate('Evening', 'Noite')] as day}
 									<div class="pb-1 text-center text-sm text-gray-400">{day}</div>
@@ -278,8 +278,15 @@
 						<div class="flex flex-col gap-1 p-1">
 							{#each getDatesBetween(global.coursesStartDate, global.coursesEndDate) as date}
 								<div class="flex h-7.5 gap-1">
-									<div class="flex w-10 items-center justify-end pr-3 text-sm text-gray-400">
-										{translate(format(date, 'E'), format(date, 'E', { locale: ptBR }))}
+									<div
+										class="flex w-18 items-center justify-end gap-1 pr-3 text-sm whitespace-nowrap text-gray-400"
+									>
+										<span class="text-gray-300">
+											{format(date, 'd/M')}
+										</span>
+										<span>
+											{translate(format(date, 'E'), format(date, 'E', { locale: ptBR }))}
+										</span>
 									</div>
 									<div class="grid grow grid-cols-3 gap-1">
 										{#snippet timePeriodCol(condition: (s: string) => boolean)}

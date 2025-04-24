@@ -35,10 +35,18 @@
 	class="bg-[50%_47%] backdrop-blur-lg"
 />
 
-<section id="activities" class="mx-auto mt-16 mb-32 w-full max-w-6xl px-6">
-	<h2 class="mb-7 text-4xl font-semibold tracking-tight text-gray-900">
-		{translate('Activities', 'Atividades')}
-	</h2>
+<section id="activities" class="mx-auto mt-16 mb-24 w-full max-w-6xl px-6">
+	<div class="mb-7 flex flex-col-reverse items-baseline gap-1">
+		<h2 class="text-[2rem]/[1] font-semibold tracking-tight text-gray-900 max-xl:px-6">
+			{translate('Activities', 'Atividades')}
+		</h2>
+		<div class="text-gray-400">
+			{translate(
+				`${format(global.eventStartDate, 'MMMM d')}\u2013${format(global.eventEndDate, 'd')}`,
+				`${format(global.eventStartDate, 'd')} a ${format(global.eventEndDate, 'd')} de ${format(global.eventEndDate, 'MMMM', { locale: ptBR })}`
+			)}
+		</div>
+	</div>
 	<div class="flex flex-col gap-3">
 		<div class="flex overflow-x-auto rounded-2xl bg-gray-100 p-1">
 			{#each dates as date}
@@ -102,9 +110,17 @@
 </section>
 
 <section id="courses" class="mx-auto mb-32 w-full max-w-6xl px-6">
-	<h2 class="mb-6 text-3xl font-semibold tracking-tight text-gray-900">
-		{translate('Courses', 'Cursos')}
-	</h2>
+	<div class="mb-7 flex flex-col-reverse items-baseline gap-0.5">
+		<h2 class="text-[2rem]/[1] font-semibold tracking-tight text-gray-900 max-xl:px-6">
+			{translate('Courses', 'Cursos')}
+		</h2>
+		<div class="text-gray-400">
+			{translate(
+				`${format(global.coursesStartDate, 'MMMM d')}\u2013${format(global.coursesEndDate, 'd')}`,
+				`${format(global.coursesStartDate, 'd')} a ${format(global.coursesEndDate, 'd')} de ${format(global.coursesEndDate, 'MMMM', { locale: ptBR })}`
+			)}
+		</div>
+	</div>
 	<div class="grid gap-2 md:grid-cols-2 md:gap-1.5">
 		{#each courses as { slug, duration, instructors, level, translations }}
 			{@const translation = translations?.find((i) => i.languages_code === lang)}

@@ -207,7 +207,7 @@
 	institutions: { institutions_id: Institution }[]
 )}
 	<section {id} class="mx-auto mb-32 max-w-6xl px-6">
-		<h2 class="mb-9 text-center text-xl font-medium tracking-tight text-gray-900">
+		<h2 class="mb-9 text-center text-lg font-medium tracking-tight text-gray-900">
 			{title}
 		</h2>
 		<div class="flex flex-wrap justify-center gap-10">
@@ -218,9 +218,10 @@
 					title={name}
 					aria-label={name}
 					target="_blank"
-					class="aspect-4/3 w-30 bg-contain bg-center bg-no-repeat transition-all hover:opacity-70"
-					style:background-image="url({base}/api/assets/{logo})"
-				></a>
+					class="h-20 w-30 hover:opacity-70"
+				>
+					<img src="{base}/api/assets/{logo}" alt={name} class="size-full object-contain" />
+				</a>
 			{/each}
 		</div>
 	</section>
