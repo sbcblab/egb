@@ -155,6 +155,7 @@ export async function getSubmissions() {
 		submissionDeadline: submissions.submissionDeadline
 			? `${submissions.submissionDeadline}T00:00:00`
 			: null,
+		reviewEnd: submissions.reviewEnd ? `${submissions.reviewEnd}T00:00:00` : null,
 		acceptanceNotification: submissions.acceptanceNotification
 			? `${submissions.acceptanceNotification}T00:00:00`
 			: null

@@ -87,7 +87,7 @@
 		<ChevronDownIcon strokeWidth={2} class="size-12 text-gray-200 md:-rotate-90" />
 		{@render phase(
 			submissions.submissionDeadline,
-			submissions.acceptanceNotification,
+			submissions.reviewEnd,
 			translate('Double-Blind Peer Review', 'Revisão por pares cega'),
 			translate(
 				'Anonymous review process where authors and reviewers remain undisclosed to each other.',

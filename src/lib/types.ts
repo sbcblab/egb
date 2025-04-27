@@ -72,6 +72,7 @@ export interface Submissions {
 	submitLink: string | null;
 	submissionStart: string | null;
 	submissionDeadline: string | null;
+	reviewEnd: string | null;
 	acceptanceNotification: string | null;
 }
 
