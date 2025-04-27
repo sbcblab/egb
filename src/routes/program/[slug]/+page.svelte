@@ -279,12 +279,12 @@
 							{#each getDatesBetween(global.coursesStartDate, global.coursesEndDate) as date}
 								<div class="flex h-7.5 gap-1">
 									<div
-										class="flex w-18 items-center justify-end gap-1 pr-3 text-sm whitespace-nowrap text-gray-400"
+										class="grid w-18 grid-cols-2 items-center justify-end gap-1.25 pr-3 text-sm whitespace-nowrap"
 									>
-										<span class="text-gray-300">
+										<span class="text-gray-400/50">
 											{format(date, 'd/M')}
 										</span>
-										<span>
+										<span class="text-gray-400">
 											{translate(format(date, 'E'), format(date, 'E', { locale: ptBR }))}
 										</span>
 									</div>
