@@ -25,26 +25,31 @@
 		<Header {lang} />
 		<div class="flex grow flex-col items-center justify-center text-center">
 			<p
-				class="mb-3 text-[1.75rem] font-bold tracking-tight text-white/75 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
+				class="mb-2 text-[1.75rem] font-extrabold tracking-tight text-white/70 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
 			>
 				EGB {format(global.eventStartDate, 'y')}
 			</p>
 			<h1
-				class="mb-14 text-[2.875rem]/[1.1] font-bold tracking-tight text-white drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)] sm:text-[3.5rem]/[1]"
+				class="mb-12 text-[2.875rem]/[1.1] font-bold tracking-tighter text-white drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)] sm:text-[3.5rem]/[1]"
 			>
 				Escola Gaúcha de Bioinformática
 			</h1>
 			<p
-				class="mb-1.5 text-3xl font-semibold text-white/90 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
+				class="mb-7 text-3xl font-semibold text-white/90 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
 			>
 				{translate(
 					`${format(global.eventStartDate, 'MMMM d', { locale: enUS })} \u2013 ${format(global.eventEndDate, 'd, y')}`,
 					`${format(global.eventStartDate, 'd')} a ${format(global.eventEndDate, 'd')} de ${format(global.eventEndDate, 'MMMM', { locale: ptBR })} de ${format(global.eventEndDate, 'y')}`
 				)}
 			</p>
-			<p class="text-lg text-white/80 drop-shadow-[0_0_1.5rem_rgba(0,0,0,0.5)]">
+			<p class="text-xl text-white/90 drop-shadow-[0_0_1.5rem_rgba(0,0,0,0.5)]">
 				Porto Alegre, RS, {translate('Brazil', 'Brasil')}
 			</p>
+			{#if global.eventLocation}
+				<p class="mt-0.5 text-white/60 drop-shadow-[0_0_1.5rem_rgba(0,0,0,0.5)]">
+					{global.eventLocation}
+				</p>
+			{/if}
 			<a
 				href="{base}/program"
 				class="group mt-16 flex items-center gap-1.5 rounded-xl border border-white/50 bg-white/20 px-6 py-2.5 text-white shadow-md backdrop-blur-sm transition-all hover:bg-white/25 hover:shadow-[0_0_1rem_rgba(255,255,255,0.1)]"

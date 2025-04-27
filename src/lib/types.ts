@@ -30,6 +30,7 @@ export interface Global {
 	eventEndDate: string;
 	coursesStartDate: string;
 	coursesEndDate: string;
+	eventLocation: string | null;
 	email: string;
 	phone: string;
 	instagramLink: string;

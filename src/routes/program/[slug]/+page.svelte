@@ -254,7 +254,7 @@
 						<div class="flex items-center gap-3">
 							<Icon strokeWidth={1.5} class="size-9 text-gray-200" />
 							<div>
-								<div class="text-sm text-gray-400/60">{label}</div>
+								<div class="text-sm text-gray-400/80">{label}</div>
 								<div class="text-sm text-gray-800">{value}</div>
 							</div>
 						</div>
