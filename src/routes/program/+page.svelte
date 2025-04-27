@@ -131,7 +131,7 @@
 		{/if}
 	</div>
 	<div class="grid gap-2 md:grid-cols-2 md:gap-1.5">
-		{#each courses as { slug, duration, instructors, level, translations }}
+		{#each courses.sort((a, b) => a.slug.localeCompare(b.slug)) as { slug, duration, level, translations }}
 			{@const translation = translations?.find((i) => i.languages_code === lang)}
 			<a
 				href="{base}/program/{slug}"
