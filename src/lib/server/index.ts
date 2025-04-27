@@ -146,7 +146,9 @@ export async function getRegistration() {
 	return registration;
 }
 export async function getSubmissions() {
-	const submissions = await client.request(readSingleton('submissions'));
+	const submissions = await client.request(
+		readSingleton('submissions', { fields: ['*', { translations: ['*'] }] })
+	);
 	return {
 		...submissions,
 		submissionStart: submissions.submissionStart ? `${submissions.submissionStart}T00:00:00` : null,

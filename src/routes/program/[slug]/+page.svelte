@@ -20,39 +20,45 @@
 	let activity = activities.find((a) => a.slug === page.params.slug) || null;
 	let course = activity ? null : courses.find((c) => c.slug === page.params.slug) || null;
 
-	const linkMap = {
-		website: { title: 'Website', colorClass: 'bg-gray-500', Icon: GlobeIcon },
-		lattes: {
+	const linkTypes = [
+		{ type: 'website', title: 'Website', colorClass: 'bg-gray-500', Icon: GlobeIcon },
+		{
+			type: 'lattes',
 			title: translate('Lattes Curriculum', 'Currículo Lattes'),
 			colorClass: 'bg-indigo-900/90',
 			Icon: AcademiconsLattes
 		},
-		linkedin: {
+		{
+			type: 'linkedin',
 			title: 'LinkedIn',
 			colorClass: 'bg-blue-800/80',
 			Icon: RiLinkedinFill
 		},
-		orcid: {
+		{
+			type: 'orcid',
 			title: 'ORCID',
 			colorClass: 'bg-lime-500/70',
 			Icon: SimpleIconsOrcid
 		},
-		scholar: {
+		{
+			type: 'scholar',
 			title: 'Google Scholar',
 			colorClass: 'bg-blue-700/65',
 			Icon: Fa6BrandsGoogleScholar
 		},
-		researchgate: {
+		{
+			type: 'researchgate',
 			title: 'ResearchGate',
 			colorClass: 'bg-teal-500/80',
 			Icon: SimpleIconsResearchgate
 		},
-		github: {
+		{
+			type: 'github',
 			title: 'GitHub',
 			colorClass: 'bg-neutral-800',
 			Icon: RiGithubFill
 		}
-	};
+	];
 
 	function translate(enStr: string, ptStr: string) {
 		return lang === 'pt-BR' ? ptStr : enStr;
@@ -73,9 +79,7 @@
 <Header {lang} flat />
 
 {#if activity}
-	{@const { type, translations, date, startTime, endTime, locationLine1, locationLine2, speakers } =
-		activity}
-	{@const translation = translations?.find((i) => i.languages_code === lang)}
+	{@const translation = activity.translations?.find((i) => i.languages_code === lang)}
 	<div class="mx-auto mt-6 mb-32 w-full max-w-6xl px-6 md:mt-10">
 		<div class="mb-8 md:mb-12">
 			<a
@@ -87,10 +91,10 @@
 		</div>
 		<div class="mb-2 text-lg font-medium text-gray-400">
 			{translate(
-				type || '',
-				type === 'Lecture'
+				activity.type || '',
+				activity.type === 'Lecture'
 					? 'Palestra'
-					: (type === 'Social Gathering' ? 'Confraternização' : type) || ''
+					: (activity.type === 'Social Gathering' ? 'Confraternização' : activity.type) || ''
 			)}
 		</div>
 		<div class="flex flex-col gap-16 md:grid md:grid-cols-7 md:max-lg:gap-12">
@@ -115,25 +119,28 @@
 							<div
 								class="flex h-3 items-center justify-center bg-gray-200 text-[0.5rem] text-gray-600"
 							>
-								{translate(format(date, 'MMM'), format(date, 'MMM', { locale: ptBR }))}
+								{translate(
+									format(activity.date, 'MMM'),
+									format(activity.date, 'MMM', { locale: ptBR })
+								)}
 							</div>
 							<div class="flex grow items-center justify-center text-xs font-medium text-gray-500">
-								{format(date, 'd')}
+								{format(activity.date, 'd')}
 							</div>
 						</div>
 						<div>
 							<div class="mb-0.25 text-sm font-medium whitespace-nowrap">
 								{translate(
-									format(date, 'EEEE, MMMM dd'),
-									`${format(date, 'EEEE, dd', { locale: ptBR })} de ${format(date, 'MMMM', { locale: ptBR })}`
+									format(activity.date, 'EEEE, MMMM dd'),
+									`${format(activity.date, 'EEEE, dd', { locale: ptBR })} de ${format(activity.date, 'MMMM', { locale: ptBR })}`
 								)}
 							</div>
 							<div class="text-sm whitespace-nowrap text-gray-500">
-								{startTime?.slice(0, 5)} &ndash; {endTime?.slice(0, 5)}
+								{activity.startTime?.slice(0, 5)} &ndash; {activity.endTime?.slice(0, 5)}
 							</div>
 						</div>
 					</div>
-					{#if locationLine1 || locationLine2}
+					{#if activity.locationLine1 || activity.locationLine2}
 						<div class="flex items-center gap-3.5">
 							<div
 								class="flex size-9 items-center justify-center overflow-hidden rounded-lg border border-gray-200"
@@ -141,8 +148,8 @@
 								<RivetIconsMapPinSolid class="size-4.5 text-gray-400/65" />
 							</div>
 							<div>
-								<div class="mb-0.25 text-sm font-medium">{locationLine1}</div>
-								<div class="text-sm text-gray-500">{locationLine2}</div>
+								<div class="mb-0.25 text-sm font-medium">{activity.locationLine1}</div>
+								<div class="text-sm text-gray-500">{activity.locationLine2}</div>
 							</div>
 						</div>
 					{/if}
@@ -157,9 +164,10 @@
 				{/if}
 			</div>
 			<div class="col-span-3 space-y-4">
-				{#each speakers || [] as { people_id }}
+				{#each activity.speakers || [] as { people_id }}
 					{@const { name, picture, country, institution, links, translations } = people_id}
-					{@const translation = translations.find((t) => t.languages_code === lang)}
+					{@const speakerTranslation = translations.find((t) => t.languages_code === lang)}
+					{@debug speakerTranslation}
 					<div class="flex flex-col gap-8 rounded-3xl border border-gray-200 p-8 shadow-xs">
 						<div class="flex items-center gap-5">
 							<div
@@ -174,38 +182,28 @@
 								</div>
 								{#if links}
 									<div class="mt-4 flex gap-1">
-										{#snippet speakerLink(
-											title: string,
-											href: string,
-											colorClass: string,
-											Icon: any
-										)}
-											<a
-												{href}
-												{title}
-												target="_blank"
-												class="size-5.5 rounded-full p-1 opacity-40 transition-all hover:opacity-100 {colorClass}"
-											>
-												<Icon class="size-full text-white" />
-											</a>
-										{/snippet}
-										{#each links as { type, link }}
-											{@render speakerLink(
-												linkMap[type].title,
-												link,
-												linkMap[type].colorClass,
-												linkMap[type].Icon
-											)}
+										{#each linkTypes as { type, title, colorClass, Icon }}
+											{@const link = links.find((l) => l.type === type)}
+											{#if link}
+												<a
+													href={link.link}
+													{title}
+													target="_blank"
+													class="size-5.5 rounded-full p-1 opacity-40 transition-all hover:opacity-100 {colorClass}"
+												>
+													<Icon class="size-full text-white" />
+												</a>
+											{/if}
 										{/each}
 									</div>
 								{/if}
 							</div>
 						</div>
-						{#if translation?.summary}
+						<!-- {#if speakerTranslation?.summary}
 							<div class="text-sm/[1.75] text-gray-500">
-								{@html translation.summary}
+								{@html speakerTranslation.summary}
 							</div>
-						{/if}
+						{/if} -->
 					</div>
 				{/each}
 			</div>
@@ -335,7 +333,7 @@
 						</ul>
 					</div>
 				{/if}
-				{@render courseSection(translate('Teaching Methods', 'Methodology'), translation?.methods)}
+				{@render courseSection(translate('Teaching Methods', 'Metodologia'), translation?.methods)}
 				{@render courseSection(
 					translate('Prerequisites', 'Pré-requisitos'),
 					translation?.prerequisites
@@ -362,7 +360,7 @@
 			<div class="col-span-3 space-y-6">
 				{#each instructors || [] as { people_id }}
 					{@const { name, picture, country, institution, links, translations } = people_id}
-					{@const translation = translations.find((t) => t.languages_code === lang)}
+					{@const instructorTranslation = translations.find((t) => t.languages_code === lang)}
 					<div class="flex flex-col gap-8 rounded-3xl border border-gray-200 p-8 shadow-xs">
 						<div class="flex items-center gap-5">
 							<div
@@ -377,38 +375,28 @@
 								</div>
 								{#if links}
 									<div class="mt-4 flex gap-1">
-										{#snippet speakerLink(
-											title: string,
-											href: string,
-											colorClass: string,
-											Icon: any
-										)}
-											<a
-												{href}
-												{title}
-												target="_blank"
-												class="size-5.5 rounded-full p-1 opacity-40 transition-all hover:opacity-100 {colorClass}"
-											>
-												<Icon class="size-full text-white" />
-											</a>
-										{/snippet}
-										{#each links as { type, link }}
-											{@render speakerLink(
-												linkMap[type].title,
-												link,
-												linkMap[type].colorClass,
-												linkMap[type].Icon
-											)}
+										{#each linkTypes as { type, title, colorClass, Icon }}
+											{@const link = links.find((l) => l.type === type)}
+											{#if link}
+												<a
+													href={link.link}
+													{title}
+													target="_blank"
+													class="size-5.5 rounded-full p-1 opacity-40 transition-all hover:opacity-100 {colorClass}"
+												>
+													<Icon class="size-full text-white" />
+												</a>
+											{/if}
 										{/each}
 									</div>
 								{/if}
 							</div>
 						</div>
-						{#if translation?.summary}
+						<!-- {#if instructorTranslation?.summary}
 							<div class="text-sm/[1.75] text-gray-500">
-								{@html translation.summary}
+								{@html instructorTranslation.summary}
 							</div>
-						{/if}
+						{/if} -->
 					</div>
 				{/each}
 			</div>

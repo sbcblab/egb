@@ -210,7 +210,7 @@
 		<h2 class="mb-9 text-center text-lg font-medium tracking-tight text-gray-900">
 			{title}
 		</h2>
-		<div class="flex flex-wrap justify-center gap-10">
+		<div class="flex flex-wrap justify-center gap-9">
 			{#each institutions as { institutions_id }}
 				{@const { name, link, logo } = institutions_id}
 				<a
@@ -218,7 +218,7 @@
 					title={name}
 					aria-label={name}
 					target="_blank"
-					class="h-20 w-30 hover:opacity-70"
+					class="h-16 w-26 hover:opacity-70"
 				>
 					<img src="{base}/api/assets/{logo}" alt={name} class="size-full object-contain" />
 				</a>

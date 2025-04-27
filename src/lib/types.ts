@@ -7,6 +7,7 @@ export interface Schema {
 	program: Program;
 	programTranslations: ProgramTranslation[];
 	submissions: Submissions;
+	submissionsTranslations: SubmissionsTranslation[];
 	registration: Registration;
 	registrationTranslations: RegistrationTranslation[];
 	activities: Activity[];
@@ -65,12 +66,18 @@ export interface ProgramTranslation extends Translation {
 }
 
 export interface Submissions {
+	translations: SubmissionsTranslation[];
 	lattesTemplate: string | null;
 	wordTemplate: string | null;
 	submitLink: string | null;
 	submissionStart: string | null;
 	submissionDeadline: string | null;
 	acceptanceNotification: string | null;
+}
+
+export interface SubmissionsTranslation extends Translation {
+	abstractGuidelines: { item: string }[];
+	posterGuidelines: { item: string }[];
 }
 
 export interface Registration {

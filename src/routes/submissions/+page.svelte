@@ -16,14 +16,8 @@
 
 	let { data } = $props();
 	let { lang, global, submissions } = data;
-	let {
-		lattesTemplate,
-		wordTemplate,
-		submitLink,
-		submissionStart,
-		submissionDeadline,
-		acceptanceNotification
-	} = submissions;
+
+	let translation = submissions.translations?.find((t) => t.languages_code === lang);
 
 	function translate(enStr: string, ptStr: string) {
 		return lang === 'pt-BR' ? ptStr : enStr;
@@ -57,7 +51,7 @@
 		)}
 	</p>
 	<div class="flex items-center justify-center gap-4 max-md:flex-col">
-		{#snippet step(
+		{#snippet phase(
 			startDate: string | null,
 			endDate: string | null,
 			title: string,
@@ -80,9 +74,9 @@
 				</p>
 			</div>
 		{/snippet}
-		{@render step(
-			submissionStart,
-			submissionDeadline,
+		{@render phase(
+			submissions.submissionStart,
+			submissions.submissionDeadline,
 			translate('Abstract Submission', 'Submissão de resumos'),
 			translate(
 				'Submit a 1\u20134 page PDF summary of your work using the provided templates.',
@@ -91,9 +85,9 @@
 			FileInputIcon
 		)}
 		<ChevronDownIcon strokeWidth={2} class="size-12 text-gray-200 md:-rotate-90" />
-		{@render step(
-			submissionDeadline,
-			acceptanceNotification,
+		{@render phase(
+			submissions.submissionDeadline,
+			submissions.acceptanceNotification,
 			translate('Double-Blind Peer Review', 'Revisão por pares cega'),
 			translate(
 				'Anonymous review process where authors and reviewers remain undisclosed to each other.',
@@ -102,7 +96,7 @@
 			GlassesIcon
 		)}
 		<ChevronDownIcon strokeWidth={2} class="size-12 text-gray-200 md:-rotate-90" />
-		{@render step(
+		{@render phase(
 			global.eventStartDate,
 			global.eventEndDate,
 			translate('Poster Presentation', 'Apresentação de pôsteres'),
@@ -116,30 +110,16 @@
 </section>
 
 <div class="mx-auto mb-32 grid w-full max-w-6xl gap-32 px-6 md:mb-18 md:grid-cols-2">
-	{#snippet guidelinesLi(text: string)}
-		<li class="ml-4.5 list-disc text-gray-600 marker:text-gray-300">
-			{text}
-		</li>
-	{/snippet}
 	<section id="abstract-guidelines">
 		<h2 class="mb-5 text-3xl font-semibold tracking-tight text-gray-900">
 			{translate('Abstract Guidelines', 'Diretrizes para resumos')}
 		</h2>
 		<ul class="space-y-2.5">
-			{@render guidelinesLi(
-				translate(
-					'Submissions must be unpublished.',
-					'Trabalhos devem ser inéditos (não publicados).'
-				)
-			)}
-			{@render guidelinesLi(
-				translate(
-					'Omit author details (blind review).',
-					'Omita detalhes dos autores (revisão cega).'
-				)
-			)}
-			{@render guidelinesLi(translate('Include up to 5 keywords.', 'Inclua até 5 palavras-chave.'))}
-			{@render guidelinesLi(translate('1\u20134 pages.', '1\u20134 páginas.'))}
+			{#each translation?.abstractGuidelines || [] as { item }}
+				<li class="ml-4.5 list-disc text-gray-600 marker:text-gray-300">
+					{item}
+				</li>
+			{/each}
 			<li class="ml-4.5 list-disc text-gray-600 marker:text-gray-300">
 				<div class="mb-4">
 					{translate(
@@ -150,7 +130,7 @@
 				<div class="flex gap-2">
 					{#snippet templateLink(label: string, fileId: string | null)}
 						<a
-							href="{base}/assets/{fileId}"
+							href="{base}/api/assets/{fileId}"
 							aria-disabled={!fileId}
 							target="_blank"
 							class="inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 text-sm font-medium {!fileId
@@ -162,9 +142,9 @@
 						</a>
 					{/snippet}
 					<div>
-						{@render templateLink('Lattes', lattesTemplate)}
+						{@render templateLink('Lattes', submissions.lattesTemplate)}
 					</div>
-					{@render templateLink('Word', wordTemplate)}
+					{@render templateLink('Word', submissions.wordTemplate)}
 				</div>
 			</li>
 		</ul>
@@ -174,39 +154,20 @@
 			{translate('Poster Guidelines', 'Diretrizes para pôsteres')}
 		</h2>
 		<ul class="space-y-2.5">
-			{@render guidelinesLi(
-				translate(
-					'Focus on key findings—minimize text, emphasize figures, diagrams, and graphs.',
-					'Destaque os principais resultados \u2013 minimize texto, privilegie figuras, diagramas e gráficos.'
-				)
-			)}
-			{@render guidelinesLi(
-				translate(
-					'Uppercase title at the top with authors and affiliations below.',
-					'Título em CAIXA ALTA no topo, com autores e afiliações abaixo.'
-				)
-			)}
-			{@render guidelinesLi(
-				translate(
-					'Include institutional and funding agency logos.',
-					'Inclua logos institucionais e de agências de fomento.'
-				)
-			)}
-			{@render guidelinesLi(
-				translate(
-					'English or Portuguese (English preferred).',
-					'Inglês ou Português (Inglês preferencial).'
-				)
-			)}
+			{#each translation?.posterGuidelines || [] as { item }}
+				<li class="ml-4.5 list-disc text-gray-600 marker:text-gray-300">
+					{item}
+				</li>
+			{/each}
 		</ul>
 	</section>
 </div>
 
 <section id="submit" class="mx-auto mb-32 flex w-full max-w-6xl justify-center px-6 md:mb-18">
 	<a
-		href={submitLink}
+		href={submissions.submitLink}
 		target="_blank"
-		class="group inline-flex items-center gap-2 rounded-2xl px-6 py-3 font-medium {submitLink
+		class="group inline-flex items-center gap-2 rounded-2xl px-6 py-3 font-medium {submissions.submitLink
 			? 'bg-gray-950 text-white shadow-sm transition-all hover:bg-gray-950/90 hover:shadow-md active:shadow-inner'
 			: 'pointer-events-none bg-gray-400 text-gray-200'}"
 	>
@@ -242,12 +203,12 @@
 		{/snippet}
 		{@render date(
 			translate('Submission Deadline', 'Prazo final para submissão'),
-			submissionDeadline,
+			submissions.submissionDeadline,
 			SendIcon
 		)}
 		{@render date(
 			translate('Acceptance Notification', 'Notificação de aceite'),
-			acceptanceNotification,
+			submissions.acceptanceNotification,
 			MailCheckIcon
 		)}
 	</ul>
