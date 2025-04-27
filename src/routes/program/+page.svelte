@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import Banner from '$lib/components/Banner.svelte';
-	import { getFlagEmoji, levelMap } from '$lib/utils';
+	import { courseLevelMap, getFlagEmoji } from '$lib/utils';
 	import { format } from 'date-fns';
 	import { ptBR } from 'date-fns/locale';
 	import { GaugeIcon, TimerIcon, UserIcon, UserRoundIcon } from 'lucide-svelte';
@@ -136,7 +136,7 @@
 						`${duration} ${translate('hours', 'horas')}`,
 						TimerIcon
 					)}
-					{@render coursePropriety('Level', levelMap[lang][level], GaugeIcon)}
+					{@render coursePropriety('Level', courseLevelMap[lang][level], GaugeIcon)}
 					{@render coursePropriety(
 						'Instructors',
 						instructors?.map((i) => i.people_id.name).join(', ') || '',

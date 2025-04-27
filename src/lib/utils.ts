@@ -1,8 +1,18 @@
 import type { Action } from 'svelte/action';
 
-export const levelMap = {
+export const courseLevelMap = {
 	'en-US': { 1: 'Beginner', 2: 'Intermediate', 3: 'Advanced' },
 	'pt-BR': { 1: 'Básico', 2: 'Intermediário', 3: 'Avançado' }
+};
+
+export const courseTypeMap = {
+	'en-US': { 1: 'Theoretical', 2: 'Practical', 3: 'Theoretical and Practical' },
+	'pt-BR': { 1: 'Teórico', 2: 'Prático', 3: 'Teórico-prático' }
+};
+
+export const courseLanguageMap = {
+	'en-US': { BR: 'Portuguese', US: 'English', ES: 'Spanish' },
+	'pt-BR': { BR: 'Português', US: 'Inglês', ES: 'Espanhol' }
 };
 
 export const clickOutside: Action = (node) => {

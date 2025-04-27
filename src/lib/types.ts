@@ -146,7 +146,9 @@ export interface PreviousEditionsTranslation extends Translation {
 export interface Course {
 	slug: string;
 	duration: number;
+	type: CourseType;
 	level: CourseLevel;
+	language: CourseLanguage;
 	instructors: CoursePerson[];
 	references: Reference[];
 	translations: CourseTranslation[];
@@ -196,6 +198,10 @@ export interface Translation {
 export type LanguageCode = 'en-US' | 'pt-BR';
 
 export type CourseLevel = 1 | 2 | 3;
+
+export type CourseType = 1 | 2 | 3;
+
+export type CourseLanguage = 'BR' | 'US' | 'ES';
 
 export type Reference = {
 	title: string;

@@ -2,10 +2,18 @@
 	import { base } from '$app/paths';
 	import { page } from '$app/state';
 	import Header from '$lib/components/Header.svelte';
-	import { getDatesBetween, levelMap } from '$lib/utils.js';
+	import { courseLanguageMap, courseLevelMap, courseTypeMap, getDatesBetween } from '$lib/utils.js';
 	import { format } from 'date-fns';
 	import { ptBR } from 'date-fns/locale';
-	import { ChevronLeft, GaugeIcon, GlobeIcon, HourglassIcon } from 'lucide-svelte';
+	import {
+		BookIcon,
+		ChevronLeft,
+		GaugeIcon,
+		GlobeIcon,
+		HourglassIcon,
+		LanguagesIcon,
+		NotebookPenIcon
+	} from 'lucide-svelte';
 	import AcademiconsLattes from '~icons/academicons/lattes';
 	import Fa6BrandsGoogleScholar from '~icons/fa6-brands/google-scholar';
 	import RiGithubFill from '~icons/ri/github-fill';
@@ -210,7 +218,8 @@
 		</div>
 	</div>
 {:else if course}
-	{@const { duration, instructors, level, references, slug, translations, schedule } = course}
+	{@const { duration, instructors, level, references, type, language, translations, schedule } =
+		course}
 	{@const translation = translations?.find((i) => i.languages_code === lang)}
 	<div class="mx-auto mt-6 mb-32 w-full max-w-6xl px-6 md:mt-10">
 		<div class="mb-8 md:mb-12">
@@ -240,28 +249,36 @@
 						</div>
 					{/if}
 				</div>
-				<div class="mb-16 flex gap-16">
-					<div class="flex items-center gap-3.5">
-						<div class="flex size-9 items-center justify-center rounded-lg border border-gray-200">
-							<HourglassIcon strokeWidth={1.5} class="size-5 text-gray-950" />
-						</div>
-						<div>
-							<div class="mb-0.25 text-sm font-medium">{translate('Duration', 'Duração')}</div>
-							<div class="text-sm text-gray-500">
-								{duration}
-								{translate('hours', 'horas')}
+				<div class="mb-16 grid grid-cols-2 gap-y-6">
+					{#snippet coursePropriety(label: string, value: string, Icon: any)}
+						<div class="flex items-center gap-3">
+							<Icon strokeWidth={1.5} class="size-9 text-gray-200" />
+							<div>
+								<div class="text-sm text-gray-400/60">{label}</div>
+								<div class="text-sm text-gray-800">{value}</div>
 							</div>
 						</div>
-					</div>
-					<div class="flex items-center gap-3">
-						<div class="flex size-9 items-center justify-center rounded-lg border border-gray-200">
-							<GaugeIcon strokeWidth={2} class="size-5 text-gray-700" />
-						</div>
-						<div>
-							<div class="mb-0.25 text-sm font-medium">{translate('Level', 'Nível')}</div>
-							<div class="text-sm text-gray-500">{levelMap[lang][level]}</div>
-						</div>
-					</div>
+					{/snippet}
+					{@render coursePropriety(
+						translate('Level', 'Nível'),
+						courseLevelMap[lang][level],
+						GaugeIcon
+					)}
+					{@render coursePropriety(
+						translate('Duration', 'Duração'),
+						`${duration} ${translate('hours', 'horas')}`,
+						HourglassIcon
+					)}
+					{@render coursePropriety(
+						translate('Type', 'Tipo'),
+						courseTypeMap[lang][type],
+						type === 1 ? BookIcon : NotebookPenIcon
+					)}
+					{@render coursePropriety(
+						translate('Language', 'Idioma'),
+						courseLanguageMap[lang][language],
+						LanguagesIcon
+					)}
 				</div>
 				{#if schedule}
 					<div class="mb-16">
