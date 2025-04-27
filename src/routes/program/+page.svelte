@@ -7,8 +7,9 @@
 	import { GaugeIcon, TimerIcon, UserIcon, UserRoundIcon } from 'lucide-svelte';
 
 	let { data } = $props();
-	let { lang, global, courses, activities } = data;
+	let { lang, global, courses, activities, program } = data;
 
+	let programTranslation = program.translations?.find((t) => t.languages_code === lang);
 	let dates = Array.from(new Set(activities.map((a) => a.date as string)));
 	let selectedDate = $state(dates[0]);
 
@@ -36,16 +37,15 @@
 />
 
 <section id="activities" class="mx-auto mt-16 mb-24 w-full max-w-6xl px-6">
-	<div class="mb-7 flex flex-col-reverse items-baseline gap-1">
-		<h2 class="text-[2rem]/[1] font-semibold tracking-tight text-gray-900 max-xl:px-6">
+	<div class="mb-8">
+		<h2 class="mb-2.5 text-[2rem]/[1] font-semibold tracking-tight text-gray-900 max-xl:px-6">
 			{translate('Activities', 'Atividades')}
 		</h2>
-		<div class="text-gray-400">
-			{translate(
-				`${format(global.eventStartDate, 'MMMM d')}\u2013${format(global.eventEndDate, 'd')}`,
-				`${format(global.eventStartDate, 'd')} a ${format(global.eventEndDate, 'd')} de ${format(global.eventEndDate, 'MMMM', { locale: ptBR })}`
-			)}
-		</div>
+		{#if programTranslation?.activitiesSubtitle}
+			<div class="max-w-128 text-gray-500">
+				{programTranslation.activitiesSubtitle}
+			</div>
+		{/if}
 	</div>
 	<div class="flex flex-col gap-3">
 		<div class="flex overflow-x-auto rounded-2xl bg-gray-100 p-1">
@@ -110,16 +110,15 @@
 </section>
 
 <section id="courses" class="mx-auto mb-32 w-full max-w-6xl px-6">
-	<div class="mb-7 flex flex-col-reverse items-baseline gap-0.5">
-		<h2 class="text-[2rem]/[1] font-semibold tracking-tight text-gray-900 max-xl:px-6">
+	<div class="mb-8">
+		<h2 class="mb-2.5 text-[2rem]/[1] font-semibold tracking-tight text-gray-900 max-xl:px-6">
 			{translate('Courses', 'Cursos')}
 		</h2>
-		<div class="text-gray-400">
-			{translate(
-				`${format(global.coursesStartDate, 'MMMM d')}\u2013${format(global.coursesEndDate, 'd')}`,
-				`${format(global.coursesStartDate, 'd')} a ${format(global.coursesEndDate, 'd')} de ${format(global.coursesEndDate, 'MMMM', { locale: ptBR })}`
-			)}
-		</div>
+		{#if programTranslation?.coursesSubtitle}
+			<div class="max-w-128 text-gray-500">
+				{programTranslation.coursesSubtitle}
+			</div>
+		{/if}
 	</div>
 	<div class="grid gap-2 md:grid-cols-2 md:gap-1.5">
 		{#each courses as { slug, duration, instructors, level, translations }}

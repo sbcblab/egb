@@ -96,12 +96,12 @@
 		<div class="flex flex-col gap-16 md:grid md:grid-cols-7 md:max-lg:gap-12">
 			<div class="col-span-4">
 				<div class="mb-16">
-					<h1 class="mb-6 text-3xl font-medium tracking-tighter text-gray-800 md:text-4xl">
+					<h1 class="text-3xl font-medium tracking-tighter text-gray-800 md:text-4xl">
 						{translation?.title}
 					</h1>
 					{#if translation?.topics}
-						<div class="flex flex-wrap gap-2.5">
-							{#each translation?.topics || [] as topic}
+						<div class="mt-6 flex flex-wrap gap-2.5">
+							{#each translation.topics as topic}
 								<span class="rounded-full bg-gray-100/80 px-2.75 py-1.25 text-sm/[1] text-gray-500">
 									{topic}
 								</span>

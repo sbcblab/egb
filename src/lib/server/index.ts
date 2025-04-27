@@ -158,3 +158,17 @@ export async function getSubmissions() {
 			: null
 	};
 }
+
+export async function getProgram() {
+	const program = await client.request(
+		readSingleton('program', {
+			fields: [
+				'*',
+				{
+					translations: ['*']
+				}
+			]
+		})
+	);
+	return program;
+}

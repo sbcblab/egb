@@ -5,7 +5,7 @@ export interface Schema {
 	aboutTranslations: AboutTranslation[];
 	aboutInstitutions: AboutInstitution[];
 	program: Program;
-	programPeople: ProgramPerson[];
+	programTranslations: ProgramTranslation[];
 	submissions: Submissions;
 	registration: Registration;
 	registrationTranslations: RegistrationTranslation[];
@@ -56,11 +56,12 @@ export interface AboutInstitution {
 }
 
 export interface Program {
-	speakers: ProgramPerson[];
+	translations: ProgramTranslation[];
 }
 
-export interface ProgramPerson {
-	people_id: Person;
+export interface ProgramTranslation extends Translation {
+	activitiesSubtitle: string | null;
+	coursesSubtitle: string | null;
 }
 
 export interface Submissions {
