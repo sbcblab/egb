@@ -97,14 +97,20 @@
 				<ChevronLeft strokeWidth={2} class="size-6" />
 			</a>
 		</div>
-		<div class="mb-2 text-lg font-medium text-gray-400">
-			{translate(
-				activity.type || '',
-				activity.type === 'Lecture'
-					? 'Palestra'
-					: (activity.type === 'Social Gathering' ? 'Confraternização' : activity.type) || ''
-			)}
-		</div>
+		{#if activity.type}
+			<div class="mb-2 text-lg font-medium text-gray-400">
+				{translate(
+					activity.type,
+					activity.type === 'Lecture'
+						? 'Palestra'
+						: activity.type === 'Social Gathering'
+							? 'Confraternização'
+							: activity.type === 'On-Site Course'
+								? 'Curso presencial'
+								: activity.type
+				)}
+			</div>
+		{/if}
 		<div class="flex flex-col gap-16 md:grid md:grid-cols-7 md:max-lg:gap-12">
 			<div class="col-span-4">
 				<div class="mb-16">
@@ -175,7 +181,6 @@
 				{#each activity.speakers || [] as { people_id }}
 					{@const { name, picture, country, institution, links, translations } = people_id}
 					{@const speakerTranslation = translations.find((t) => t.languages_code === lang)}
-					{@debug speakerTranslation}
 					<div class="flex flex-col gap-8 rounded-3xl border border-gray-200 p-8 shadow-xs">
 						<div class="flex items-center gap-5">
 							<div

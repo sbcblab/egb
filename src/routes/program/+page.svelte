@@ -4,7 +4,7 @@
 	import { courseLevelMap, getFlagEmoji } from '$lib/utils';
 	import { format } from 'date-fns';
 	import { ptBR } from 'date-fns/locale';
-	import { GaugeIcon, TimerIcon, UserIcon, UserRoundIcon } from 'lucide-svelte';
+	import { GaugeIcon, HourglassIcon, UserIcon } from 'lucide-svelte';
 
 	let { data } = $props();
 	let { lang, global, courses, activities, program } = data;
@@ -22,13 +22,6 @@
 	<title>{translate('Program', 'Programa')} &ndash; EGB {format(global.eventStartDate, 'y')}</title>
 </svelte:head>
 
-{#snippet coursePropriety(label: string, value: string, Icon: typeof UserIcon)}
-	<div class="flex items-center gap-2">
-		<Icon aria-label={label} class="mb-1 size-4 shrink-0 text-gray-300" />
-		<span class="text-sm text-gray-500">{value}</span>
-	</div>
-{/snippet}
-
 <Banner
 	{lang}
 	title={translate('Program', 'Programa')}
@@ -38,7 +31,7 @@
 
 <section id="activities" class="mx-auto mt-16 mb-24 w-full max-w-6xl px-6">
 	<div class="mb-8">
-		<h2 class="mb-2.5 text-[2rem]/[1] font-semibold tracking-tight text-gray-900 max-xl:px-6">
+		<h2 class="mb-2.5 text-[2rem]/[1] font-semibold tracking-tight text-gray-900">
 			{translate('Activities', 'Atividades')}
 		</h2>
 		{#if programTranslation?.activitiesSubtitle}
@@ -70,23 +63,40 @@
 			{/each}
 		</div>
 		<div class="flex flex-col gap-1.5">
-			{#each activities.filter((a) => a.date === selectedDate) as { slug, translations, startTime, endTime, speakers }}
+			{#each activities.filter((a) => a.date === selectedDate) as { slug, translations, startTime, endTime, speakers, type }}
 				{#snippet content()}
 					<div class="flex flex-col gap-2 md:gap-1.5">
-						<div>{translations?.find((i) => i.languages_code === lang)?.title}</div>
-						{#if speakers?.length || 0 > 0}
+						<div class="flex flex-col-reverse gap-2 md:gap-1.25">
+							<div>{translations?.find((i) => i.languages_code === lang)?.title}</div>
+							{#if type}
+								<div class="text-sm/[1] text-gray-400 max-md:hidden">
+									{type}
+								</div>
+							{/if}
+							<div class="items-top flex justify-between md:hidden">
+								{#if type}
+									<div class="text-sm/[1] text-gray-400">
+										{type}
+									</div>
+								{/if}
+								<div class="text-sm/[1] whitespace-nowrap text-gray-400">
+									{startTime?.substring(0, 5)} &ndash; {endTime?.substring(0, 5)}
+								</div>
+							</div>
+						</div>
+						{#if speakers && speakers.length > 0}
 							<div class="flex flex-col gap-0.5">
-								{#each speakers || [] as { people_id }}
+								{#each speakers as { people_id }}
 									{@const { name, institution, country } = people_id}
-									<div class="flex items-center gap-2">
+									<div class="flex items-start gap-2">
 										<span class="text-sm">{getFlagEmoji(country.alpha2)}</span>
-										<span class="text-sm text-gray-600">{name}, {institution.name}</span>
+										<span class="text-sm text-gray-500">{name}, {institution.name}</span>
 									</div>
 								{/each}
 							</div>
 						{/if}
 					</div>
-					<div class="text-sm whitespace-nowrap text-gray-500">
+					<div class="text-sm whitespace-nowrap text-gray-500 max-md:hidden">
 						{startTime?.substring(0, 5)} &ndash; {endTime?.substring(0, 5)}
 					</div>
 				{/snippet}
@@ -111,7 +121,7 @@
 
 <section id="courses" class="mx-auto mb-32 w-full max-w-6xl px-6">
 	<div class="mb-8">
-		<h2 class="mb-2.5 text-[2rem]/[1] font-semibold tracking-tight text-gray-900 max-xl:px-6">
+		<h2 class="mb-2.5 text-[2rem]/[1] font-semibold tracking-tight text-gray-900">
 			{translate('Courses', 'Cursos')}
 		</h2>
 		{#if programTranslation?.coursesSubtitle}
@@ -125,23 +135,24 @@
 			{@const translation = translations?.find((i) => i.languages_code === lang)}
 			<a
 				href="{base}/program/{slug}"
-				class="flex flex-col gap-2.5 rounded-2xl border border-gray-200 p-6 shadow-xs hover:bg-gray-50 active:shadow-inner"
+				class="flex flex-col gap-2 rounded-2xl border border-gray-200 p-6 shadow-xs hover:bg-gray-50 active:shadow-inner"
 			>
 				<div>
 					{translation?.title}
 				</div>
-				<div class="flex flex-wrap gap-x-6 gap-y-1.5">
+				<div class="flex flex-wrap items-center gap-x-6 gap-y-1.5">
+					{#snippet coursePropriety(label: string, value: string, Icon: typeof UserIcon)}
+						<div class="flex items-center gap-2">
+							<Icon aria-label={label} class="size-4 shrink-0 text-gray-200" />
+							<span class="text-sm text-gray-400">{value}</span>
+						</div>
+					{/snippet}
 					{@render coursePropriety(
 						'Duration',
 						`${duration} ${translate('hours', 'horas')}`,
-						TimerIcon
+						HourglassIcon
 					)}
 					{@render coursePropriety('Level', courseLevelMap[lang][level], GaugeIcon)}
-					{@render coursePropriety(
-						'Instructors',
-						instructors?.map((i) => i.people_id.name).join(', ') || '',
-						UserRoundIcon
-					)}
 				</div>
 			</a>
 		{/each}
