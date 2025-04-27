@@ -2,28 +2,12 @@
 	import { base } from '$app/paths';
 	import Banner from '$lib/components/Banner.svelte';
 	import { format } from 'date-fns';
-	import { ptBR } from 'date-fns/locale';
 	import { ChevronRightIcon } from 'lucide-svelte';
 
 	let { data } = $props();
 	let { lang, global, registration } = data;
 
-	let faqItems = registration?.translations?.find((t) => t.languages_code === lang)?.faq;
-	let eventFees = [
-		{
-			category: translate('Undergraduate Student', 'Estudante de graduação'),
-			fee: registration.undergraduateStudent
-		},
-		{
-			category: translate('Graduate Student', 'Estudante de pós-graduação'),
-			fee: registration.graduateStudent
-		},
-		{ category: translate('Researcher', 'Pesquisador'), fee: registration.researcher },
-		{
-			category: translate('Industry Professional', 'Profissional da indústria	'),
-			fee: registration.industryProfessional
-		}
-	];
+	let translation = registration.translations?.find((t) => t.languages_code === lang);
 	let planYourTripItems = [
 		{
 			title: translate('How to Get to Porto Alegre', 'Como chegar a Porto Alegre'),
@@ -84,17 +68,18 @@
 <section id="fees" class="mx-auto mb-36 w-full max-w-6xl xl:px-6">
 	<div class="flex gap-20 max-xl:flex-col">
 		<div class="grow">
-			<h2 class="mb-3 text-3xl font-semibold tracking-tight text-gray-900 max-xl:px-6">
-				{translate('Full Event Pass', 'Passe completo do evento')}
+			<h2 class="text-3xl font-semibold tracking-tight text-gray-900 max-xl:px-6">
+				{translation?.eventFeesTitle}
 			</h2>
-			<p class="mb-8 text-gray-600 max-xl:px-6">
-				{translate(
-					`Complete access to all 5 days of on-site activities (${format(global.eventStartDate, 'MMMM d')}\u2013${format(global.eventEndDate, 'd')}).`,
-					`Acesso completo a todos os 5 dias de atividades presenciais (${format(global.eventStartDate, 'd')} a ${format(global.eventEndDate, 'd')} de ${format(global.eventEndDate, 'MMMM', { locale: ptBR })}).`
-				)}
-			</p>
+			{#if translation?.eventFeesSubtitle}
+				<p class="mt-3 mb-8 text-gray-600 max-xl:px-6">
+					{translation.eventFeesSubtitle}
+				</p>
+			{/if}
 			<div class="overflow-x-auto">
-				<div class="min-w-fit rounded-2xl border border-gray-200 shadow-sm max-xl:mx-6">
+				<div
+					class="min-w-fit overflow-hidden rounded-2xl border border-gray-200 shadow-sm max-xl:mx-6"
+				>
 					<table class="w-full whitespace-nowrap">
 						<thead>
 							<tr>
@@ -112,7 +97,7 @@
 							</tr>
 						</thead>
 						<tbody class="text-gray-600 *:odd:bg-gray-50">
-							{#each eventFees as { category, fee }}
+							{#each translation?.eventFees || [] as { category, fee }}
 								{#if fee}
 									<tr>
 										<td class="px-6 py-4">{category}</td>
@@ -127,17 +112,18 @@
 			</div>
 		</div>
 		<div class="grow">
-			<h2 class="mb-3 text-3xl font-semibold tracking-tight text-gray-900 max-xl:px-6">
-				{translate('Live Online Courses', 'Cursos online ao vivo')}
+			<h2 class="text-3xl font-semibold tracking-tight text-gray-900 max-xl:px-6">
+				{translation?.courseFeesTitle}
 			</h2>
-			<p class="mb-8 text-gray-600 max-xl:px-6">
-				{translate(
-					`Enroll in one or more courses (${format(global.coursesStartDate, 'MMMM d')}\u2013${format(global.coursesEndDate, 'd')}).`,
-					`Inscreva-se em um ou mais cursos (${format(global.coursesStartDate, 'd')} a ${format(global.coursesEndDate, 'd')} de ${format(global.coursesEndDate, 'MMMM', { locale: ptBR })}).`
-				)}
-			</p>
+			{#if translation?.courseFeesSubtitle}
+				<p class="mt-3 mb-8 text-gray-600 max-xl:px-6">
+					{translation.courseFeesSubtitle}
+				</p>
+			{/if}
 			<div class="overflow-auto">
-				<div class="min-w-fit rounded-2xl border border-gray-200 shadow-sm max-xl:mx-6">
+				<div
+					class="min-w-fit overflow-hidden rounded-2xl border border-gray-200 shadow-sm max-xl:mx-6"
+				>
 					<table class="w-full whitespace-nowrap">
 						<thead>
 							<tr>
@@ -153,7 +139,7 @@
 							</tr>
 						</thead>
 						<tbody class="*:odd:bg-gray-50">
-							{#each registration.courseCategories as { duration, fee }}
+							{#each registration.courseFees as { duration, fee }}
 								<tr>
 									<td class="px-6 py-4 text-gray-700">{duration} {translate('hours', 'horas')}</td>
 									<td class="px-6 py-4 text-end text-gray-700">R$ {fee}</td>
@@ -190,13 +176,13 @@
 	</div>
 </section>
 
-{#if faqItems && faqItems.length > 0}
+{#if translation?.faq && translation.faq.length > 0}
 	<section id="FAQ" class="mx-auto mb-40 w-full max-w-6xl px-6">
 		<h2 class="mb-20 text-4xl font-semibold tracking-tight text-gray-900">
 			{translate('Frequently Asked Questions', 'Perguntas frequentes')}
 		</h2>
 		<div class="divide-y divide-gray-200">
-			{#each faqItems as { question, answer }}
+			{#each translation.faq as { question, answer }}
 				<div class="grid gap-4 not-first:pt-8 not-last:pb-8 md:grid-cols-2">
 					<div class="font-medium text-gray-900">{question}</div>
 					<div class="text-gray-600">{answer}</div>

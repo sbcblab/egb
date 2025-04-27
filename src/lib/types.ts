@@ -74,13 +74,9 @@ export interface Submissions {
 }
 
 export interface Registration {
-	undergraduateStudent: number | null;
-	graduateStudent: number | null;
-	researcher: number | null;
-	industryProfessional: number | null;
-	courseCategories: CourseCategory[];
-	registrationLink: string | null;
 	translations: RegistrationTranslation[];
+	courseFees: CourseFee[];
+	registrationLink: string | null;
 	howToGetToPortoAlegre: string | null;
 	nearbyHotels: string | null;
 	localTransport: string | null;
@@ -88,6 +84,11 @@ export interface Registration {
 }
 
 export interface RegistrationTranslation extends Translation {
+	eventFeesTitle: string;
+	eventFeesSubtitle: string | null;
+	courseFeesTitle: string;
+	courseFeesSubtitle: string | null;
+	eventFees: EventFee[];
 	faq: FaqItem[];
 }
 
@@ -208,7 +209,7 @@ export type PersonLink = {
 	link: string;
 };
 
-export type CourseCategory = {
+export type CourseFee = {
 	duration: number;
 	fee: number;
 };
@@ -222,4 +223,9 @@ export type CourseScheduleItem = {
 	date: string;
 	startTime: string;
 	endTime: string;
+};
+
+export type EventFee = {
+	category: string;
+	fee: number;
 };
