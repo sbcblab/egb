@@ -26,12 +26,12 @@
 	{lang}
 	title={translate('Program', 'Programa')}
 	imageUrl="{base}/api/assets/988afe9d-473a-4853-92d6-7d52a34dc518"
-	class="bg-[50%_47%] backdrop-blur-lg"
+	class="mb-16 bg-[50%_47%] backdrop-blur-lg"
 />
 
-<section id="activities" class="mx-auto mt-16 mb-24 w-full max-w-6xl px-6">
+<section id="activities" class="mx-auto mb-24 w-full max-w-6xl px-6">
 	<div class="mb-8">
-		<h2 class="mb-2.5 text-[2rem]/[1] font-semibold tracking-tight text-gray-900">
+		<h2 class="mb-2.5 text-[2rem]/[1.15] font-semibold tracking-tight text-gray-900">
 			{translate('Activities', 'Atividades')}
 		</h2>
 		{#if programTranslation?.activitiesSubtitle}
@@ -70,13 +70,31 @@
 							<div>{translations?.find((i) => i.languages_code === lang)?.title}</div>
 							{#if type}
 								<div class="text-sm/[1] text-gray-400 max-md:hidden">
-									{type}
+									{translate(
+										type,
+										type === 'Lecture'
+											? 'Palestra'
+											: type === 'Social Gathering'
+												? 'Confraternização'
+												: type === 'On-Site Course'
+													? 'Curso presencial'
+													: type
+									)}
 								</div>
 							{/if}
 							<div class="items-top flex justify-between md:hidden">
 								{#if type}
 									<div class="text-sm/[1] text-gray-400">
-										{type}
+										{translate(
+											type,
+											type === 'Lecture'
+												? 'Palestra'
+												: type === 'Social Gathering'
+													? 'Confraternização'
+													: type === 'On-Site Course'
+														? 'Curso presencial'
+														: type
+										)}
 									</div>
 								{/if}
 								<div class="text-sm/[1] whitespace-nowrap text-gray-400">
@@ -131,19 +149,19 @@
 		{/if}
 	</div>
 	<div class="grid gap-2 md:grid-cols-2 md:gap-1.5">
-		{#each courses.sort((a, b) => a.slug.localeCompare(b.slug)) as { slug, duration, level, translations }}
+		{#each courses.sort( (a, b) => a.slug.localeCompare(b.slug) ) as { slug, duration, level, translations }}
 			{@const translation = translations?.find((i) => i.languages_code === lang)}
 			<a
 				href="{base}/program/{slug}"
-				class="flex flex-col gap-2 rounded-2xl border border-gray-200 p-6 shadow-xs hover:bg-gray-50 active:shadow-inner"
+				class="flex flex-col gap-1.5 rounded-2xl border border-gray-200 p-6 shadow-xs hover:bg-gray-50 active:shadow-inner"
 			>
 				<div>
 					{translation?.title}
 				</div>
 				<div class="flex flex-wrap items-center gap-x-6 gap-y-1.5">
 					{#snippet coursePropriety(label: string, value: string, Icon: typeof UserIcon)}
-						<div class="flex items-center gap-2">
-							<Icon aria-label={label} class="size-4 shrink-0 text-gray-200" />
+						<div class="flex items-center gap-1.5">
+							<Icon aria-label={label} class="size-4 shrink-0 text-gray-300" />
 							<span class="text-sm text-gray-400">{value}</span>
 						</div>
 					{/snippet}

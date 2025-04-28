@@ -36,7 +36,7 @@
 			<h2 class="mb-7 text-3xl font-semibold tracking-tight text-gray-900">
 				{translate('What is EGB?', 'O que é a EGB?')}
 			</h2>
-			<div class="markdown w-full space-y-7 leading-[1.75] text-gray-700 max-md:mb-10 md:max-w-144">
+			<div class="markdown w-full space-y-7 leading-[1.75] text-gray-600 max-md:mb-10 md:max-w-144">
 				{@html translation.whatIsEgb}
 			</div>
 			<div
@@ -108,7 +108,7 @@
 					<button
 						onclick={() => (selectedEdition = edition)}
 						class="rounded-lg px-3 py-1 text-sm font-medium {isSelected
-							? 'bg-gray-800 text-white'
+							? 'bg-gray-900 text-white'
 							: 'bg-gray-200 text-gray-600'}">{edition.year}</button
 					>
 				{/each}
@@ -125,7 +125,7 @@
 								onclick={() => (selectedEdition = edition)}
 								aria-label={String(edition.year)}
 								class="size-2.5 rounded-full font-medium {isSelected
-									? 'bg-gray-800'
+									? 'bg-gray-900'
 									: 'bg-gray-200'}"
 							>
 							</button>
@@ -169,13 +169,13 @@
 						<button
 							onclick={() => (selectedEdition = edition)}
 							class="relative rounded-lg px-3 py-1 text-sm font-medium {isSelected
-								? 'bg-gray-800 text-white'
+								? 'bg-gray-900 text-white'
 								: 'bg-gray-200 text-gray-600'}"
 						>
 							<span>{edition.year}</span>
 							<div
 								class="absolute top-1/2 -left-6 size-3 -translate-y-1/2 rounded-full {isSelected
-									? 'bg-gray-800'
+									? 'bg-gray-900'
 									: 'bg-gray-200'}"
 							></div>
 						</button>

@@ -37,20 +37,19 @@
 	{lang}
 	title={translate('Call for Posters', 'Chamada de pôsteres')}
 	imageUrl="{base}/api/assets/544ff6c5-c527-4c0d-aeab-214058f86d95"
-	class="mb-20 bg-top"
+	class="mb-16 bg-top"
 />
 
-<section id="overview" class="mx-auto mb-32 w-full max-w-6xl px-6">
-	<h2 class="mb-5 text-3xl font-semibold tracking-tight text-gray-900">
+<section id="overview" class="mx-auto mb-24 w-full max-w-6xl px-6">
+	<h2 class="mb-4 text-[2rem]/[1.15] font-semibold tracking-tight text-gray-900">
 		{translate('Submission Overview', 'Visão geral')}
 	</h2>
-	<p class="mb-14 max-w-128 leading-[1.55] text-gray-600">
-		{translate(
-			'We invite authors to submit original work (completed or ongoing) related to Bioinformatics.',
-			'Convidamos autores a submeter trabalhos originais (concluídos ou em andamento) na área de Bioinformática.'
-		)}
-	</p>
-	<div class="flex items-center justify-center gap-4 max-md:flex-col">
+	{#if translation?.overview}
+		<p class="mb-12 max-w-128 leading-[1.55] text-gray-600">
+			{translation.overview}
+		</p>
+	{/if}
+	<div class="flex items-center justify-between max-md:flex-col">
 		{#snippet phase(
 			startDate: string | null,
 			endDate: string | null,
@@ -58,18 +57,27 @@
 			description: string,
 			Icon: any
 		)}
-			<div class="flex w-56 flex-col items-center text-center">
-				<Icon strokeWidth={1.25} class="mb-6 size-16 text-gray-800" />
-				<div class="mb-0.5 text-sm font-medium text-gray-400">
+			<div
+				class="flex max-w-68 flex-col items-center rounded-3xl border border-gray-200 p-6 text-center md:w-56"
+			>
+				<Icon strokeWidth={1.25} class="mb-5 size-12 text-gray-200" />
+				<div class="mb-0.75 text-sm font-medium text-gray-400">
 					{#if startDate && endDate}
-						{translate(format(startDate, 'dd MMM'), format(startDate, 'dd MMM', { locale: ptBR }))} &ndash;
-						{translate(format(endDate, 'dd MMM'), format(endDate, 'dd MMM', { locale: ptBR }))}
+						{translate(
+							format(startDate, 'dd MMM'),
+							format(startDate, 'dd MMM', { locale: ptBR })
+						)}&ndash;{translate(
+							format(endDate, 'dd MMM'),
+							format(endDate, 'dd MMM', { locale: ptBR })
+						)}
+					{:else if startDate}
+						{translate(format(startDate, 'dd MMM'), format(startDate, 'dd MMM', { locale: ptBR }))}
 					{:else}
 						<em>To be defined</em>
 					{/if}
 				</div>
-				<h3 class="mb-2.5 font-medium">{title}</h3>
-				<p class="text-sm/[1.5] text-gray-500">
+				<h3 class="mb-3 text-sm font-medium text-gray-900">{title}</h3>
+				<p class="text-sm/[1.5] text-gray-400">
 					{description}
 				</p>
 			</div>
@@ -80,11 +88,11 @@
 			translate('Abstract Submission', 'Submissão de resumos'),
 			translate(
 				'Submit a 1\u20134 page PDF summary of your work using the provided templates.',
-				'Envie um resumo de 1\u20134 páginas em PDF utilizando os templates disponíveis.'
+				'Envie um resumo de 1\u20134 páginas do seu trabalho de utilizando os templates disponíveis.'
 			),
 			FileInputIcon
 		)}
-		<ChevronDownIcon strokeWidth={2} class="size-12 text-gray-200 md:-rotate-90" />
+		<ChevronDownIcon strokeWidth={1} class="size-12 shrink-0 text-gray-200 md:-rotate-90" />
 		{@render phase(
 			submissions.submissionDeadline,
 			submissions.reviewEnd,
@@ -95,7 +103,18 @@
 			),
 			GlassesIcon
 		)}
-		<ChevronDownIcon strokeWidth={2} class="size-12 text-gray-200 md:-rotate-90" />
+		<ChevronDownIcon strokeWidth={1} class="size-12 shrink-0 text-gray-200 md:-rotate-90" />
+		{@render phase(
+			submissions.acceptanceNotification,
+			null,
+			translate('Acceptance Notification', 'Notificação de aceite'),
+			translate(
+				'Authors will receive results via email, including review feedback and presentation instructions.',
+				'Autores receberão os resultados por e-mail com feedback e instruções para apresentação.'
+			),
+			MailCheckIcon
+		)}
+		<ChevronDownIcon strokeWidth={1} class="size-12 shrink-0 text-gray-200 md:-rotate-90" />
 		{@render phase(
 			global.eventStartDate,
 			global.eventEndDate,
@@ -179,16 +198,16 @@
 </section>
 
 <section id="important-dates" class="mx-auto mb-32 w-full max-w-6xl px-6">
-	<h2 class="mb-9 text-3xl font-semibold tracking-tight text-gray-900">
+	<h2 class="mb-10 text-[2rem]/[1.15] font-semibold tracking-tight text-gray-900">
 		{translate('Important Dates', 'Datas importantes')}
 	</h2>
-	<ul class="space-y-7">
+	<ul class="space-y-8">
 		{#snippet date(name: string, date: string | null, Icon: any)}
 			<li class="flex items-center gap-5">
-				<Icon strokeWidth={1.25} class="size-11 text-gray-800" />
+				<Icon strokeWidth={1} class="size-12 text-gray-300" />
 				<div>
-					<div class="font-medium">{name}</div>
-					<div class="text-gray-600">
+					<div class="mb-0.5 font-medium text-gray-800">{name}</div>
+					<div class="text-gray-500">
 						{#if date}
 							{translate(
 								format(date, 'MMM d, y'),

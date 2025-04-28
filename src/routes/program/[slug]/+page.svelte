@@ -157,7 +157,7 @@
 					{#if activity.locationLine1 || activity.locationLine2}
 						<div class="flex items-center gap-3.5">
 							<div
-								class="flex size-9 items-center justify-center overflow-hidden rounded-lg border border-gray-200"
+								class="flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-gray-200"
 							>
 								<RivetIconsMapPinSolid class="size-4.5 text-gray-400/65" />
 							</div>
@@ -171,7 +171,7 @@
 				{#if translation?.summary}
 					<div class="mt-16">
 						<h2 class="mb-3 text-lg font-semibold">{translate('Summary', 'Resumo')}</h2>
-						<p class="markdown leading-[1.75] text-gray-700">
+						<p class="markdown leading-[1.75] text-gray-600">
 							{@html translation.summary}
 						</p>
 					</div>
@@ -184,12 +184,12 @@
 					<div class="flex flex-col gap-8 rounded-3xl border border-gray-200 p-8 shadow-xs">
 						<div class="flex items-center gap-5">
 							<div
-								class="w-full max-w-26 self-stretch rounded-2xl border border-gray-200 bg-cover bg-center"
+								class="w-full max-w-26 shrink-0 self-stretch rounded-2xl border border-gray-200 bg-cover bg-center"
 								style:background-image="url({base}/api/assets/{picture.id})"
 							></div>
 							<div class="py-5">
 								<div class="mb-1 text-lg/[1.15] font-medium">{name}</div>
-								<div class="text-gray-700">
+								<div class="text-gray-600">
 									{institution.name}, {country.translations?.find((t) => t.languages_code === lang)
 										?.name}
 								</div>
@@ -289,15 +289,15 @@
 					<div class="mb-16">
 						<div class="flex gap-2">
 							<div class="w-18 pr-3"></div>
-							<div class="grid grow grid-cols-3 gap-1">
+							<div class="grid grow grid-cols-3 gap-0.5">
 								{#each [translate('Morning', 'Manhã'), translate('Afternoon', 'Tarde'), translate('Evening', 'Noite')] as day}
 									<div class="pb-1 text-center text-sm text-gray-400">{day}</div>
 								{/each}
 							</div>
 						</div>
-						<div class="flex flex-col gap-1 p-1">
+						<div class="flex flex-col gap-0.5 p-0.5">
 							{#each getDatesBetween(global.coursesStartDate, global.coursesEndDate) as date}
-								<div class="flex h-7.5 gap-1">
+								<div class="flex h-7 gap-0.5">
 									<div
 										class="grid w-18 grid-cols-2 items-center justify-end gap-1.25 pr-3 text-sm whitespace-nowrap"
 									>
@@ -305,15 +305,15 @@
 											{format(date, 'd/M')}
 										</span>
 										<span class="text-gray-400">
-											{translate(format(date, 'E'), format(date, 'E', { locale: ptBR }))}
+											{translate(format(date, 'E'), format(date, 'EEEEEE', { locale: ptBR }))}
 										</span>
 									</div>
-									<div class="grid grow grid-cols-3 gap-1">
+									<div class="grid grow grid-cols-3 gap-0.5">
 										{#snippet timePeriodCol(condition: (s: string) => boolean)}
 											<div class="flex flex-col gap-1">
 												{#each schedule.filter((s) => s.date === date && condition(s.startTime)) as item}
 													<div
-														class="flex h-full items-center justify-center rounded-md bg-gray-900 text-xs font-medium text-gray-100 sm:text-sm"
+														class="flex h-full items-center justify-center rounded-md bg-gray-950 text-xs font-medium text-white sm:text-sm"
 													>
 														{item.startTime.slice(0, 5)} &ndash; {item.endTime.slice(0, 5)}
 													</div>
@@ -335,7 +335,7 @@
 				{/if}
 				{#snippet courseSection(label: string, text?: string | null)}
 					{#if text}
-						<div class="mb-10">
+						<div class="mb-12">
 							<h2 class="mb-2.5 font-medium text-gray-900">{label}</h2>
 							<p class="markdown leading-[1.75] text-gray-600">
 								{@html text}
@@ -379,19 +379,19 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-span-3 space-y-6">
+			<div class="col-span-3 space-y-3">
 				{#each instructors || [] as { people_id }}
 					{@const { name, picture, country, institution, links, translations } = people_id}
 					{@const instructorTranslation = translations.find((t) => t.languages_code === lang)}
 					<div class="flex flex-col gap-8 rounded-3xl border border-gray-200 p-8 shadow-xs">
 						<div class="flex items-center gap-5">
 							<div
-								class="w-full max-w-26 self-stretch rounded-2xl border border-gray-200 bg-cover bg-center"
+								class="w-full max-w-26 shrink-0 self-stretch rounded-2xl border border-gray-200 bg-cover bg-center"
 								style:background-image="url({base}/api/assets/{picture.id})"
 							></div>
 							<div class="py-5">
 								<div class="mb-1 text-lg/[1.15] font-medium">{name}</div>
-								<div class="text-gray-700">
+								<div class="text-gray-600">
 									{institution.name}, {country.translations?.find((t) => t.languages_code === lang)
 										?.name}
 								</div>

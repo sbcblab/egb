@@ -78,6 +78,7 @@ export interface Submissions {
 }
 
 export interface SubmissionsTranslation extends Translation {
+	overview: string | null;
 	abstractGuidelines: { item: string }[];
 	posterGuidelines: { item: string }[];
 }

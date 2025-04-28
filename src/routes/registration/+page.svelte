@@ -62,20 +62,24 @@
 	{lang}
 	title={translate('Registration', 'Inscrição')}
 	imageUrl="{base}/api/assets/06e17320-8cc9-4491-bb0f-a4e82202e2d9"
-	class="mb-20 bg-[60%_17%]"
+	class="mb-16 bg-[60%_17%]"
 />
 
-<section id="fees" class="mx-auto mb-36 w-full max-w-6xl xl:px-6">
+<section id="fees" class="mx-auto mb-28 w-full max-w-6xl xl:px-6">
 	<div class="flex gap-20 max-xl:flex-col">
 		<div class="grow">
-			<h2 class="text-3xl font-semibold tracking-tight text-gray-900 max-xl:px-6">
-				{translation?.eventFeesTitle}
-			</h2>
-			{#if translation?.eventFeesSubtitle}
-				<p class="mt-3 mb-8 text-gray-600 max-xl:px-6">
-					{translation.eventFeesSubtitle}
-				</p>
-			{/if}
+			<div class="mb-8 max-xl:px-6">
+				<h2
+					class="mb-2.5 text-[2rem]/[1.15] font-semibold tracking-tight text-gray-900 max-xl:px-6"
+				>
+					{translation?.eventFeesTitle}
+				</h2>
+				{#if translation?.eventFeesSubtitle}
+					<p class="text-gray-500">
+						{translation.eventFeesSubtitle}
+					</p>
+				{/if}
+			</div>
 			<div class="overflow-x-auto">
 				<div
 					class="min-w-fit overflow-hidden rounded-2xl border border-gray-200 shadow-sm max-xl:mx-6"
@@ -96,10 +100,10 @@
 								</th>
 							</tr>
 						</thead>
-						<tbody class="text-gray-600 *:odd:bg-gray-50">
+						<tbody>
 							{#each translation?.eventFees || [] as { category, fee }}
 								{#if fee}
-									<tr>
+									<tr class="text-gray-600 odd:bg-gray-50">
 										<td class="px-6 py-4">{category}</td>
 										<td class="px-6 py-4 text-end">R$ {fee}</td>
 										<td class="px-6 py-4 text-end">R$ {Math.floor(fee * 0.85)}</td>
@@ -112,14 +116,18 @@
 			</div>
 		</div>
 		<div class="grow">
-			<h2 class="text-3xl font-semibold tracking-tight text-gray-900 max-xl:px-6">
-				{translation?.courseFeesTitle}
-			</h2>
-			{#if translation?.courseFeesSubtitle}
-				<p class="mt-3 mb-8 text-gray-600 max-xl:px-6">
-					{translation.courseFeesSubtitle}
-				</p>
-			{/if}
+			<div class="mb-8 max-xl:px-6">
+				<h2
+					class="mb-2.5 text-[2rem]/[1.15] font-semibold tracking-tight text-gray-900 max-xl:px-6"
+				>
+					{translation?.courseFeesTitle}
+				</h2>
+				{#if translation?.courseFeesSubtitle}
+					<p class="text-gray-500">
+						{translation.courseFeesSubtitle}
+					</p>
+				{/if}
+			</div>
 			<div class="overflow-auto">
 				<div
 					class="min-w-fit overflow-hidden rounded-2xl border border-gray-200 shadow-sm max-xl:mx-6"
@@ -138,9 +146,9 @@
 								</th>
 							</tr>
 						</thead>
-						<tbody class="*:odd:bg-gray-50">
+						<tbody>
 							{#each registration.courseFees as { duration, fee }}
-								<tr>
+								<tr class="odd:bg-gray-50">
 									<td class="px-6 py-4 text-gray-700">{duration} {translate('hours', 'horas')}</td>
 									<td class="px-6 py-4 text-end text-gray-700">R$ {fee}</td>
 								</tr>
@@ -177,7 +185,7 @@
 </section>
 
 {#if translation?.faq && translation.faq.length > 0}
-	<section id="FAQ" class="mx-auto mb-40 w-full max-w-6xl px-6">
+	<section id="FAQ" class="mx-auto mb-28 w-full max-w-6xl px-6">
 		<h2 class="mb-20 text-4xl font-semibold tracking-tight text-gray-900">
 			{translate('Frequently Asked Questions', 'Perguntas frequentes')}
 		</h2>
@@ -208,7 +216,7 @@
 				</div>
 				<div class="px-7 pt-7 pb-8 transition-all md:group-hover:bg-gray-100">
 					<h3 class="mb-3 font-medium text-gray-900">{title}</h3>
-					<p class="text-sm text-gray-600">{description}</p>
+					<p class="text-sm/[1.6] text-gray-500">{description}</p>
 				</div>
 			</a>
 		{/each}
