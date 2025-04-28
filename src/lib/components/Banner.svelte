@@ -18,7 +18,7 @@
 	>
 		<Header {lang} />
 		<h1
-			class="mx-auto mb-10 w-full max-w-6xl px-6 text-6xl font-semibold tracking-tight text-white"
+			class="mx-auto mb-10 w-full max-w-6xl px-6 text-5xl font-semibold tracking-tight text-white md:text-6xl"
 		>
 			{title}
 		</h1>

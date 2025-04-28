@@ -130,7 +130,7 @@
 
 <div class="mx-auto mb-32 grid w-full max-w-6xl gap-32 px-6 md:mb-18 md:grid-cols-2">
 	<section id="abstract-guidelines">
-		<h2 class="mb-5 text-3xl font-semibold tracking-tight text-gray-900">
+		<h2 class="mb-5 text-[2rem]/[1.15] font-semibold tracking-tight text-gray-900">
 			{translate('Abstract Guidelines', 'Diretrizes para resumos')}
 		</h2>
 		<ul class="space-y-2.5">
@@ -169,7 +169,7 @@
 		</ul>
 	</section>
 	<section id="poster-guidelines">
-		<h2 class="mb-5 text-3xl font-semibold tracking-tight text-gray-900">
+		<h2 class="mb-5 text-[2rem]/[1.15] font-semibold tracking-tight text-gray-900">
 			{translate('Poster Guidelines', 'Diretrizes para pôsteres')}
 		</h2>
 		<ul class="space-y-2.5">

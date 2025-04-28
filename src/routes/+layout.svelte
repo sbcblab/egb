@@ -1,4 +1,5 @@
 <script>
+	import { base } from '$app/paths';
 	import { page } from '$app/state';
 	import Footer from '$lib/components/Footer.svelte';
 	import MobileNav from '$lib/components/MobileNav.svelte';
@@ -7,7 +8,7 @@
 	let { children, data } = $props();
 	let { lang, global } = data;
 
-	let isHome = $derived(page.url.pathname === '/');
+	let isHome = $derived(page.url.pathname === `${base}/`);
 </script>
 
 <div class="flex min-h-full flex-col text-pretty text-gray-950 subpixel-antialiased">

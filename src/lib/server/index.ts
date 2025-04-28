@@ -23,7 +23,8 @@ export async function getAbout() {
 				'*',
 				{
 					translations: ['*'],
-					whatIsEgbImage: ['id', 'title'],
+					whatIsEgbImage1: ['id', 'title'],
+					whatIsEgbImage2: ['id', 'title'],
 					theVenueImage: ['id', 'title'],
 					committee: [
 						{

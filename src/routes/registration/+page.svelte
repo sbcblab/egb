@@ -69,9 +69,7 @@
 	<div class="flex gap-20 max-xl:flex-col">
 		<div class="grow">
 			<div class="mb-8 max-xl:px-6">
-				<h2
-					class="mb-2.5 text-[2rem]/[1.15] font-semibold tracking-tight text-gray-900 max-xl:px-6"
-				>
+				<h2 class="mb-2.5 text-[2rem]/[1.15] font-semibold tracking-tight text-gray-900">
 					{translation?.eventFeesTitle}
 				</h2>
 				{#if translation?.eventFeesSubtitle}
@@ -117,9 +115,7 @@
 		</div>
 		<div class="grow">
 			<div class="mb-8 max-xl:px-6">
-				<h2
-					class="mb-2.5 text-[2rem]/[1.15] font-semibold tracking-tight text-gray-900 max-xl:px-6"
-				>
+				<h2 class="mb-2.5 text-[2rem]/[1.15] font-semibold tracking-tight text-gray-900">
 					{translation?.courseFeesTitle}
 				</h2>
 				{#if translation?.courseFeesSubtitle}

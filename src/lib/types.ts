@@ -41,7 +41,8 @@ export interface Global {
 
 export interface About {
 	translations: AboutTranslation[];
-	whatIsEgbImage: Image | null;
+	whatIsEgbImage1: Image | null;
+	whatIsEgbImage2: Image | null;
 	theVenueImage: Image | null;
 	committee: AboutPerson[];
 	organizers: AboutInstitution[];

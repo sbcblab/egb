@@ -24,7 +24,7 @@
 	{lang}
 	title={translate('About', 'Sobre')}
 	imageUrl="{base}/api/assets/46157eab-8cb1-4c72-9cb6-2635fa4c6a65"
-	class="mb-20 bg-[50%_90%]"
+	class="mb-16 bg-[50%_90%]"
 />
 
 {#if translation?.whatIsEgb}
@@ -36,22 +36,46 @@
 			<h2 class="mb-7 text-3xl font-semibold tracking-tight text-gray-900">
 				{translate('What is EGB?', 'O que é a EGB?')}
 			</h2>
-			<div class="markdown w-full space-y-7 leading-[1.75] text-gray-600 max-md:mb-10 md:max-w-144">
+			<div
+				class="markdown w-full space-y-7 leading-[1.75] wrap-anywhere text-gray-600 max-md:mb-10 md:max-w-144"
+			>
 				{@html translation.whatIsEgb}
 			</div>
-			<div
-				style:background-image={about.theVenueImage
-					? `url(${base}/api/assets/${about.whatIsEgbImage?.id})`
-					: null}
-				class="mt-10 h-64 rounded-3xl bg-gray-300 bg-cover bg-center md:hidden"
-			></div>
+			{#if about.whatIsEgbImage1}
+				<div
+					style:background-image={about.theVenueImage
+						? `url(${base}/api/assets/${about.whatIsEgbImage1?.id})`
+						: null}
+					class="mt-10 h-64 rounded-3xl bg-gray-300 bg-cover bg-center md:hidden"
+				></div>
+			{/if}
+			{#if about.whatIsEgbImage2}
+				<div
+					style:background-image={about.theVenueImage
+						? `url(${base}/api/assets/${about.whatIsEgbImage2?.id})`
+						: null}
+					class="mt-10 h-64 rounded-3xl bg-gray-300 bg-cover bg-center md:hidden"
+				></div>
+			{/if}
 		</div>
-		<div
-			style:background-image={about.theVenueImage
-				? `url(${base}/api/assets/${about.whatIsEgbImage?.id})`
-				: null}
-			class="h-full rounded-3xl bg-gray-300 bg-cover bg-center max-md:hidden"
-		></div>
+		<div class="flex h-full flex-col gap-6 max-md:hidden">
+			{#if about.whatIsEgbImage1}
+				<div
+					style:background-image={about.theVenueImage
+						? `url(${base}/api/assets/${about.whatIsEgbImage1?.id})`
+						: null}
+					class="h-full rounded-3xl bg-gray-300 bg-cover bg-center"
+				></div>
+			{/if}
+			{#if about.whatIsEgbImage2}
+				<div
+					style:background-image={about.theVenueImage
+						? `url(${base}/api/assets/${about.whatIsEgbImage2?.id})`
+						: null}
+					class="h-full rounded-3xl bg-gray-300 bg-cover bg-center"
+				></div>
+			{/if}
+		</div>
 	</section>
 {/if}
 
