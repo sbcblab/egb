@@ -33,11 +33,11 @@
 		class="mx-auto mb-32 grid w-full max-w-6xl grid-cols-2 flex-col-reverse items-center gap-18 px-6 max-md:flex"
 	>
 		<div>
-			<h2 class="mb-7 text-3xl font-semibold tracking-tight text-gray-900">
+			<h2 class="mb-7 text-3xl font-semibold tracking-tight text-slate-900">
 				{translate('What is EGB?', 'O que é a EGB?')}
 			</h2>
 			<div
-				class="markdown w-full space-y-7 leading-[1.75] wrap-anywhere text-gray-600 max-md:mb-10 md:max-w-144"
+				class="markdown w-full space-y-7 leading-[1.75] wrap-anywhere text-slate-600 max-md:mb-10 md:max-w-144"
 			>
 				{@html translation.whatIsEgb}
 			</div>
@@ -46,7 +46,7 @@
 					style:background-image={about.theVenueImage
 						? `url(${base}/api/assets/${about.whatIsEgbImage1?.id})`
 						: null}
-					class="mt-10 h-64 rounded-3xl bg-gray-300 bg-cover bg-center md:hidden"
+					class="mt-10 h-64 rounded-3xl bg-slate-300 bg-cover bg-center md:hidden"
 				></div>
 			{/if}
 			{#if about.whatIsEgbImage2}
@@ -54,7 +54,7 @@
 					style:background-image={about.theVenueImage
 						? `url(${base}/api/assets/${about.whatIsEgbImage2?.id})`
 						: null}
-					class="mt-10 h-64 rounded-3xl bg-gray-300 bg-cover bg-center md:hidden"
+					class="mt-10 h-64 rounded-3xl bg-slate-300 bg-cover bg-center md:hidden"
 				></div>
 			{/if}
 		</div>
@@ -64,7 +64,7 @@
 					style:background-image={about.theVenueImage
 						? `url(${base}/api/assets/${about.whatIsEgbImage1?.id})`
 						: null}
-					class="h-full rounded-3xl bg-gray-300 bg-cover bg-center"
+					class="h-full rounded-3xl bg-slate-300 bg-cover bg-center"
 				></div>
 			{/if}
 			{#if about.whatIsEgbImage2}
@@ -72,7 +72,7 @@
 					style:background-image={about.theVenueImage
 						? `url(${base}/api/assets/${about.whatIsEgbImage2?.id})`
 						: null}
-					class="h-full rounded-3xl bg-gray-300 bg-cover bg-center"
+					class="h-full rounded-3xl bg-slate-300 bg-cover bg-center"
 				></div>
 			{/if}
 		</div>
@@ -88,13 +88,13 @@
 			style:background-image={about.theVenueImage
 				? `url(${base}/api/assets/${about.theVenueImage?.id})`
 				: null}
-			class="h-full min-h-72 w-full rounded-3xl bg-gray-300 bg-cover bg-center"
+			class="h-full min-h-72 w-full rounded-3xl bg-slate-300 bg-cover bg-center"
 		></div>
 		<div>
-			<h2 class="mb-7 text-3xl font-semibold tracking-tight text-gray-900">
+			<h2 class="mb-7 text-3xl font-semibold tracking-tight text-slate-900">
 				{translate('The Venue', 'Local do evento')}
 			</h2>
-			<div class="markdown w-full space-y-7 leading-[1.75] text-gray-600 md:max-w-144">
+			<div class="markdown w-full space-y-7 leading-[1.75] text-slate-600 md:max-w-144">
 				{@html translation.theVenue}
 			</div>
 		</div>
@@ -103,7 +103,7 @@
 
 {#if about.committee && about.committee.length > 0}
 	<section id="committee" class="mx-auto mb-32 w-full max-w-6xl px-6">
-		<h2 class="mb-7 text-3xl font-semibold tracking-tight text-gray-900">
+		<h2 class="mb-7 text-3xl font-semibold tracking-tight text-slate-900">
 			{translate('Organizing Committee', 'Comitê organizador')}
 		</h2>
 		<div class="grid gap-6 md:grid-cols-2">
@@ -122,7 +122,7 @@
 
 {#if previousEditions.length > 0}
 	<section id="previousEditions" class="mx-auto mb-32 w-full max-w-6xl px-6 lg:hidden">
-		<h2 class="mb-9 text-3xl font-semibold tracking-tight text-gray-900">
+		<h2 class="mb-9 text-3xl font-semibold tracking-tight text-slate-900">
 			{translate('Previous Editions', 'Edições anteriores')}
 		</h2>
 		<div class="mt-14 mb-16">
@@ -132,13 +132,13 @@
 					<button
 						onclick={() => (selectedEdition = edition)}
 						class="rounded-lg px-3 py-1 text-sm font-medium {isSelected
-							? 'bg-gray-900 text-white'
-							: 'bg-gray-200 text-gray-600'}">{edition.year}</button
+							? 'bg-slate-900 text-white'
+							: 'bg-slate-200 text-slate-600'}">{edition.year}</button
 					>
 				{/each}
 			</div>
 			<div class="relative h-6">
-				<div class="absolute inset-0 overflow-hidden text-lg tracking-wider text-gray-300">
+				<div class="absolute inset-0 overflow-hidden text-lg tracking-wider text-slate-300">
 					..........................................................................................................................................................................
 				</div>
 				<div class="absolute right-0 bottom-1 left-0 flex translate-y-1/2 justify-around">
@@ -149,8 +149,8 @@
 								onclick={() => (selectedEdition = edition)}
 								aria-label={String(edition.year)}
 								class="size-2.5 rounded-full font-medium {isSelected
-									? 'bg-gray-900'
-									: 'bg-gray-200'}"
+									? 'bg-slate-900'
+									: 'bg-slate-200'}"
 							>
 							</button>
 						</div>
@@ -162,13 +162,13 @@
 			{@const { title, translations, image } = selectedEdition}
 			<div class="grid items-center gap-9 md:grid-cols-2 md:gap-16">
 				<div>
-					<h3 class="mb-3 text-lg font-semibold text-gray-900">{title}</h3>
-					<p class="w-full leading-[1.75] text-gray-600">
+					<h3 class="mb-3 text-lg font-semibold text-slate-900">{title}</h3>
+					<p class="w-full leading-[1.75] text-slate-600">
 						{translations?.find((i) => i.languages_code === lang)?.description}
 					</p>
 				</div>
 				<div
-					class="h-full min-h-64 rounded-3xl bg-gray-400 bg-cover bg-center"
+					class="h-full min-h-64 rounded-3xl bg-slate-400 bg-cover bg-center"
 					style:background-image="url({base}/api/assets/{image.id})"
 				></div>
 			</div>
@@ -182,7 +182,7 @@
 		<div class="flex">
 			<div class="relative h-52 w-48">
 				<div
-					class="h-full overflow-y-hidden text-xl tracking-wider text-gray-300"
+					class="h-full overflow-y-hidden text-xl tracking-wider text-slate-200/60"
 					style:writing-mode="vertical-rl"
 				>
 					..............................................................................................................................................................................
@@ -192,15 +192,15 @@
 						{@const isSelected = edition.year === selectedEdition?.year}
 						<button
 							onclick={() => (selectedEdition = edition)}
-							class="relative rounded-lg px-3 py-1 text-sm font-medium {isSelected
-								? 'bg-gray-900 text-white'
-								: 'bg-gray-200 text-gray-600'}"
+							class="group relative rounded-lg px-3 py-1 text-sm font-medium transition-all {isSelected
+								? 'bg-primary-200 text-primary-700'
+								: 'bg-slate-100 text-slate-500 hover:bg-slate-200 active:bg-slate-300'}"
 						>
 							<span>{edition.year}</span>
 							<div
-								class="absolute top-1/2 -left-6 size-3 -translate-y-1/2 rounded-full {isSelected
-									? 'bg-gray-900'
-									: 'bg-gray-200'}"
+								class="absolute top-1/2 -left-6 size-3 -translate-y-1/2 rounded-full transition-all {isSelected
+									? 'bg-primary-200'
+									: 'bg-slate-100 group-hover:bg-slate-200 group-active:bg-slate-300'}"
 							></div>
 						</button>
 					{/each}
@@ -210,13 +210,13 @@
 				{@const { title, translations, image } = selectedEdition}
 				<div class="grid h-full gap-9 md:grid-cols-2 md:gap-20">
 					<div>
-						<h3 class="mb-4 text-lg font-semibold text-gray-900">{title}</h3>
-						<p class="w-full max-w-128 leading-[1.75] text-gray-600">
+						<h3 class="mb-4 text-lg font-semibold text-slate-900">{title}</h3>
+						<p class="w-full max-w-128 leading-[1.75] text-slate-600">
 							{translations?.find((i) => i.languages_code === lang)?.description}
 						</p>
 					</div>
 					<div
-						class="rounded-3xl bg-gray-400 bg-cover bg-center"
+						class="rounded-3xl bg-slate-400 bg-cover bg-center"
 						style:background-image="url({base}/api/assets/{image.id})"
 					></div>
 				</div>
@@ -231,7 +231,7 @@
 	institutions: { institutions_id: Institution }[]
 )}
 	<section {id} class="mx-auto mb-32 max-w-6xl px-6">
-		<h2 class="mb-9 text-center text-lg font-medium tracking-tight text-gray-900">
+		<h2 class="mb-9 text-center text-lg font-medium tracking-tight text-slate-900">
 			{title}
 		</h2>
 		<div class="flex flex-wrap justify-center gap-9">

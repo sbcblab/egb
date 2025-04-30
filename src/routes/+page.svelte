@@ -21,7 +21,10 @@
 	style:background-image="url({base}/api/assets/9045ab3e-90b9-439a-a9cd-fcca24b371e2)"
 	class="relative h-screen bg-cover bg-top"
 >
-	<div class="absolute inset-0 flex flex-col bg-gray-950/65">
+	<div
+		class="absolute inset-0 bg-linear-to-t from-primary-700/70 to-transparent backdrop-saturate-75"
+	></div>
+	<div class="absolute inset-0 flex flex-col bg-slate-950/55">
 		<Header {lang} />
 		<div class="flex grow flex-col items-center justify-center text-center">
 			<p

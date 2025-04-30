@@ -8,6 +8,22 @@
 		'Ubuntu Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
 		'Segoe UI Symbol', 'Noto Color Emoji';
 	--default-transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+
+	--color-primary-50: #f0f5fe;
+	--color-primary-100: #dee8fb;
+	--color-primary-200: #c4d9f9;
+	--color-primary-300: #9cc1f4;
+	--color-primary-400: #6d9eed;
+	--color-primary-500: #4b7de6;
+	--color-primary-600: #365fda;
+	--color-primary-700: #2e4ecc;
+	--color-primary-800: #2a40a3;
+	--color-primary-900: #273981;
+	--color-primary-950: #1c254f;
+
+	--shadow-card:
+		0 0 0 1px var(--color-slate-200), 0 10px 15px -3px rgba(0, 0, 0, 0.05),
+		0 4px 6px -4px rgba(0, 0, 0, 0.05);
 }
 
 @layer base {
@@ -16,11 +32,13 @@
 		cursor: pointer;
 	}
 
+	li {
+		@apply marker:text-slate-300;
+	}
+
 	.markdown {
 		a {
-			color: theme(--color-gray-800);
-			font-weight: 500;
-			text-decoration: underline;
+			@apply font-medium text-slate-800 underline hover:text-gray-800/70;
 		}
 	}
 }

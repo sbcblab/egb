@@ -43,7 +43,7 @@
 {#if isOpen}
 	<div
 		transition:fly={{ duration: 400, easing: expoOut }}
-		class="fixed inset-0 z-20 bg-gray-950/70 backdrop-blur-xs"
+		class="fixed inset-0 z-20 bg-slate-950/70 backdrop-blur-xs"
 	></div>
 	<div
 		use:clickOutside
@@ -51,22 +51,25 @@
 		transition:fly={{ duration: 400, x: '100%', opacity: 1, easing: expoOut }}
 		class="fixed top-0 right-0 bottom-0 z-30 w-full max-w-64 bg-white shadow-lg"
 	>
-		<div class="mb-12 flex items-center justify-between pt-3 pr-1 pl-7">
-			<Logo class="w-32 text-gray-800" />
-			<button onclick={close} class="p-5 text-gray-400 transition-all hover:text-gray-200">
-				<XIcon strokeWidth={1.5} class="size-6" />
-			</button>
+		<div class="relative size-full">
+			<div class="absolute inset-0"></div>
+			<div class="mb-12 flex items-center justify-between pt-3 pr-1 pl-7">
+				<Logo class="w-32 text-slate-800" />
+				<button onclick={close} class="p-5 text-slate-400 transition-all hover:text-slate-200">
+					<XIcon strokeWidth={1.5} class="size-6" />
+				</button>
+			</div>
+			<nav class="flex w-full flex-col items-start">
+				{#each items as item}
+					<a
+						href={item.href}
+						onclick={close}
+						class="px-7 py-3.5 text-xl font-medium text-slate-900 transition-all hover:text-slate-400"
+					>
+						{item[lang]}
+					</a>
+				{/each}
+			</nav>
 		</div>
-		<nav class="flex w-full flex-col items-start">
-			{#each items as item}
-				<a
-					href={item.href}
-					onclick={close}
-					class="px-7 py-3.5 text-xl font-medium text-gray-900 transition-all hover:text-gray-400"
-				>
-					{item[lang]}
-				</a>
-			{/each}
-		</nav>
 	</div>
 {/if}

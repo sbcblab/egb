@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import Banner from '$lib/components/Banner.svelte';
+	import Button from '$lib/components/Button.svelte';
 	import { format } from 'date-fns';
-	import { ChevronRightIcon } from 'lucide-svelte';
 
 	let { data } = $props();
 	let { lang, global, registration } = data;
@@ -69,31 +69,35 @@
 	<div class="flex gap-20 max-xl:flex-col">
 		<div class="grow">
 			<div class="mb-8 max-xl:px-6">
-				<h2 class="mb-2.5 text-[2rem]/[1.15] font-semibold tracking-tight text-gray-900">
+				<h2 class="mb-2.5 text-[2rem]/[1.15] font-semibold tracking-tight text-slate-900">
 					{translation?.eventFeesTitle}
 				</h2>
 				{#if translation?.eventFeesSubtitle}
-					<p class="text-gray-500">
+					<p class="text-slate-500">
 						{translation.eventFeesSubtitle}
 					</p>
 				{/if}
 			</div>
 			<div class="overflow-x-auto">
 				<div
-					class="min-w-fit overflow-hidden rounded-2xl border border-gray-200 shadow-sm max-xl:mx-6"
+					class="min-w-fit overflow-hidden rounded-2xl border border-slate-200 shadow-sm max-xl:mx-6"
 				>
 					<table class="w-full whitespace-nowrap">
 						<thead>
 							<tr>
 								<th
-									class="border-b border-gray-200 px-6 py-3 text-start font-semibold text-gray-900"
+									class="border-b border-slate-200 px-6 py-3 text-start font-semibold text-slate-900"
 								>
 									{translate('Category', 'Categoria')}
 								</th>
-								<th class="border-b border-gray-200 px-6 py-3 text-end font-semibold text-gray-900">
+								<th
+									class="border-b border-slate-200 px-6 py-3 text-end font-semibold text-slate-900"
+								>
 									{translate('Standard Fee', 'Taxa regular')}
 								</th>
-								<th class="border-b border-gray-200 px-6 py-3 text-end font-semibold text-gray-900">
+								<th
+									class="border-b border-slate-200 px-6 py-3 text-end font-semibold text-slate-900"
+								>
 									{translate('AB3C Member Fee (-15%)', 'Taxa sócio AB3C (-15%)')}
 								</th>
 							</tr>
@@ -101,7 +105,7 @@
 						<tbody>
 							{#each translation?.eventFees || [] as { category, fee }}
 								{#if fee}
-									<tr class="text-gray-600 odd:bg-gray-50">
+									<tr class="text-slate-600 odd:bg-slate-50">
 										<td class="px-6 py-4">{category}</td>
 										<td class="px-6 py-4 text-end">R$ {fee}</td>
 										<td class="px-6 py-4 text-end">R$ {Math.floor(fee * 0.85)}</td>
@@ -115,38 +119,38 @@
 		</div>
 		<div class="grow">
 			<div class="mb-8 max-xl:px-6">
-				<h2 class="mb-2.5 text-[2rem]/[1.15] font-semibold tracking-tight text-gray-900">
+				<h2 class="mb-2.5 text-[2rem]/[1.15] font-semibold tracking-tight text-slate-900">
 					{translation?.courseFeesTitle}
 				</h2>
 				{#if translation?.courseFeesSubtitle}
-					<p class="text-gray-500">
+					<p class="text-slate-500">
 						{translation.courseFeesSubtitle}
 					</p>
 				{/if}
 			</div>
 			<div class="overflow-auto">
 				<div
-					class="min-w-fit overflow-hidden rounded-2xl border border-gray-200 shadow-sm max-xl:mx-6"
+					class="min-w-fit overflow-hidden rounded-2xl border border-slate-200 shadow-sm max-xl:mx-6"
 				>
 					<table class="w-full whitespace-nowrap">
 						<thead>
 							<tr>
-								<th class="border-b border-gray-200 px-6 py-3 text-start font-semibold">
+								<th class="border-b border-slate-200 px-6 py-3 text-start font-semibold">
 									<span class="inline-flex gap-0.25 align-top">
 										<span>{translate('Duration', 'Carga horária')}</span>
-										<em class="text-sm leading-5 font-normal text-gray-400">*</em>
+										<em class="text-sm leading-5 font-normal text-slate-400">*</em>
 									</span>
 								</th>
-								<th class="border-b border-gray-200 px-6 py-3 text-end font-semibold">
+								<th class="border-b border-slate-200 px-6 py-3 text-end font-semibold">
 									{translate('Fee', 'Taxa')}
 								</th>
 							</tr>
 						</thead>
 						<tbody>
 							{#each registration.courseFees as { duration, fee }}
-								<tr class="odd:bg-gray-50">
-									<td class="px-6 py-4 text-gray-700">{duration} {translate('hours', 'horas')}</td>
-									<td class="px-6 py-4 text-end text-gray-700">R$ {fee}</td>
+								<tr class="odd:bg-slate-50">
+									<td class="px-6 py-4 text-slate-600">{duration} {translate('hours', 'horas')}</td>
+									<td class="px-6 py-4 text-end text-slate-600">R$ {fee}</td>
 								</tr>
 							{/each}
 						</tbody>
@@ -154,7 +158,7 @@
 				</div>
 			</div>
 			<div class="mt-2.5 flex justify-start px-2 max-xl:px-8">
-				<em class="inline-flex align-top text-sm text-gray-400">
+				<em class="inline-flex align-top text-sm text-slate-400">
 					<span class="mr-0.25 leading-4">*</span>
 					<span>
 						{translate('1 class hour = 50 minutes', '1 hora-aula = 50 minutos.')}
@@ -164,32 +168,22 @@
 		</div>
 	</div>
 	<div class="mt-20 flex justify-center max-xl:px-6 xl:mt-12">
-		<a
-			href={registration.registrationLink}
-			aria-disabled={!registration.registrationLink}
-			target="_blank"
-			class="group inline-flex items-center gap-2 rounded-2xl px-6 py-3 font-medium {registration.registrationLink
-				? 'bg-gray-950 text-white shadow-sm transition-all hover:bg-gray-950/90 hover:shadow-md active:shadow-inner'
-				: 'pointer-events-none bg-gray-400 text-gray-200'}"
-		>
-			<span class="whitespace-nowrap">
-				{translate('Register', 'Inscrever-se')}
-			</span>
-			<ChevronRightIcon class="size-4.5 transition-all md:group-hover:translate-x-1" />
-		</a>
+		<Button href={registration.registrationLink} disabled={!registration.registrationLink}>
+			{translate('Register', 'Inscrever-se')}
+		</Button>
 	</div>
 </section>
 
 {#if translation?.faq && translation.faq.length > 0}
 	<section id="FAQ" class="mx-auto mb-28 w-full max-w-6xl px-6">
-		<h2 class="mb-20 text-4xl font-semibold tracking-tight text-gray-900">
+		<h2 class="mb-20 text-4xl font-semibold tracking-tight text-slate-900">
 			{translate('Frequently Asked Questions', 'Perguntas frequentes')}
 		</h2>
-		<div class="divide-y divide-gray-200">
+		<div class="divide-y divide-slate-200">
 			{#each translation.faq as { question, answer }}
 				<div class="grid gap-4 not-first:pt-8 not-last:pb-8 md:grid-cols-2">
-					<div class="font-medium text-gray-900">{question}</div>
-					<div class="text-gray-600">{answer}</div>
+					<div class="font-medium text-slate-900">{question}</div>
+					<div class="text-slate-600">{answer}</div>
 				</div>
 			{/each}
 		</div>
@@ -197,7 +191,7 @@
 {/if}
 
 <section id="trip" class="mx-auto mb-40 max-w-6xl px-6">
-	<h2 class="mb-10 text-4xl font-semibold tracking-tight text-gray-900">
+	<h2 class="mb-10 text-4xl font-semibold tracking-tight text-slate-900">
 		{translate('Plan your trip', 'Planeje sua viagem')}
 	</h2>
 	<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-2">
@@ -205,14 +199,14 @@
 			<a
 				href={link}
 				target="_blank"
-				class="group flex h-72 flex-col justify-end overflow-hidden rounded-3xl border border-gray-200 shadow-sm transition-all active:shadow-inner md:h-96"
+				class="group flex h-72 flex-col justify-end overflow-hidden rounded-3xl border border-slate-200 shadow-sm transition-all active:shadow-inner md:h-96"
 			>
 				<div style:background-image="url({imageUrl})" class="relative grow bg-cover bg-center">
-					<div class="absolute inset-0 transition-all md:group-hover:bg-gray-950/5"></div>
+					<div class="absolute inset-0 transition-all md:group-hover:bg-slate-950/5"></div>
 				</div>
-				<div class="px-7 pt-7 pb-8 transition-all md:group-hover:bg-gray-100">
-					<h3 class="mb-3 font-medium text-gray-900">{title}</h3>
-					<p class="text-sm/[1.6] text-gray-500">{description}</p>
+				<div class="px-7 pt-7 pb-8 transition-all md:group-hover:bg-slate-100">
+					<h3 class="mb-3 font-medium text-slate-900">{title}</h3>
+					<p class="text-sm/[1.6] text-slate-500">{description}</p>
 				</div>
 			</a>
 		{/each}

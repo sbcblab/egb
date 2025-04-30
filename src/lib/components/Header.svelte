@@ -10,7 +10,7 @@
 <div class="mx-auto flex w-full max-w-6xl items-center justify-between p-6">
 	<a
 		href="{base}/"
-		class="text-4xl font-extrabold tracking-tight {flat ? 'text-gray-800' : 'text-white'}"
+		class="text-4xl font-extrabold tracking-tight {flat ? 'text-slate-800' : 'text-white'}"
 	>
 		<Logo class="w-42 md:w-56" />
 	</a>

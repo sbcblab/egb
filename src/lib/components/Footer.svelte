@@ -22,16 +22,16 @@
 </script>
 
 <footer class="px-6">
-	<hr class="border-gray-200" />
+	<hr class="border-slate-200" />
 	<div class="flex flex-col items-center gap-6 pt-10 pb-12">
 		<div class="flex gap-2">
 			{#each socialItems as { Icon, href, title }}
-				<a {href} target="_blank" {title} class="p-2 text-gray-500 hover:text-gray-950">
+				<a {href} target="_blank" {title} class="p-2 text-slate-500 hover:text-slate-950">
 					<Icon class="text-[1.25rem]" />
 				</a>
 			{/each}
 		</div>
-		<div class="text-center text-sm text-gray-400">
+		<div class="text-center text-sm text-slate-400">
 			Copyright © {format(global.eventStartDate, 'y')} SBCB Laboratory. {translations[lang].rights}
 		</div>
 	</div>

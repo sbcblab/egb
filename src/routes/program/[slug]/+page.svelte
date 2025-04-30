@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import { page } from '$app/state';
+	import BoxedIcon from '$lib/components/BoxedIcon.svelte';
 	import Header from '$lib/components/Header.svelte';
 	import { courseLanguageMap, courseLevelMap, courseTypeMap, getDatesBetween } from '$lib/utils.js';
 	import { format } from 'date-fns';
@@ -8,17 +9,18 @@
 	import {
 		BookIcon,
 		ChevronLeft,
+		ClockIcon,
 		GaugeIcon,
 		GlobeIcon,
 		HourglassIcon,
 		LanguagesIcon,
+		MapPinIcon,
 		NotebookPenIcon
 	} from 'lucide-svelte';
 	import AcademiconsLattes from '~icons/academicons/lattes';
 	import Fa6BrandsGoogleScholar from '~icons/fa6-brands/google-scholar';
 	import RiGithubFill from '~icons/ri/github-fill';
 	import RiLinkedinFill from '~icons/ri/linkedin-fill';
-	import RivetIconsMapPinSolid from '~icons/rivet-icons/map-pin-solid';
 	import SimpleIconsOrcid from '~icons/simple-icons/orcid';
 	import SimpleIconsResearchgate from '~icons/simple-icons/researchgate';
 
@@ -29,7 +31,7 @@
 	let course = activity ? null : courses.find((c) => c.slug === page.params.slug) || null;
 
 	const linkTypes = [
-		{ type: 'website', title: 'Website', colorClass: 'bg-gray-500', Icon: GlobeIcon },
+		{ type: 'website', title: 'Website', colorClass: 'bg-slate-500', Icon: GlobeIcon },
 		{
 			type: 'lattes',
 			title: translate('Lattes Curriculum', 'Currículo Lattes'),
@@ -92,13 +94,13 @@
 		<div class="mb-8 md:mb-12">
 			<a
 				href="{base}/program"
-				class="inline-flex items-center gap-1 rounded-xl bg-gray-100 p-2 text-gray-600 transition-all hover:bg-gray-200"
+				class="inline-flex items-center gap-1 rounded-xl bg-slate-100 p-2 text-slate-600 transition-all hover:bg-slate-200 active:bg-slate-300"
 			>
 				<ChevronLeft strokeWidth={2} class="size-6" />
 			</a>
 		</div>
 		{#if activity.type}
-			<div class="mb-2 text-lg font-medium text-gray-400">
+			<div class="mb-2 text-lg font-medium text-slate-400">
 				{translate(
 					activity.type,
 					activity.type === 'Lecture'
@@ -114,13 +116,15 @@
 		<div class="flex flex-col gap-16 md:grid md:grid-cols-7 md:max-lg:gap-12">
 			<div class="col-span-4">
 				<div class="mb-16">
-					<h1 class="text-3xl font-medium tracking-tighter text-gray-800 md:text-4xl">
+					<h1 class="text-3xl font-medium tracking-tighter text-slate-800 md:text-4xl">
 						{translation?.title}
 					</h1>
 					{#if translation?.topics}
 						<div class="mt-6 flex flex-wrap gap-2.5">
 							{#each translation.topics as topic}
-								<span class="rounded-full bg-gray-100/80 px-2.75 py-1.25 text-sm/[1] text-gray-500">
+								<span
+									class="rounded-full bg-slate-100/80 px-2.75 py-1.25 text-sm/[1] text-slate-500"
+								>
 									{topic}
 								</span>
 							{/each}
@@ -129,41 +133,25 @@
 				</div>
 				<div class="flex gap-x-16 gap-y-8 max-sm:flex-col md:max-lg:flex-col">
 					<div class="flex items-center gap-3.5">
-						<div class="flex size-9 flex-col overflow-hidden rounded-lg border border-gray-200">
-							<div
-								class="flex h-3 items-center justify-center bg-gray-200 text-[0.5rem] text-gray-600"
-							>
-								{translate(
-									format(activity.date, 'MMM'),
-									format(activity.date, 'MMM', { locale: ptBR })
-								)}
-							</div>
-							<div class="flex grow items-center justify-center text-xs font-medium text-gray-500">
-								{format(activity.date, 'd')}
-							</div>
-						</div>
+						<BoxedIcon Icon={ClockIcon} size={9} strokeWidth={1.5} />
 						<div>
-							<div class="mb-0.25 text-sm font-medium whitespace-nowrap">
+							<div class="mb-0.25 text-sm whitespace-nowrap text-black">
 								{translate(
 									format(activity.date, 'EEEE, MMMM dd'),
 									`${format(activity.date, 'EEEE, dd', { locale: ptBR })} de ${format(activity.date, 'MMMM', { locale: ptBR })}`
 								)}
 							</div>
-							<div class="text-sm whitespace-nowrap text-gray-500">
+							<div class="text-sm whitespace-nowrap text-slate-500">
 								{activity.startTime?.slice(0, 5)} &ndash; {activity.endTime?.slice(0, 5)}
 							</div>
 						</div>
 					</div>
 					{#if activity.locationLine1 || activity.locationLine2}
-						<div class="flex items-center gap-3.5">
-							<div
-								class="flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-gray-200"
-							>
-								<RivetIconsMapPinSolid class="size-4.5 text-gray-400/65" />
-							</div>
+						<div class="flex items-center gap-4">
+							<BoxedIcon size={9} strokeWidth={1.5} Icon={MapPinIcon} />
 							<div>
-								<div class="mb-0.25 text-sm font-medium">{activity.locationLine1}</div>
-								<div class="text-sm text-gray-500">{activity.locationLine2}</div>
+								<div class="mb-0.25 text-sm text-black">{activity.locationLine1}</div>
+								<div class="text-sm text-slate-500">{activity.locationLine2}</div>
 							</div>
 						</div>
 					{/if}
@@ -171,7 +159,7 @@
 				{#if translation?.summary}
 					<div class="mt-16">
 						<h2 class="mb-3 text-lg font-semibold">{translate('Summary', 'Resumo')}</h2>
-						<p class="markdown leading-[1.75] text-gray-600">
+						<p class="markdown leading-[1.75] text-slate-600">
 							{@html translation.summary}
 						</p>
 					</div>
@@ -181,15 +169,15 @@
 				{#each activity.speakers || [] as { people_id }}
 					{@const { name, picture, country, institution, links, translations } = people_id}
 					{@const speakerTranslation = translations.find((t) => t.languages_code === lang)}
-					<div class="flex flex-col gap-8 rounded-3xl border border-gray-200 p-8 shadow-xs">
+					<div class="flex flex-col gap-8 rounded-3xl border border-slate-200 p-8 shadow-xs">
 						<div class="flex items-center gap-5">
 							<div
-								class="w-full max-w-26 shrink-0 self-stretch rounded-2xl border border-gray-200 bg-cover bg-center"
+								class="w-full max-w-26 shrink-0 self-stretch rounded-2xl border border-slate-200 bg-cover bg-center"
 								style:background-image="url({base}/api/assets/{picture.id})"
 							></div>
 							<div class="py-5">
 								<div class="mb-1 text-lg/[1.15] font-medium">{name}</div>
-								<div class="text-gray-600">
+								<div class="text-slate-600">
 									{institution.name}, {country.translations?.find((t) => t.languages_code === lang)
 										?.name}
 								</div>
@@ -213,7 +201,7 @@
 							</div>
 						</div>
 						<!-- {#if speakerTranslation?.summary}
-							<div class="text-sm/[1.75] text-gray-500">
+							<div class="text-sm/[1.75] text-slate-500">
 								{@html speakerTranslation.summary}
 							</div>
 						{/if} -->
@@ -230,24 +218,26 @@
 		<div class="mb-8 md:mb-12">
 			<a
 				href="{base}/program"
-				class="inline-flex items-center gap-1 rounded-xl bg-gray-100 p-2 text-gray-600 transition-all hover:bg-gray-200"
+				class="inline-flex items-center gap-1 rounded-xl bg-slate-100 p-2 text-slate-600 transition-all hover:bg-slate-200"
 			>
 				<ChevronLeft strokeWidth={2} class="size-6" />
 			</a>
 		</div>
-		<div class="mb-2 text-lg font-medium text-gray-400">
+		<div class="mb-2 text-lg font-medium text-slate-400">
 			{translate('Course', 'Curso')}
 		</div>
 		<div class="flex flex-col gap-16 md:grid md:grid-cols-7 md:max-lg:gap-12">
 			<div class="col-span-4">
 				<div class="mb-16">
-					<h1 class="mb-6 text-3xl font-medium tracking-tighter text-gray-800 md:text-4xl">
+					<h1 class="mb-6 text-3xl font-medium tracking-tighter text-slate-800 md:text-4xl">
 						{translation?.title}
 					</h1>
 					{#if translation?.keywords}
 						<div class="flex flex-wrap gap-2.5">
 							{#each translation?.keywords || [] as keyword}
-								<span class="rounded-full bg-gray-100/80 px-2.75 py-1.25 text-sm/[1] text-gray-500">
+								<span
+									class="rounded-full bg-slate-100/80 px-2.75 py-1.25 text-sm/[1] text-slate-500"
+								>
 									{keyword}
 								</span>
 							{/each}
@@ -257,10 +247,10 @@
 				<div class="mb-16 grid grid-cols-2 gap-y-6">
 					{#snippet coursePropriety(label: string, value: string, Icon: any)}
 						<div class="flex items-center gap-3">
-							<Icon strokeWidth={1.5} class="size-9 text-gray-200" />
+							<BoxedIcon {Icon} size={9} strokeWidth={1.25} />
 							<div>
-								<div class="text-sm text-gray-400/80">{label}</div>
-								<div class="text-sm text-gray-800">{value}</div>
+								<div class="text-sm text-slate-400/80">{label}</div>
+								<div class="text-sm text-slate-800">{value}</div>
 							</div>
 						</div>
 					{/snippet}
@@ -291,7 +281,7 @@
 							<div class="w-18 pr-3"></div>
 							<div class="grid grow grid-cols-3 gap-0.5">
 								{#each [translate('Morning', 'Manhã'), translate('Afternoon', 'Tarde'), translate('Evening', 'Noite')] as day}
-									<div class="pb-1 text-center text-sm text-gray-400">{day}</div>
+									<div class="pb-1 text-center text-sm text-slate-400">{day}</div>
 								{/each}
 							</div>
 						</div>
@@ -301,10 +291,10 @@
 									<div
 										class="grid w-18 grid-cols-2 items-center justify-end gap-1.25 pr-3 text-sm whitespace-nowrap"
 									>
-										<span class="text-gray-400/50">
+										<span class="text-slate-400/50">
 											{format(date, 'd/M')}
 										</span>
-										<span class="text-gray-400">
+										<span class="text-slate-400">
 											{translate(format(date, 'E'), format(date, 'EEEEEE', { locale: ptBR }))}
 										</span>
 									</div>
@@ -313,13 +303,13 @@
 											<div class="flex flex-col gap-1">
 												{#each schedule.filter((s) => s.date === date && condition(s.startTime)) as item}
 													<div
-														class="flex h-full items-center justify-center rounded-md bg-gray-950 text-xs font-medium text-white sm:text-sm"
+														class="flex h-full items-center justify-center rounded-md bg-primary-900 text-xs font-medium text-white sm:text-sm"
 													>
 														{item.startTime.slice(0, 5)} &ndash; {item.endTime.slice(0, 5)}
 													</div>
 												{:else}
 													<div
-														class="flex h-full items-center justify-center rounded-md bg-gray-50 text-sm font-medium text-white"
+														class="flex h-full items-center justify-center rounded-md bg-slate-50 text-sm font-medium text-white"
 													></div>
 												{/each}
 											</div>
@@ -336,8 +326,8 @@
 				{#snippet courseSection(label: string, text?: string | null)}
 					{#if text}
 						<div class="mb-12">
-							<h2 class="mb-2.5 font-medium text-gray-900">{label}</h2>
-							<p class="markdown leading-[1.75] text-gray-600">
+							<h2 class="mb-2.5 font-medium">{label}</h2>
+							<p class="markdown leading-[1.75] text-slate-600">
 								{@html text}
 							</p>
 						</div>
@@ -347,8 +337,8 @@
 				{@render courseSection(translate('Objectives', 'Objetivos'), translation?.objectives)}
 				{#if translation?.topics}
 					<div class="mb-10">
-						<h2 class="mb-2.5 font-medium text-gray-900">{translate('Topics', 'Conteúdo')}</h2>
-						<ul class="markdown ml-4.5 list-disc space-y-2.5 text-gray-600 marker:text-gray-300">
+						<h2 class="mb-2.5 font-medium">{translate('Topics', 'Conteúdo')}</h2>
+						<ul class="markdown ml-4.5 list-disc space-y-2.5 text-slate-600">
 							{#each translation.topics as { topic }}
 								<li>{topic}</li>
 							{/each}
@@ -361,16 +351,14 @@
 					translation?.prerequisites
 				)}
 				<div class="mb-10">
-					<h2 class="mb-2.5 font-medium text-gray-900">
+					<h2 class="mb-3 font-medium">
 						{translate('References', 'Bibliografia')}
 					</h2>
-					<ul class="markdown space-y-2.5">
+					<ul class="markdown space-y-3">
 						{#each references as { author, link, title }}
-							<li class="ml-4.5 list-disc text-gray-600 marker:text-gray-300">
+							<li class="ml-4.5 list-disc text-slate-600">
 								{#if link}
-									<a href={link} target="_blank" class="font-normal text-gray-600 underline"
-										>{author}, <em>{title}</em></a
-									>
+									<a href={link} target="_blank">{author}, <em>{title}</em></a>
 								{:else}
 									<span>{author}, <em>{title}</em></span>
 								{/if}
@@ -383,15 +371,15 @@
 				{#each instructors || [] as { people_id }}
 					{@const { name, picture, country, institution, links, translations } = people_id}
 					{@const instructorTranslation = translations.find((t) => t.languages_code === lang)}
-					<div class="flex flex-col gap-8 rounded-3xl border border-gray-200 p-8 shadow-xs">
+					<div class="flex flex-col gap-8 rounded-3xl border border-slate-200 p-8 shadow-xs">
 						<div class="flex items-center gap-5">
 							<div
-								class="w-full max-w-26 shrink-0 self-stretch rounded-2xl border border-gray-200 bg-cover bg-center"
+								class="w-full max-w-26 shrink-0 self-stretch rounded-2xl border border-slate-200 bg-cover bg-center"
 								style:background-image="url({base}/api/assets/{picture.id})"
 							></div>
 							<div class="py-5">
 								<div class="mb-1 text-lg/[1.15] font-medium">{name}</div>
-								<div class="text-gray-600">
+								<div class="text-slate-600">
 									{institution.name}, {country.translations?.find((t) => t.languages_code === lang)
 										?.name}
 								</div>
@@ -415,7 +403,7 @@
 							</div>
 						</div>
 						<!-- {#if instructorTranslation?.summary}
-							<div class="text-sm/[1.75] text-gray-500">
+							<div class="text-sm/[1.75] text-slate-500">
 								{@html instructorTranslation.summary}
 							</div>
 						{/if} -->

@@ -12,9 +12,9 @@
 
 <header style:background-image="url({imageUrl})" class="relative h-80 bg-cover {_class}">
 	<div
-		class="absolute inset-0 flex flex-col justify-between backdrop-blur-xs {imageUrl
-			? 'bg-gray-950/60'
-			: 'bg-gray-700'}"
+		class="absolute inset-0 flex flex-col justify-between bg-linear-to-t from-primary-700/50 to-transparent backdrop-blur-xs backdrop-saturate-75 {imageUrl
+			? 'bg-slate-950/50'
+			: 'bg-slate-700'}"
 	>
 		<Header {lang} />
 		<h1

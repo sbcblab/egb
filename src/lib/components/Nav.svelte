@@ -30,7 +30,7 @@
 		<a
 			{href}
 			class="p-2 transition-all {flat
-				? 'hover:text-gray-400'
+				? 'hover:text-slate-400'
 				: 'text-white drop-shadow-[1px_1px_3px_rgba(0,0,0,0.2)] hover:drop-shadow-[0_0_0.5rem_rgba(255,255,255,0.75)]'}"
 		>
 			{item[lang]}
@@ -41,7 +41,7 @@
 {#if isOpen}
 	<div
 		transition:fly={{ duration: 150, easing: expoOut }}
-		class="fixed inset-0 z-20 bg-gray-950/65"
+		class="fixed inset-0 z-20 bg-slate-950/65"
 	></div>
 	<div
 		use:clickOutside
@@ -50,11 +50,11 @@
 		class="fixed top-0 right-0 bottom-0 z-30 w-full max-w-64 bg-white px-7 py-7 shadow-lg"
 	>
 		<button onclick={close} class="-translate-x-4 -translate-y-4 p-2">
-			<XIcon strokeWidth={1} class="size-6 text-gray-600" />
+			<XIcon strokeWidth={1} class="size-6 text-slate-600" />
 		</button>
 		<nav class="my-8 flex flex-col gap-8">
 			{#each items as { href, ...item }}
-				<a {href} onclick={close} class="text-xl text-gray-900">
+				<a {href} onclick={close} class="text-xl text-slate-900">
 					{item[lang]}
 				</a>
 			{/each}

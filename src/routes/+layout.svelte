@@ -11,7 +11,7 @@
 	let isHome = $derived(page.url.pathname === `${base}/`);
 </script>
 
-<div class="flex min-h-full flex-col text-pretty text-gray-950 subpixel-antialiased">
+<div class="flex min-h-full flex-col text-pretty text-slate-950 subpixel-antialiased">
 	<MobileNav {lang} />
 	<main class="flex grow flex-col">
 		{@render children?.()}
