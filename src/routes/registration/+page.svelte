@@ -2,6 +2,7 @@
 	import { base } from '$app/paths';
 	import Banner from '$lib/components/Banner.svelte';
 	import Button from '$lib/components/Button.svelte';
+	import Card from '$lib/components/Card.svelte';
 	import { format } from 'date-fns';
 
 	let { data } = $props();
@@ -65,7 +66,7 @@
 	class="mb-16 bg-[60%_17%]"
 />
 
-<section id="fees" class="mx-auto mb-28 w-full max-w-6xl xl:px-6">
+<section id="fees" class="mx-auto mb-16 w-full max-w-6xl xl:px-6">
 	<div class="flex gap-20 max-xl:flex-col">
 		<div class="grow">
 			<div class="mb-8 max-xl:px-6">
@@ -79,9 +80,7 @@
 				{/if}
 			</div>
 			<div class="overflow-x-auto">
-				<div
-					class="min-w-fit overflow-hidden rounded-2xl border border-slate-200 shadow-sm max-xl:mx-6"
-				>
+				<div class="min-w-fit overflow-hidden rounded-2xl border border-slate-200 max-xl:mx-6">
 					<table class="w-full whitespace-nowrap">
 						<thead>
 							<tr>
@@ -129,9 +128,7 @@
 				{/if}
 			</div>
 			<div class="overflow-auto">
-				<div
-					class="min-w-fit overflow-hidden rounded-2xl border border-slate-200 shadow-sm max-xl:mx-6"
-				>
+				<div class="min-w-fit overflow-hidden rounded-2xl border border-slate-200 max-xl:mx-6">
 					<table class="w-full whitespace-nowrap">
 						<thead>
 							<tr>
@@ -167,11 +164,54 @@
 			</div>
 		</div>
 	</div>
-	<div class="mt-20 flex justify-center max-xl:px-6 xl:mt-12">
-		<Button href={registration.registrationLink} disabled={!registration.registrationLink}>
-			{translate('Register', 'Inscrever-se')}
-		</Button>
-	</div>
+</section>
+
+<section id="register" class="mb-32 flex justify-center px-6">
+	<Card class="w-fit rounded-3xl p-8">
+		<h2 class="mb-4 flex items-center gap-2 text-lg font-semibold text-slate-900">
+			<span>{translate('Important', 'Importante')}</span>
+		</h2>
+		<ul class="mb-8 list-disc leading-[1.6] text-slate-500 md:space-y-1.5">
+			{#if registration.registrationStartDate && registration.registrationEndDate}
+				<li>
+					{translate('Registrations will be open from', 'As inscrições estarão abertas de')}
+					<span class="font-medium text-slate-900">
+						{format(registration.registrationStartDate, 'dd/MM')}
+					</span>
+					{translate('to', 'até')}
+					<span class="font-medium text-slate-900">
+						{format(registration.registrationEndDate, 'dd/MM')}
+					</span>.
+				</li>
+			{/if}
+			<li>
+				{translate('Course seats are', 'As vagas dos cursos são')}
+				<span class="font-medium text-slate-900">
+					{translate('limited', 'limitadas')}
+				</span>
+				{translate(
+					'and will be filled in order of registration.',
+					'e serão preenchidas por ordem de inscrição.'
+				)}
+			</li>
+			<li>
+				{translate(
+					'If you have any questions, please contact',
+					'Em caso de dúvidas, entre em contato pelo e-mail'
+				)}
+				<a
+					class="font-medium text-slate-900 hover:text-slate-900/70"
+					target="_blank"
+					href="mailto:egb@inf.ufrgs.br">egb@inf.ufrgs.br</a
+				>.
+			</li>
+		</ul>
+		<div class="flex justify-center">
+			<Button href={registration.registrationLink} disabled={!registration.registrationLink}>
+				{translate('Register', 'Inscrever-se')}
+			</Button>
+		</div>
+	</Card>
 </section>
 
 {#if translation?.faq && translation.faq.length > 0}
@@ -183,7 +223,7 @@
 			{#each translation.faq as { question, answer }}
 				<div class="grid gap-4 not-first:pt-8 not-last:pb-8 md:grid-cols-2">
 					<div class="font-medium text-slate-900">{question}</div>
-					<div class="text-slate-600">{answer}</div>
+					<div class="leading-[1.6] text-slate-600">{answer}</div>
 				</div>
 			{/each}
 		</div>

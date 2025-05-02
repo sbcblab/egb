@@ -144,7 +144,15 @@ export async function getRegistration() {
 			]
 		})
 	);
-	return registration;
+	return {
+		...registration,
+		registrationStartDate: registration.registrationStartDate
+			? `${registration.registrationStartDate}T00:00:00`
+			: null,
+		registrationEndDate: registration.registrationEndDate
+			? `${registration.registrationEndDate}T00:00:00`
+			: null
+	};
 }
 export async function getSubmissions() {
 	const submissions = await client.request(

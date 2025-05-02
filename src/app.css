@@ -28,8 +28,12 @@
 		cursor: pointer;
 	}
 
-	li {
-		@apply marker:text-slate-300;
+	ul.list-disc {
+		@apply ml-4.5 space-y-2.5 marker:text-slate-200;
+
+		li {
+			@apply pl-1;
+		}
 	}
 
 	.markdown {

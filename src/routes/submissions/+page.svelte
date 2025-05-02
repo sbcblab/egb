@@ -128,13 +128,13 @@
 		<h2 class="mb-5 text-[2rem]/[1.15] font-semibold tracking-tight text-slate-900">
 			{translate('Abstract Guidelines', 'Diretrizes para resumos')}
 		</h2>
-		<ul class="space-y-2.5">
+		<ul class="list-disc">
 			{#each translation?.abstractGuidelines || [] as { item }}
-				<li class="ml-4.5 list-disc text-slate-600">
+				<li class="text-slate-600">
 					{item}
 				</li>
 			{/each}
-			<li class="ml-4.5 list-disc text-slate-600">
+			<li class="text-slate-600">
 				<div class="mb-4">
 					{translate(
 						'The submitted abstract should be in PDF format, using one of the following templates:',
@@ -167,9 +167,9 @@
 		<h2 class="mb-5 text-[2rem]/[1.15] font-semibold tracking-tight text-slate-900">
 			{translate('Poster Guidelines', 'Diretrizes para pôsteres')}
 		</h2>
-		<ul class="space-y-2.5">
+		<ul class="list-disc">
 			{#each translation?.posterGuidelines || [] as { item }}
-				<li class="ml-4.5 list-disc text-slate-600">
+				<li class="text-slate-600">
 					{item}
 				</li>
 			{/each}
@@ -219,10 +219,11 @@
 	</ul>
 </section>
 
-<section id="microsoft-cmt" class="mx-auto mb-16 w-full max-w-6xl px-6">
+<section id="microsoft-cmt" class="mx-auto mb-12 w-full max-w-6xl px-6">
 	<p class="text-center text-xs text-slate-400 md:text-sm">
-		The Microsoft CMT service was used for managing the peer-reviewing process for this conference.
-		This service was provided for free by Microsoft and they bore all expenses, including costs for
-		Azure cloud services as well as for software development and support.
+		{translate(
+			'The Microsoft CMT service was used for managing the peer-reviewing process for this conference. This service was provided for free by Microsoft and they bore all expenses, including costs for Azure cloud services as well as for software development and support.',
+			'O serviço Microsoft CMT foi utilizado para gerenciar o processo de revisão por pares desta conferência. Este serviço foi fornecido gratuitamente pela Microsoft, que arcarou com todas as despesas, incluindo os custos dos serviços em nuvem Azure, bem como os de desenvolvimento de software e suporte.'
+		)}
 	</p>
 </section>

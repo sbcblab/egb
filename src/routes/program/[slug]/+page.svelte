@@ -339,7 +339,7 @@
 				{#if translation?.topics}
 					<div class="mb-10">
 						<h2 class="mb-2.5 font-medium">{translate('Topics', 'Conteúdo')}</h2>
-						<ul class="markdown ml-4.5 list-disc space-y-2.5 text-slate-600">
+						<ul class="markdown list-disc text-slate-600">
 							{#each translation.topics as { topic }}
 								<li>{topic}</li>
 							{/each}
@@ -358,7 +358,7 @@
 						</h2>
 						<ul class="markdown space-y-3">
 							{#each references as { author, link, title }}
-								<li class="ml-4.5 list-disc text-slate-600">
+								<li class="list-disc text-slate-600">
 									{#if link}
 										<a href={link} target="_blank">{author}, <em>{title}</em></a>
 									{:else}

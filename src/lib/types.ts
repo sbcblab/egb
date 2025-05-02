@@ -88,6 +88,8 @@ export interface Registration {
 	translations: RegistrationTranslation[];
 	courseFees: CourseFee[];
 	registrationLink: string | null;
+	registrationStartDate: string | null;
+	registrationEndDate: string | null;
 	howToGetToPortoAlegre: string | null;
 	nearbyHotels: string | null;
 	localTransport: string | null;
