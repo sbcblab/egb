@@ -29,6 +29,7 @@
 
 	let activity = activities.find((a) => a.slug === page.params.slug) || null;
 	let course = activity ? null : courses.find((c) => c.slug === page.params.slug) || null;
+	console.log(course);
 
 	const linkTypes = [
 		{ type: 'website', title: 'Website', colorClass: 'bg-slate-500', Icon: GlobeIcon },
@@ -350,66 +351,71 @@
 					translate('Prerequisites', 'Pré-requisitos'),
 					translation?.prerequisites
 				)}
-				<div class="mb-10">
-					<h2 class="mb-3 font-medium">
-						{translate('References', 'Bibliografia')}
-					</h2>
-					<ul class="markdown space-y-3">
-						{#each references as { author, link, title }}
-							<li class="ml-4.5 list-disc text-slate-600">
-								{#if link}
-									<a href={link} target="_blank">{author}, <em>{title}</em></a>
-								{:else}
-									<span>{author}, <em>{title}</em></span>
-								{/if}
-							</li>
-						{/each}
-					</ul>
-				</div>
+				{#if references}
+					<div class="mb-10">
+						<h2 class="mb-3 font-medium">
+							{translate('References', 'Bibliografia')}
+						</h2>
+						<ul class="markdown space-y-3">
+							{#each references as { author, link, title }}
+								<li class="ml-4.5 list-disc text-slate-600">
+									{#if link}
+										<a href={link} target="_blank">{author}, <em>{title}</em></a>
+									{:else}
+										<span>{author}, <em>{title}</em></span>
+									{/if}
+								</li>
+							{/each}
+						</ul>
+					</div>
+				{/if}
 			</div>
-			<div class="col-span-3 space-y-3">
-				{#each instructors || [] as { people_id }}
-					{@const { name, picture, country, institution, links, translations } = people_id}
-					{@const instructorTranslation = translations.find((t) => t.languages_code === lang)}
-					<div class="flex flex-col gap-8 rounded-3xl border border-slate-200 p-8 shadow-xs">
-						<div class="flex items-center gap-5">
-							<div
-								class="w-full max-w-26 shrink-0 self-stretch rounded-2xl border border-slate-200 bg-cover bg-center"
-								style:background-image="url({base}/api/assets/{picture.id})"
-							></div>
-							<div class="py-5">
-								<div class="mb-1 text-lg/[1.15] font-medium">{name}</div>
-								<div class="text-slate-600">
-									{institution.name}, {country.translations?.find((t) => t.languages_code === lang)
-										?.name}
-								</div>
-								{#if links}
-									<div class="mt-4 flex gap-1">
-										{#each linkTypes as { type, title, colorClass, Icon }}
-											{@const link = links.find((l) => l.type === type)}
-											{#if link}
-												<a
-													href={link.link}
-													{title}
-													target="_blank"
-													class="size-5.5 rounded-full p-1 opacity-40 transition-all hover:opacity-100 {colorClass}"
-												>
-													<Icon class="size-full text-white" />
-												</a>
-											{/if}
-										{/each}
+			{#if instructors && instructors.length > 0}
+				<div class="col-span-3 space-y-3">
+					{#each instructors || [] as { people_id }}
+						{@const { name, picture, country, institution, links, translations } = people_id}
+						{@const instructorTranslation = translations.find((t) => t.languages_code === lang)}
+						<div class="flex flex-col gap-8 rounded-3xl border border-slate-200 p-8 shadow-xs">
+							<div class="flex items-center gap-5">
+								<div
+									class="w-full max-w-26 shrink-0 self-stretch rounded-2xl border border-slate-200 bg-cover bg-center"
+									style:background-image="url({base}/api/assets/{picture.id})"
+								></div>
+								<div class="py-5">
+									<div class="mb-1 text-lg/[1.15] font-medium">{name}</div>
+									<div class="text-slate-600">
+										{institution.name}, {country.translations?.find(
+											(t) => t.languages_code === lang
+										)?.name}
 									</div>
-								{/if}
+									{#if links}
+										<div class="mt-4 flex gap-1">
+											{#each linkTypes as { type, title, colorClass, Icon }}
+												{@const link = links.find((l) => l.type === type)}
+												{#if link}
+													<a
+														href={link.link}
+														{title}
+														target="_blank"
+														class="size-5.5 rounded-full p-1 opacity-40 transition-all hover:opacity-100 {colorClass}"
+													>
+														<Icon class="size-full text-white" />
+													</a>
+												{/if}
+											{/each}
+										</div>
+									{/if}
+								</div>
 							</div>
-						</div>
-						<!-- {#if instructorTranslation?.summary}
+							<!-- {#if instructorTranslation?.summary}
 							<div class="text-sm/[1.75] text-slate-500">
 								{@html instructorTranslation.summary}
 							</div>
 						{/if} -->
-					</div>
-				{/each}
-			</div>
+						</div>
+					{/each}
+				</div>
+			{/if}
 		</div>
 	</div>
 {/if}

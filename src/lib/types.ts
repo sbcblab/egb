@@ -153,8 +153,8 @@ export interface Course {
 	level: CourseLevel;
 	language: CourseLanguage;
 	instructors: CoursePerson[];
-	references: Reference[];
 	translations: CourseTranslation[];
+	references: Reference[] | null;
 	schedule: CourseScheduleItem[] | null;
 }
 
@@ -163,7 +163,7 @@ export interface CourseTranslation extends Translation {
 	keywords: string[];
 	summary: string | null;
 	objectives: string | null;
-	topics: Topic[];
+	topics: Topic[] | null;
 	methods: string | null;
 	prerequisites: string | null;
 }
