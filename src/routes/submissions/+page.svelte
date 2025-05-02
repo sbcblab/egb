@@ -3,6 +3,7 @@
 	import Banner from '$lib/components/Banner.svelte';
 	import BoxedIcon from '$lib/components/BoxedIcon.svelte';
 	import Button from '$lib/components/Button.svelte';
+	import Card from '$lib/components/Card.svelte';
 	import { format } from 'date-fns';
 	import { ptBR } from 'date-fns/locale';
 	import {
@@ -46,7 +47,7 @@
 		{translate('Submission Overview', 'Visão geral')}
 	</h2>
 	{#if translation?.overview}
-		<p class="mb-12 max-w-128 leading-[1.55] text-slate-600">
+		<p class="mb-12 max-w-128 leading-[1.65] text-slate-600">
 			{translation.overview}
 		</p>
 	{/if}
@@ -58,9 +59,7 @@
 			description: string,
 			Icon: any
 		)}
-			<div
-				class="flex max-w-68 flex-col items-center rounded-3xl p-5 text-center shadow-card md:w-56"
-			>
+			<Card class="flex max-w-68 flex-col items-center p-5 text-center md:w-56">
 				<BoxedIcon {Icon} class="mb-5" />
 				<div class="mb-1 text-sm font-medium text-slate-400">
 					{#if startDate && endDate}
@@ -76,7 +75,7 @@
 				<p class="text-sm/[1.5] text-slate-400">
 					{description}
 				</p>
-			</div>
+			</Card>
 		{/snippet}
 		{@render phase(
 			submissions.submissionStart,
@@ -184,7 +183,7 @@
 	</Button>
 </section>
 
-<section id="important-dates" class="mx-auto mb-32 w-full max-w-6xl px-6">
+<section id="important-dates" class="mx-auto mb-24 w-full max-w-6xl px-6">
 	<h2 class="mb-10 text-[2rem]/[1.15] font-semibold tracking-tight text-slate-900">
 		{translate('Important Dates', 'Datas importantes')}
 	</h2>
@@ -218,4 +217,12 @@
 			MailCheckIcon
 		)}
 	</ul>
+</section>
+
+<section id="microsoft-cmt" class="mx-auto mb-16 w-full max-w-6xl px-6">
+	<p class="text-center text-xs text-slate-400 md:text-sm">
+		The Microsoft CMT service was used for managing the peer-reviewing process for this conference.
+		This service was provided for free by Microsoft and they bore all expenses, including costs for
+		Azure cloud services as well as for software development and support.
+	</p>
 </section>
