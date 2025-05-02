@@ -358,7 +358,7 @@
 						</h2>
 						<ul class="markdown space-y-3">
 							{#each references as { author, link, title }}
-								<li class="list-disc text-slate-600">
+								<li class="text-slate-600">
 									{#if link}
 										<a href={link} target="_blank">{author}, <em>{title}</em></a>
 									{:else}

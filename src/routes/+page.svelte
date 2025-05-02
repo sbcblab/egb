@@ -19,52 +19,53 @@
 
 <section
 	style:background-image="url({base}/api/assets/9045ab3e-90b9-439a-a9cd-fcca24b371e2)"
-	class="relative h-screen bg-cover bg-top"
+	class="relative h-screen bg-primary-900 bg-cover bg-top bg-blend-luminosity"
 >
-	<div
-		class="absolute inset-0 bg-linear-to-t from-primary-700/70 to-transparent backdrop-saturate-75"
-	></div>
-	<div class="absolute inset-0 flex flex-col bg-slate-950/55">
-		<Header {lang} />
-		<div class="flex grow flex-col items-center justify-center text-center">
-			<p
-				class="mb-2 text-[1.75rem] font-extrabold tracking-tight text-white/70 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
-			>
-				EGB {format(global.eventStartDate, 'y')}
-			</p>
-			<h1
-				class="mb-12 text-[2.875rem]/[1.1] font-bold tracking-tighter text-white drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)] sm:text-[3.5rem]/[1]"
-			>
-				Escola Gaúcha de Bioinformática
-			</h1>
-			<p
-				class="mb-7 text-3xl font-semibold text-white/90 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
-			>
-				{translate(
-					`${format(global.eventStartDate, 'MMMM d', { locale: enUS })} \u2013 ${format(global.eventEndDate, 'd, y')}`,
-					`${format(global.eventStartDate, 'd')} a ${format(global.eventEndDate, 'd')} de ${format(global.eventEndDate, 'MMMM', { locale: ptBR })} de ${format(global.eventEndDate, 'y')}`
-				)}
-			</p>
-			<p class="text-xl text-white/90 drop-shadow-[0_0_1.5rem_rgba(0,0,0,0.5)]">
-				Porto Alegre, RS, {translate('Brazil', 'Brasil')}
-			</p>
-			{#if global.eventLocation}
-				<p class="mt-0.5 text-white/60 drop-shadow-[0_0_1.5rem_rgba(0,0,0,0.5)]">
-					{global.eventLocation}
+	<div class="absolute inset-0 bg-slate-950/55">
+		<div
+			class="absolute inset-0 flex flex-col bg-linear-to-t from-primary-800/60 to-transparent to-75%"
+		>
+			<Header {lang} />
+			<div class="flex grow flex-col items-center justify-center px-6 text-center">
+				<p
+					class="mb-2 text-[1.75rem] font-extrabold tracking-tight text-white/70 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
+				>
+					EGB {format(global.eventStartDate, 'y')}
 				</p>
-			{/if}
-			<a
-				href="{base}/program"
-				class="group mt-16 flex items-center gap-1.5 rounded-xl border border-white/50 bg-white/20 px-6 py-2.5 text-white shadow-md backdrop-blur-sm transition-all hover:bg-white/25 hover:shadow-[0_0_1rem_rgba(255,255,255,0.1)]"
-			>
-				<span class="drop-shadow-[1px_1px_3px_rgba(0,0,0,.5)]">
-					{translate('Program', 'Programa')}
-				</span>
-				<ChevronRightIcon
-					strokeWidth={1.5}
-					class="size-4.5 drop-shadow-[1px_1px_3px_rgba(0,0,0,.5)] transition-all md:group-hover:translate-x-1"
-				/>
-			</a>
+				<h1
+					class="mb-12 text-[2.875rem]/[1.1] font-bold tracking-tighter text-white drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)] sm:text-[3.5rem]/[1]"
+				>
+					Escola Gaúcha de Bioinformática
+				</h1>
+				<p
+					class="mb-7 text-3xl font-semibold text-white/90 drop-shadow-[0_0_1.25rem_rgba(0,0,0,0.5)]"
+				>
+					{translate(
+						`${format(global.eventStartDate, 'MMMM d', { locale: enUS })} \u2013 ${format(global.eventEndDate, 'd, y')}`,
+						`${format(global.eventStartDate, 'd')} a ${format(global.eventEndDate, 'd')} de ${format(global.eventEndDate, 'MMMM', { locale: ptBR })} de ${format(global.eventEndDate, 'y')}`
+					)}
+				</p>
+				<p class="text-xl text-white/90 drop-shadow-[0_0_1.5rem_rgba(0,0,0,0.5)]">
+					Porto Alegre, RS, {translate('Brazil', 'Brasil')}
+				</p>
+				{#if global.eventLocation}
+					<p class="mt-0.5 text-white/60 drop-shadow-[0_0_1.5rem_rgba(0,0,0,0.5)]">
+						{global.eventLocation}
+					</p>
+				{/if}
+				<a
+					href="{base}/program"
+					class="group mt-16 flex items-center gap-1.5 rounded-xl border border-white/50 bg-white/20 px-6 py-2.5 text-white shadow-md backdrop-blur-sm transition-all hover:bg-white/25 hover:shadow-[0_0_1rem_rgba(255,255,255,0.1)]"
+				>
+					<span class="drop-shadow-[1px_1px_3px_rgba(0,0,0,.5)]">
+						{translate('Program', 'Programa')}
+					</span>
+					<ChevronRightIcon
+						strokeWidth={1.5}
+						class="size-4.5 drop-shadow-[1px_1px_3px_rgba(0,0,0,.5)] transition-all md:group-hover:translate-x-1"
+					/>
+				</a>
+			</div>
 		</div>
 	</div>
 </section>
