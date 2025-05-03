@@ -52,7 +52,6 @@
 		class="fixed top-0 right-0 bottom-0 z-30 w-full max-w-64 bg-white shadow-lg"
 	>
 		<div class="relative size-full">
-			<div class="absolute inset-0"></div>
 			<div class="mb-12 flex items-center justify-between pt-3 pr-1 pl-7">
 				<Logo class="w-32 text-slate-800" />
 				<button onclick={close} class="p-5 text-slate-400 transition-all hover:text-slate-200">
@@ -64,7 +63,7 @@
 					<a
 						href={item.href}
 						onclick={close}
-						class="px-7 py-3.5 text-xl font-medium text-slate-900 transition-all hover:text-slate-400"
+						class="px-7 py-3.5 text-xl font-medium text-slate-900 transition-all hover:text-slate-900/60 active:text-slate-900/40"
 					>
 						{item[lang]}
 					</a>
