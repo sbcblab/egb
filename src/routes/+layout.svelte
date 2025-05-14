@@ -16,9 +16,7 @@
 	<main class="flex grow flex-col">
 		{@render children?.()}
 	</main>
-	{#if !isHome}
-		<Footer {global} {lang} />
-	{/if}
+	<Footer {global} {lang} />
 </div>
 
 <style>

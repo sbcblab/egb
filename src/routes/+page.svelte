@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import Header from '$lib/components/Header.svelte';
+	import type { Institution } from '$lib/types.js';
 	import { format } from 'date-fns';
 	import { enUS, ptBR } from 'date-fns/locale';
 	import { ChevronRightIcon } from 'lucide-svelte';
 
 	let { data } = $props();
-	let { lang, global } = data;
+	let { lang, global, about } = data;
 
 	function translate(enStr: string, ptStr: string) {
 		return lang === 'pt-BR' ? ptStr : enStr;
@@ -19,7 +20,7 @@
 
 <section
 	style:background-image="url({base}/api/assets/9045ab3e-90b9-439a-a9cd-fcca24b371e2)"
-	class="relative h-screen bg-primary-900 bg-cover bg-top bg-blend-luminosity"
+	class="relative mb-24 h-screen bg-primary-900 bg-cover bg-top bg-blend-luminosity"
 >
 	<div class="absolute inset-0 bg-slate-950/55">
 		<div
@@ -69,3 +70,41 @@
 		</div>
 	</div>
 </section>
+
+{#snippet institutionGroup(
+	id: string,
+	title: string,
+	institutions: { institutions_id: Institution }[]
+)}
+	<section {id} class="mx-auto mb-32 max-w-6xl px-6">
+		<h2 class="mb-9 text-center text-lg font-medium tracking-tight text-slate-900">
+			{title}
+		</h2>
+		<div class="flex flex-wrap justify-center gap-9">
+			{#each institutions as { institutions_id }}
+				{@const { name, link, logo } = institutions_id}
+				<a
+					href={link}
+					title={name}
+					aria-label={name}
+					target="_blank"
+					class="h-16 w-26 hover:opacity-70"
+				>
+					<img src="{base}/api/assets/{logo}" alt={name} class="size-full object-contain" />
+				</a>
+			{/each}
+		</div>
+	</section>
+{/snippet}
+
+{#if about.organizers && about.organizers.length > 0}
+	{@render institutionGroup(
+		'organizers',
+		translate('Organized By', 'Organizadores'),
+		about.organizers
+	)}
+{/if}
+
+{#if about.sponsors && about.sponsors.length > 0}
+	{@render institutionGroup('sponsors', translate('Sponsored By', 'Apoiadores'), about.sponsors)}
+{/if}
