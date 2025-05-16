@@ -5,7 +5,7 @@
 	import { HouseIcon, MailIcon, PhoneIcon } from 'lucide-svelte';
 
 	let { data } = $props();
-	let { lang, global } = data;
+	let { lang, global, contact } = data;
 
 	function translate(enStr: string, ptStr: string) {
 		return lang === 'pt-BR' ? ptStr : enStr;
@@ -19,7 +19,7 @@
 <Banner
 	{lang}
 	title={translate('Contact', 'Contato')}
-	imageUrl="{base}/api/assets/6024038c-612d-4bec-984f-0e77deaec8f5"
+	imageUrl={contact.bannerImage ? `${base}/api/assets/${contact.bannerImage.id}` : undefined}
 	class="mb-12 bg-[100%_25%]"
 />
 
@@ -31,25 +31,31 @@
 		)}
 	</p>
 	<div class="flex flex-col gap-5">
-		<div class="flex items-center gap-4">
-			<div class="size-11 rounded-xl border border-primary-200 bg-primary-100">
-				<MailIcon strokeWidth={1.25} class="size-full p-2.5 text-primary-800" />
+		{#if contact.email}
+			<div class="flex items-center gap-4">
+				<div class="size-11 rounded-xl border border-primary-200 bg-primary-100">
+					<MailIcon strokeWidth={1.25} class="size-full p-2.5 text-primary-800" />
+				</div>
+				<span class="text-slate-900">{contact.email}</span>
 			</div>
-			<span class="text-slate-900">{global.email}</span>
-		</div>
-		<div class="flex items-center gap-4">
-			<div class="size-11 rounded-xl border border-primary-200 bg-primary-100">
-				<PhoneIcon strokeWidth={1.25} class="size-full p-2.5 text-primary-800" />
+		{/if}
+		{#if contact.phone}
+			<div class="flex items-center gap-4">
+				<div class="size-11 rounded-xl border border-primary-200 bg-primary-100">
+					<PhoneIcon strokeWidth={1.25} class="size-full p-2.5 text-primary-800" />
+				</div>
+				<span class="text-slate-900">{contact.phone}</span>
 			</div>
-			<span class="text-slate-900">{global.phone}</span>
-		</div>
-		<div class="flex items-center gap-4">
-			<div class="size-11 shrink-0 rounded-xl border border-primary-200 bg-primary-100">
-				<HouseIcon strokeWidth={1.25} class="size-full p-2.5 text-primary-800" />
+		{/if}
+		{#if contact.contactLocation}
+			<div class="flex items-center gap-4">
+				<div class="size-11 shrink-0 rounded-xl border border-primary-200 bg-primary-100">
+					<HouseIcon strokeWidth={1.25} class="size-full p-2.5 text-primary-800" />
+				</div>
+				<span class="text-slate-900">
+					{@html contact.contactLocation}
+				</span>
 			</div>
-			<span class="text-slate-900">
-				{@html global.contactLocation}
-			</span>
-		</div>
+		{/if}
 	</div>
 </section>

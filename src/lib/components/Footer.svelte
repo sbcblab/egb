@@ -25,7 +25,7 @@
 	<hr class="border-slate-200" />
 	<div class="flex flex-col items-center gap-6 pt-10 pb-12">
 		<div class="flex gap-2">
-			{#each socialItems as { Icon, href, title }}
+			{#each socialItems.filter((i) => i.href) as { Icon, href, title }}
 				<a {href} target="_blank" {title} class="p-2 text-slate-500 hover:text-slate-950">
 					<Icon class="text-[1.25rem]" />
 				</a>

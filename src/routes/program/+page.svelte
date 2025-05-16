@@ -25,7 +25,7 @@
 <Banner
 	{lang}
 	title={translate('Program', 'Programa')}
-	imageUrl="{base}/api/assets/988afe9d-473a-4853-92d6-7d52a34dc518"
+	imageUrl={program.bannerImage ? `${base}/api/assets/${program.bannerImage.id}` : undefined}
 	class="mb-16 bg-[50%_47%] backdrop-blur-lg"
 />
 

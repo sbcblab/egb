@@ -38,7 +38,9 @@
 <Banner
 	{lang}
 	title={translate('Call for Posters', 'Chamada de pôsteres')}
-	imageUrl="{base}/api/assets/544ff6c5-c527-4c0d-aeab-214058f86d95"
+	imageUrl={submissions.bannerImage
+		? `${base}/api/assets/${submissions.bannerImage.id}`
+		: undefined}
 	class="mb-16 bg-top"
 />
 

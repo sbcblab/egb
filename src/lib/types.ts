@@ -10,6 +10,7 @@ export interface Schema {
 	submissionsTranslations: SubmissionsTranslation[];
 	registration: Registration;
 	registrationTranslations: RegistrationTranslation[];
+	contact: Contact;
 	activities: Activity[];
 	activityTranslations: ActivityTranslation[];
 	activityPeople: ActivityPerson[];
@@ -31,16 +32,14 @@ export interface Global {
 	coursesStartDate: string;
 	coursesEndDate: string;
 	eventLocation: string | null;
-	email: string;
-	phone: string;
-	contactLocation: string;
-	instagramLink: string;
-	twitterLink: string;
-	linkedinLink: string;
-	githubLink: string;
+	instagramLink: string | null;
+	twitterLink: string | null;
+	linkedinLink: string | null;
+	githubLink: string | null;
 }
 
 export interface About {
+	bannerImage: Image | null;
 	translations: AboutTranslation[];
 	whatIsEgbImage1: Image | null;
 	whatIsEgbImage2: Image | null;
@@ -60,6 +59,7 @@ export interface AboutInstitution {
 }
 
 export interface Program {
+	bannerImage: Image | null;
 	translations: ProgramTranslation[];
 }
 
@@ -69,6 +69,7 @@ export interface ProgramTranslation extends Translation {
 }
 
 export interface Submissions {
+	bannerImage: Image | null;
 	translations: SubmissionsTranslation[];
 	lattesTemplate: string | null;
 	wordTemplate: string | null;
@@ -86,6 +87,7 @@ export interface SubmissionsTranslation extends Translation {
 }
 
 export interface Registration {
+	bannerImage: Image | null;
 	translations: RegistrationTranslation[];
 	courseFees: CourseFee[];
 	registrationLink: string | null;
@@ -95,6 +97,13 @@ export interface Registration {
 	nearbyHotels: string | null;
 	localTransport: string | null;
 	whatToDoInPortoAlegre: string | null;
+}
+
+export interface Contact {
+	bannerImage: Image | null;
+	email: string | null;
+	phone: string | null;
+	contactLocation: string | null;
 }
 
 export interface RegistrationTranslation extends Translation {

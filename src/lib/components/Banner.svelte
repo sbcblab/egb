@@ -11,7 +11,7 @@
 </script>
 
 <header
-	style:background-image="url({imageUrl})"
+	style:background-image={imageUrl ? `url(${imageUrl})` : undefined}
 	class="relative h-80 bg-primary-900 bg-linear-to-t to-transparent bg-cover bg-blend-luminosity {_class}"
 >
 	<div class="absolute inset-0 bg-slate-950/55 backdrop-blur-xs">

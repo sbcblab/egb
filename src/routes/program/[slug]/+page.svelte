@@ -29,7 +29,6 @@
 
 	let activity = activities.find((a) => a.slug === page.params.slug) || null;
 	let course = activity ? null : courses.find((c) => c.slug === page.params.slug) || null;
-	console.log(course);
 
 	const linkTypes = [
 		{ type: 'website', title: 'Website', colorClass: 'bg-slate-500', Icon: GlobeIcon },

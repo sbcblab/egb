@@ -88,7 +88,7 @@
 					title={name}
 					aria-label={name}
 					target="_blank"
-					class="h-16 w-26 hover:opacity-70"
+					class="h-16 w-26 transition-all hover:opacity-70"
 				>
 					<img src="{base}/api/assets/{logo}" alt={name} class="size-full object-contain" />
 				</a>

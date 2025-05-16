@@ -23,7 +23,7 @@
 <Banner
 	{lang}
 	title={translate('About', 'Sobre')}
-	imageUrl="{base}/api/assets/46157eab-8cb1-4c72-9cb6-2635fa4c6a65"
+	imageUrl={about.bannerImage ? `${base}/api/assets/${about.bannerImage.id}` : undefined}
 	class="mb-16 bg-[50%_90%]"
 />
 
@@ -242,7 +242,7 @@
 					title={name}
 					aria-label={name}
 					target="_blank"
-					class="h-16 w-26 hover:opacity-70"
+					class="h-16 w-26 transition-all hover:opacity-70"
 				>
 					<img src="{base}/api/assets/{logo}" alt={name} class="size-full object-contain" />
 				</a>

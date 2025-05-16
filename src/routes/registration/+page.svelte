@@ -62,7 +62,9 @@
 <Banner
 	{lang}
 	title={translate('Registration', 'Inscrição')}
-	imageUrl="{base}/api/assets/06e17320-8cc9-4491-bb0f-a4e82202e2d9"
+	imageUrl={registration.bannerImage
+		? `${base}/api/assets/${registration.bannerImage.id}`
+		: undefined}
 	class="mb-16 bg-[60%_17%]"
 />
 

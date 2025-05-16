@@ -22,6 +22,7 @@ export async function getAbout() {
 			fields: [
 				'*',
 				{
+					bannerImage: ['id', 'title'],
 					translations: ['*'],
 					whatIsEgbImage1: ['id', 'title'],
 					whatIsEgbImage2: ['id', 'title'],
@@ -127,6 +128,7 @@ export async function getRegistration() {
 				'*',
 				{
 					translations: ['*'],
+					bannerImage: ['id', 'title'],
 					image: ['id', 'title'],
 					committee: [
 						{
@@ -156,7 +158,9 @@ export async function getRegistration() {
 }
 export async function getSubmissions() {
 	const submissions = await client.request(
-		readSingleton('submissions', { fields: ['*', { translations: ['*'] }] })
+		readSingleton('submissions', {
+			fields: ['*', { translations: ['*'], bannerImage: ['id', 'title'] }]
+		})
 	);
 	return {
 		...submissions,
@@ -177,10 +181,18 @@ export async function getProgram() {
 			fields: [
 				'*',
 				{
-					translations: ['*']
+					translations: ['*'],
+					bannerImage: ['id', 'title']
 				}
 			]
 		})
+	);
+	return program;
+}
+
+export async function getContact() {
+	const program = await client.request(
+		readSingleton('contact', { fields: ['*', { bannerImage: ['id', 'title'] }] })
 	);
 	return program;
 }
