@@ -47,9 +47,8 @@
 			<div class="size-11 shrink-0 rounded-xl border border-primary-200 bg-primary-100">
 				<HouseIcon strokeWidth={1.25} class="size-full p-2.5 text-primary-800" />
 			</div>
-			<span class=" text-slate-900">
-				{translate('Institute of Informatics, UFRGS', 'Instituto de Informática, UFRGS')}<br />Av.
-				Bento Gonçalves, 9500 - Porto Alegre
+			<span class="text-slate-900">
+				{@html global.contactLocation}
 			</span>
 		</div>
 	</div>

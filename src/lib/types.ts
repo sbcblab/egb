@@ -33,6 +33,7 @@ export interface Global {
 	eventLocation: string | null;
 	email: string;
 	phone: string;
+	contactLocation: string;
 	instagramLink: string;
 	twitterLink: string;
 	linkedinLink: string;
