@@ -32,9 +32,10 @@ export async function getAbout() {
 							people_id: [
 								'*',
 								{
-									picture: ['id', 'title'],
 									institution: ['*'],
-									country: ['*', { translations: ['*'] }]
+									picture: ['id', 'title'],
+									country: ['*', { translations: ['*'] }],
+									translations: ['*']
 								}
 							]
 						}
@@ -64,6 +65,19 @@ export async function getCourses() {
 				'*',
 				{
 					instructors: [
+						{
+							people_id: [
+								'*',
+								{
+									institution: ['*'],
+									picture: ['id', 'title'],
+									country: ['*', { translations: ['*'] }],
+									translations: ['*']
+								}
+							]
+						}
+					],
+					monitors: [
 						{
 							people_id: [
 								'*',

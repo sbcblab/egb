@@ -106,15 +106,9 @@
 		<h2 class="mb-7 text-3xl font-semibold tracking-tight text-slate-900">
 			{translate('Organizing Committee', 'Comitê organizador')}
 		</h2>
-		<div class="grid gap-6 md:grid-cols-2">
+		<div class="grid gap-3 md:grid-cols-3">
 			{#each about.committee as { people_id }}
-				{@const { name, institution, country, picture } = people_id}
-				<Person
-					{name}
-					{picture}
-					institution={institution.name}
-					country={country.translations?.find((i) => i.languages_code === lang)?.name || ''}
-				/>
+				<Person person={people_id} {lang} />
 			{/each}
 		</div>
 	</section>

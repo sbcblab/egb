@@ -18,6 +18,7 @@ export interface Schema {
 	courseTranslations: CourseTranslation[];
 	coursePeople: CoursePerson[];
 	people: Person[];
+	peopleTranslations: PeopleTranslation[];
 	institutions: Institution[];
 	countries: Country[];
 	countriesTranslations: CountriesTranslation[];
@@ -40,13 +41,13 @@ export interface Global {
 
 export interface About {
 	bannerImage: Image | null;
-	translations: AboutTranslation[];
+	translations: AboutTranslation[] | null;
 	whatIsEgbImage1: Image | null;
 	whatIsEgbImage2: Image | null;
 	theVenueImage: Image | null;
 	committee: AboutPerson[];
-	organizers: AboutInstitution[];
-	sponsors: AboutInstitution[];
+	organizers: AboutInstitution[] | null;
+	sponsors: AboutInstitution[] | null;
 }
 
 export interface AboutTranslation extends Translation {
@@ -60,7 +61,7 @@ export interface AboutInstitution {
 
 export interface Program {
 	bannerImage: Image | null;
-	translations: ProgramTranslation[];
+	translations: ProgramTranslation[] | null;
 }
 
 export interface ProgramTranslation extends Translation {
@@ -70,7 +71,7 @@ export interface ProgramTranslation extends Translation {
 
 export interface Submissions {
 	bannerImage: Image | null;
-	translations: SubmissionsTranslation[];
+	translations: SubmissionsTranslation[] | null;
 	lattesTemplate: string | null;
 	wordTemplate: string | null;
 	submitLink: string | null;
@@ -88,8 +89,8 @@ export interface SubmissionsTranslation extends Translation {
 
 export interface Registration {
 	bannerImage: Image | null;
-	translations: RegistrationTranslation[];
-	courseFees: CourseFee[];
+	translations: RegistrationTranslation[] | null;
+	courseFees: CourseFee[] | null;
 	registrationLink: string | null;
 	registrationStartDate: string | null;
 	registrationEndDate: string | null;
@@ -111,8 +112,8 @@ export interface RegistrationTranslation extends Translation {
 	eventFeesSubtitle: string | null;
 	courseFeesTitle: string;
 	courseFeesSubtitle: string | null;
-	eventFees: EventFee[];
-	faq: FaqItem[];
+	eventFees: EventFee[] | null;
+	faq: FaqItem[] | null;
 }
 
 export interface Institution {
@@ -126,11 +127,11 @@ export interface Person {
 	picture: Image;
 	country: Country;
 	institution: Institution;
-	links: PersonLink[];
-	translations: PersonTranslation[];
+	links: PersonLink[] | null;
+	translations: PeopleTranslation[] | null;
 }
 
-export interface PersonTranslation extends Translation {
+export interface PeopleTranslation extends Translation {
 	summary: string | null;
 }
 
@@ -140,7 +141,7 @@ export interface AboutPerson {
 
 export interface Country {
 	alpha2: string;
-	translations: CountriesTranslation[];
+	translations: CountriesTranslation[] | null;
 }
 
 export interface CountriesTranslation extends Translation {
@@ -150,7 +151,7 @@ export interface CountriesTranslation extends Translation {
 export interface PreviousEdition {
 	title: string;
 	year: number;
-	translations: PreviousEditionsTranslation[];
+	translations: PreviousEditionsTranslation[] | null;
 	image: Image;
 }
 
@@ -164,8 +165,9 @@ export interface Course {
 	type: CourseType;
 	level: CourseLevel;
 	language: CourseLanguage;
-	instructors: CoursePerson[];
-	translations: CourseTranslation[];
+	instructors: CoursePerson[] | null;
+	monitors: CoursePerson[] | null;
+	translations: CourseTranslation[] | null;
 	references: Reference[] | null;
 	schedule: CourseScheduleItem[] | null;
 }
@@ -187,13 +189,13 @@ export interface CoursePerson {
 export interface Activity {
 	slug: string | null;
 	type: string | null;
-	translations: ActivityTranslation[];
+	translations: ActivityTranslation[] | null;
 	date: string | null;
 	startTime: string | null;
 	endTime: string | null;
 	locationLine1: string | null;
 	locationLine2: string | null;
-	speakers: ActivityPerson[];
+	speakers: ActivityPerson[] | null;
 }
 
 export interface ActivityTranslation extends Translation {

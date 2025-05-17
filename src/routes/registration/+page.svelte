@@ -129,33 +129,37 @@
 					</p>
 				{/if}
 			</div>
-			<div class="overflow-auto">
-				<div class="min-w-fit overflow-hidden rounded-2xl border border-slate-200 max-xl:mx-6">
-					<table class="w-full whitespace-nowrap">
-						<thead>
-							<tr>
-								<th class="border-b border-slate-200 px-6 py-3 text-start font-semibold">
-									<span class="inline-flex gap-0.25 align-top">
-										<span>{translate('Duration', 'Carga horária')}</span>
-										<em class="text-sm leading-5 font-normal text-slate-400">*</em>
-									</span>
-								</th>
-								<th class="border-b border-slate-200 px-6 py-3 text-end font-semibold">
-									{translate('Fee', 'Taxa')}
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							{#each registration.courseFees as { duration, fee }}
-								<tr class="odd:bg-slate-50">
-									<td class="px-6 py-4 text-slate-600">{duration} {translate('hours', 'horas')}</td>
-									<td class="px-6 py-4 text-end text-slate-600">R$ {fee}</td>
+			{#if registration.courseFees}
+				<div class="overflow-auto">
+					<div class="min-w-fit overflow-hidden rounded-2xl border border-slate-200 max-xl:mx-6">
+						<table class="w-full whitespace-nowrap">
+							<thead>
+								<tr>
+									<th class="border-b border-slate-200 px-6 py-3 text-start font-semibold">
+										<span class="inline-flex gap-0.25 align-top">
+											<span>{translate('Duration', 'Carga horária')}</span>
+											<em class="text-sm leading-5 font-normal text-slate-400">*</em>
+										</span>
+									</th>
+									<th class="border-b border-slate-200 px-6 py-3 text-end font-semibold">
+										{translate('Fee', 'Taxa')}
+									</th>
 								</tr>
-							{/each}
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								{#each registration.courseFees as { duration, fee }}
+									<tr class="odd:bg-slate-50">
+										<td class="px-6 py-4 text-slate-600"
+											>{duration} {translate('hours', 'horas')}</td
+										>
+										<td class="px-6 py-4 text-end text-slate-600">R$ {fee}</td>
+									</tr>
+								{/each}
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</div>
+			{/if}
 			<div class="mt-2.5 flex justify-start px-2 max-xl:px-8">
 				<em class="inline-flex align-top text-sm text-slate-400">
 					<span class="mr-0.25 leading-4">*</span>
@@ -241,12 +245,12 @@
 			<a
 				href={link}
 				target="_blank"
-				class="group flex h-72 flex-col justify-end overflow-hidden rounded-3xl border border-slate-200 shadow-sm transition-all active:shadow-inner md:h-96"
+				class="group flex h-72 flex-col justify-end overflow-hidden rounded-3xl border border-slate-200 shadow-xs active:shadow-none md:h-96"
 			>
-				<div style:background-image="url({imageUrl})" class="relative grow bg-cover bg-center">
-					<div class="absolute inset-0 transition-all md:group-hover:bg-slate-950/5"></div>
-				</div>
-				<div class="px-7 pt-7 pb-8 transition-all md:group-hover:bg-slate-100">
+				<div style:background-image="url({imageUrl})" class="grow bg-cover bg-center"></div>
+				<div
+					class="px-7 pt-7 pb-8 group-hover:bg-slate-50 group-active:bg-slate-100 group-active:shadow-inner"
+				>
 					<h3 class="mb-3 font-medium text-slate-900">{title}</h3>
 					<p class="text-sm/[1.6] text-slate-500">{description}</p>
 				</div>

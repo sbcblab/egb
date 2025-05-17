@@ -9,15 +9,23 @@
 		class: _class,
 		children
 	}: { isOpen?: boolean; class?: string; children?: Snippet } = $props();
+
+	$effect(() => {
+		if (isOpen) {
+			document.body.classList.add('overflow-hidden');
+		} else {
+			document.body.classList.remove('overflow-hidden');
+		}
+	});
 </script>
 
 {#if isOpen}
 	<div
 		transition:fade={{ duration: 400, easing: expoOut }}
-		class="fixed inset-0 z-600 bg-gray-950/30"
+		class="fixed inset-0 z-10 bg-gray-950/50 backdrop-blur-xs"
 	></div>
 	<div
-		class="fixed inset-0 z-600 grid max-h-full items-end overflow-y-auto pt-24 md:flex md:items-center md:justify-center md:pt-0"
+		class="fixed inset-0 z-10 grid max-h-full items-end overflow-y-auto pt-24 md:flex md:items-center md:justify-center md:pt-0"
 	>
 		<div
 			use:clickOutside

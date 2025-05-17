@@ -3,6 +3,7 @@
 	import { page } from '$app/state';
 	import BoxedIcon from '$lib/components/BoxedIcon.svelte';
 	import Header from '$lib/components/Header.svelte';
+	import Person from '$lib/components/Person.svelte';
 	import { courseLanguageMap, courseLevelMap, courseTypeMap, getDatesBetween } from '$lib/utils.js';
 	import { format } from 'date-fns';
 	import { ptBR } from 'date-fns/locale';
@@ -11,64 +12,17 @@
 		ChevronLeft,
 		ClockIcon,
 		GaugeIcon,
-		GlobeIcon,
 		HourglassIcon,
 		LanguagesIcon,
 		MapPinIcon,
 		NotebookPenIcon
 	} from 'lucide-svelte';
-	import AcademiconsLattes from '~icons/academicons/lattes';
-	import Fa6BrandsGoogleScholar from '~icons/fa6-brands/google-scholar';
-	import RiGithubFill from '~icons/ri/github-fill';
-	import RiLinkedinFill from '~icons/ri/linkedin-fill';
-	import SimpleIconsOrcid from '~icons/simple-icons/orcid';
-	import SimpleIconsResearchgate from '~icons/simple-icons/researchgate';
 
 	let { data } = $props();
 	let { courses, activities, lang, global } = data;
 
 	let activity = activities.find((a) => a.slug === page.params.slug) || null;
 	let course = activity ? null : courses.find((c) => c.slug === page.params.slug) || null;
-
-	const linkTypes = [
-		{ type: 'website', title: 'Website', colorClass: 'bg-slate-500', Icon: GlobeIcon },
-		{
-			type: 'lattes',
-			title: translate('Lattes Curriculum', 'Currículo Lattes'),
-			colorClass: 'bg-indigo-900/90',
-			Icon: AcademiconsLattes
-		},
-		{
-			type: 'linkedin',
-			title: 'LinkedIn',
-			colorClass: 'bg-blue-800/80',
-			Icon: RiLinkedinFill
-		},
-		{
-			type: 'orcid',
-			title: 'ORCID',
-			colorClass: 'bg-lime-500/70',
-			Icon: SimpleIconsOrcid
-		},
-		{
-			type: 'scholar',
-			title: 'Google Scholar',
-			colorClass: 'bg-blue-700/65',
-			Icon: Fa6BrandsGoogleScholar
-		},
-		{
-			type: 'researchgate',
-			title: 'ResearchGate',
-			colorClass: 'bg-teal-500/80',
-			Icon: SimpleIconsResearchgate
-		},
-		{
-			type: 'github',
-			title: 'GitHub',
-			colorClass: 'bg-neutral-800',
-			Icon: RiGithubFill
-		}
-	];
 
 	function translate(enStr: string, ptStr: string) {
 		return lang === 'pt-BR' ? ptStr : enStr;
@@ -165,54 +119,27 @@
 					</div>
 				{/if}
 			</div>
-			<div class="col-span-3 space-y-4">
-				{#each activity.speakers || [] as { people_id }}
-					{@const { name, picture, country, institution, links, translations } = people_id}
-					{@const speakerTranslation = translations.find((t) => t.languages_code === lang)}
-					<div class="flex flex-col gap-8 rounded-3xl border border-slate-200 p-8 shadow-xs">
-						<div class="flex items-center gap-5">
-							<div
-								class="w-full max-w-26 shrink-0 self-stretch rounded-2xl border border-slate-200 bg-cover bg-center"
-								style:background-image="url({base}/api/assets/{picture.id})"
-							></div>
-							<div class="py-5">
-								<div class="mb-1 text-lg/[1.15] font-medium">{name}</div>
-								<div class="text-slate-600">
-									{institution.name}, {country.translations?.find((t) => t.languages_code === lang)
-										?.name}
-								</div>
-								{#if links}
-									<div class="mt-4 flex gap-1">
-										{#each linkTypes as { type, title, colorClass, Icon }}
-											{@const link = links.find((l) => l.type === type)}
-											{#if link}
-												<a
-													href={link.link}
-													{title}
-													target="_blank"
-													class="size-5.5 rounded-full p-1 opacity-40 transition-all hover:opacity-100 {colorClass}"
-												>
-													<Icon class="size-full text-white" />
-												</a>
-											{/if}
-										{/each}
-									</div>
-								{/if}
-							</div>
-						</div>
-						<!-- {#if speakerTranslation?.summary}
-							<div class="text-sm/[1.75] text-slate-500">
-								{@html speakerTranslation.summary}
-							</div>
-						{/if} -->
-					</div>
-				{/each}
-			</div>
+			{#if activity.speakers}
+				<div class="col-span-3 space-y-3">
+					{#each activity.speakers as { people_id }}
+						<Person {lang} person={people_id} />
+					{/each}
+				</div>
+			{/if}
 		</div>
 	</div>
 {:else if course}
-	{@const { duration, instructors, level, references, type, language, translations, schedule } =
-		course}
+	{@const {
+		duration,
+		instructors,
+		monitors,
+		level,
+		references,
+		type,
+		language,
+		translations,
+		schedule
+	} = course}
 	{@const translation = translations?.find((i) => i.languages_code === lang)}
 	<div class="mx-auto mt-6 mb-32 w-full max-w-6xl px-6 md:mt-10">
 		<div class="mb-8 md:mb-12">
@@ -226,7 +153,7 @@
 		<div class="mb-2 text-lg font-medium text-slate-400">
 			{translate('Course', 'Curso')}
 		</div>
-		<div class="flex flex-col gap-16 md:grid md:grid-cols-7 md:max-lg:gap-12">
+		<div class="flex flex-col md:grid md:grid-cols-7 md:gap-12">
 			<div class="col-span-4">
 				<div class="mb-16">
 					<h1 class="mb-6 text-3xl font-medium tracking-tighter text-slate-800 md:text-4xl">
@@ -351,11 +278,11 @@
 					translation?.prerequisites
 				)}
 				{#if references}
-					<div class="mb-10">
+					<div class="mb-12">
 						<h2 class="mb-3 font-medium">
 							{translate('References', 'Bibliografia')}
 						</h2>
-						<ul class="markdown space-y-3">
+						<ul class="markdown list-disc space-y-3">
 							{#each references as { author, link, title }}
 								<li class="text-slate-600">
 									{#if link}
@@ -369,52 +296,28 @@
 					</div>
 				{/if}
 			</div>
-			{#if instructors && instructors.length > 0}
-				<div class="col-span-3 space-y-3">
-					{#each instructors || [] as { people_id }}
-						{@const { name, picture, country, institution, links, translations } = people_id}
-						{@const instructorTranslation = translations.find((t) => t.languages_code === lang)}
-						<div class="flex flex-col gap-8 rounded-3xl border border-slate-200 p-8 shadow-xs">
-							<div class="flex items-center gap-5">
-								<div
-									class="w-full max-w-26 shrink-0 self-stretch rounded-2xl border border-slate-200 bg-cover bg-center"
-									style:background-image="url({base}/api/assets/{picture.id})"
-								></div>
-								<div class="py-5">
-									<div class="mb-1 text-lg/[1.15] font-medium">{name}</div>
-									<div class="text-slate-600">
-										{institution.name}, {country.translations?.find(
-											(t) => t.languages_code === lang
-										)?.name}
-									</div>
-									{#if links}
-										<div class="mt-4 flex gap-1">
-											{#each linkTypes as { type, title, colorClass, Icon }}
-												{@const link = links.find((l) => l.type === type)}
-												{#if link}
-													<a
-														href={link.link}
-														{title}
-														target="_blank"
-														class="size-5.5 rounded-full p-1 opacity-40 transition-all hover:opacity-100 {colorClass}"
-													>
-														<Icon class="size-full text-white" />
-													</a>
-												{/if}
-											{/each}
-										</div>
-									{/if}
-								</div>
-							</div>
-							<!-- {#if instructorTranslation?.summary}
-							<div class="text-sm/[1.75] text-slate-500">
-								{@html instructorTranslation.summary}
-							</div>
-						{/if} -->
+			<div class="col-span-3 mb-12 space-y-12">
+				{#if instructors && instructors.length > 0}
+					<div>
+						<h2 class="mb-3 font-medium">Instructors</h2>
+						<div class="space-y-3">
+							{#each instructors as { people_id }}
+								<Person {lang} person={people_id} />
+							{/each}
 						</div>
-					{/each}
-				</div>
-			{/if}
+					</div>
+				{/if}
+				{#if monitors && monitors.length > 0}
+					<div>
+						<h2 class="mb-3 font-medium">Monitors</h2>
+						<div class="space-y-3">
+							{#each monitors as { people_id }}
+								<Person {lang} person={people_id} />
+							{/each}
+						</div>
+					</div>
+				{/if}
+			</div>
 		</div>
 	</div>
 {/if}

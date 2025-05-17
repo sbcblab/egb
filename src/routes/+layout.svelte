@@ -11,16 +11,12 @@
 	let isHome = $derived(page.url.pathname === `${base}/`);
 </script>
 
-<div class="flex min-h-full flex-col text-pretty text-slate-950 subpixel-antialiased">
+<div
+	class="relative flex min-h-full flex-col text-pretty text-slate-950 subpixel-antialiased selection:bg-primary-800 selection:text-white"
+>
 	<MobileNav {lang} />
 	<main class="flex grow flex-col">
 		{@render children?.()}
 	</main>
 	<Footer {global} {lang} />
 </div>
-
-<style>
-	:global(html, body) {
-		height: 100%;
-	}
-</style>

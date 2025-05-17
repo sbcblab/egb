@@ -153,7 +153,7 @@
 			{@const translation = translations?.find((i) => i.languages_code === lang)}
 			<a
 				href="{base}/program/{slug}"
-				class="flex flex-col gap-2 rounded-2xl border border-slate-200 p-6 shadow-xs hover:bg-slate-50 active:bg-slate-100 active:shadow-inner"
+				class="flex flex-col justify-center gap-2 rounded-2xl border border-slate-200 p-6 shadow-xs hover:bg-slate-50 active:bg-slate-100 active:shadow-inner"
 			>
 				<div>
 					{translation?.title}
