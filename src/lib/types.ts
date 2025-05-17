@@ -45,6 +45,9 @@ export interface About {
 	whatIsEgbImage1: Image | null;
 	whatIsEgbImage2: Image | null;
 	theVenueImage: Image | null;
+	venueName: string | null;
+	venueAddress: string | null;
+	venueAddressLink: string | null;
 	committee: AboutPerson[];
 	organizers: AboutInstitution[] | null;
 	sponsors: AboutInstitution[] | null;

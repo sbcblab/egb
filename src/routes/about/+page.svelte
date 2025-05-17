@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import Banner from '$lib/components/Banner.svelte';
+	import BoxedIcon from '$lib/components/BoxedIcon.svelte';
 	import Person from '$lib/components/Person.svelte';
 	import type { Institution } from '$lib/types.js';
 	import { format } from 'date-fns';
+	import { MapPinIcon } from 'lucide-svelte';
 
 	let { data } = $props();
 	let { lang, global, about, previousEditions } = data;
@@ -97,6 +99,31 @@
 			<div class="markdown w-full space-y-7 leading-[1.75] text-slate-600 md:max-w-144">
 				{@html translation.theVenue}
 			</div>
+			{#if about.venueName || about.venueAddress}
+				<div class="mt-9 flex items-center gap-6">
+					<BoxedIcon Icon={MapPinIcon} size={18} strokeWidth={0.75} class="p-1" />
+					<div>
+						{#if about.venueName}
+							<div class="mb-1 text-black">{about.venueName}</div>
+						{/if}
+						{#if about.venueAddress}
+							{#if about.venueAddressLink}
+								<a
+									href={about.venueAddressLink}
+									target="_blank"
+									class="inline-block leading-6 text-balance text-slate-500 underline hover:text-slate-500/70"
+								>
+									{about.venueAddress}
+								</a>
+							{:else}
+								<div class="inline-block leading-6 text-balance text-slate-500">
+									{about.venueAddress}
+								</div>
+							{/if}
+						{/if}
+					</div>
+				</div>
+			{/if}
 		</div>
 	</section>
 {/if}
